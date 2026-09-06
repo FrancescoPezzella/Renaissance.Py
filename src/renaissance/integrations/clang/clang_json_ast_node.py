@@ -13,6 +13,7 @@ from typing import Any, Self, override
 
 from renaissance.integrations.clang.cpp_utils import CPPUtils, matches_node_kind
 from renaissance.integrations.clang.kinds import CLANG_KIND_MAP
+from renaissance.integrations.clang.predicates import is_clang_declaration_reference, is_clang_kind
 from renaissance.integrations.types import (
     KIND_MAP,
     Call,
@@ -166,7 +167,7 @@ class ClangJsonASTNode(ASTNode):
                     self.__inserted_children.append(insert_child)
             # add the declaration as node
             # deep clone the type node and remove the parentheses
-        elif self.ast_type in [DeclarationExpression]:
+        elif is_clang_declaration_reference(self):
             if self.name.startswith("$$"):
                 self._kind = MatchAll.__name__
                 self.ast_type = MatchAll
@@ -338,7 +339,7 @@ class ClangJsonASTNode(ASTNode):
         if self._get(["range", "end", "expansionLoc", "offset"], -1) != -1:  # dealing with a macro expansion
             properties["macro_expansion"] = self.text
         # matching name through props
-        if self.ast_type == DeclarationExpression:
+        if is_clang_declaration_reference(self):
             properties["name"] = self.name
 
         return properties
@@ -518,9 +519,9 @@ class ReferenceHelper:
             # add the node if it contains a reference for example in case of previousDecl
 
         # to make clang json compatible with clang python, we add the reference of the DeclRefExpr child to the CallExpr
-        if ast_node.ast_type == Call:
+        if ast_node.semantic_kind is SemanticKind.CALL:
             for n in ast_node.children:
-                if n.ast_type == DeclarationExpression:
+                if is_clang_declaration_reference(n):
                     ref_child = {
                         k: v for k, v in n.node.items() if not ReferenceHelper._is_child_node(k) and ClangJsonASTNode._is_reference(v)
                     }
@@ -594,20 +595,20 @@ class ReferenceHelper:
             qual_type = tp["qualType"]
             ids = []
             ctor_type = EMPTY_STR
-            if ast_node.ast_type == ConstructorExpression:
+            if is_clang_kind(ast_node, "CXXConstructExpr", "CXX_CONSTRUCT_EXPR"):
                 ctor_type = ast_node._get(["ctorType", "qualType"], EMPTY_STR)
 
             for id, node in ast_node.translation_unit._nodes.items():
-                if node.ast_type == RecordDef and node.name == qual_type:
+                if node.semantic_kind is SemanticKind.CLASS and node.name == qual_type:
                     parent = node.parent
                     matches = True
                     for ns in namespaces:
-                        if ns != parent.name or parent.ast_type != Namespace:
+                        if ns != parent.name or not is_clang_kind(parent, "NamespaceDecl", "NAMESPACE_DECL"):
                             matches = False
                         parent = parent.parent
                     if matches:
                         ids.append((node.ast_type, id))
-                if ctor_type != EMPTY_STR and node.ast_type == Constructor:
+                if ctor_type != EMPTY_STR and is_clang_kind(node, "CXXConstructorDecl", "CXX_CONSTRUCTOR"):
                     # link all matching
                     matches = node._get(["type", "qualType"], EMPTY_STR) == ctor_type
                     if matches:
