@@ -6,8 +6,9 @@ from hamcrest import assert_that, empty, has_length, instance_of, is_, is_in, is
 from renaissance.integrations.python.ast.factory import PythonFactory, PythonPatternFactory
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.integrations.types import *
-from renaissance.integrations.types import MatchAll, MatchOne, TranslationUnit
+from renaissance.integrations.types import TranslationUnit
 from renaissance.syntax_tree.match_finder import is_match
+from renaissance.syntax_tree.pattern_kind import PatternKind
 
 
 class TestPythonicStyle:
@@ -100,20 +101,20 @@ class TestPythonicStyle:
 
     def python_does_not_parse_dollar(self):
         it = PythonRstNode.load_from_text("$pa")
-        assert_that(it.ast_type, is_(MatchOne))
+        assert_that(it.pattern_kind, is_(PatternKind.MATCH_ONE))
 
     def python_does_not_parse_dollar(self):
         it = PythonRstNode.load_from_text("$$pa")
-        assert_that(it.ast_type, is_(MatchAll))
+        assert_that(it.pattern_kind, is_(PatternKind.MATCH_ALL))
 
     def test_kind_is_match_all(self):
         PythonPatternFactory(PythonFactory(PythonRstNode))
         simple = self.pattern_factory.create_statement("$$pa")
-        assert_that(simple.ast_type(), instance_of(MatchAll))
+        assert_that(simple.pattern_kind, is_(PatternKind.MATCH_ALL))
 
     def test_kind_is_match_one(self):
         simple = self.pattern_factory.create_statement("$pa")
-        assert_that(simple.ast_type(), instance_of(MatchOne))
+        assert_that(simple.pattern_kind, is_(PatternKind.MATCH_ONE))
 
     def test_match_one_is_not_equal(self):
         atu = self.factory.create_from_text("ba(55)\nca(555)\nlo(4444)\nna=55", "test.py")
