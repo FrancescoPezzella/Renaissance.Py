@@ -215,11 +215,11 @@ wheels = [
 
 [[package]]
 name = "codespell"
-version = "2.4.3"
+version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/80/19/45e941380f69c042b43423513d201e6592346f992394347f5e7174c31407/codespell-2.4.3.tar.gz", hash = "sha256:cbe085e331227b37bb86ef8bddd08dc768c704ee9a07ca869852c093fa2793e2", size = 352773, upload-time = "2026-07-15T11:51:54.159Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b0/2f/706691245790ae6c63252d48b7ff5e3635951d55b3ce3c0ac13d898bf70b/codespell-2.4.0.tar.gz", hash = "sha256:587d45b14707fb8ce51339ba4cce50ae0e98ce228ef61f3c5e160e34f681be58", size = 344743, upload-time = "2025-01-21T18:46:46.851Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8b/bf/bdb951d34eb169140b546f44be9ec4525d1acefb9eb5572071f5492b19fc/codespell-2.4.3-py3-none-any.whl", hash = "sha256:af2505b335e8573dbd2d384d1c4ef498f4006f4ba2d6fceca01e55b91f52628a", size = 340736, upload-time = "2026-07-15T11:51:52.925Z" },
+    { url = "https://files.pythonhosted.org/packages/19/ce/39bfb82aa428a3ac4d94cc8c9faa3eadeadb2606eee3b584f68d9b575b43/codespell-2.4.0-py3-none-any.whl", hash = "sha256:b4c5b779f747dd481587aeecb5773301183f52b94b96ed51a28126d0482eec1d", size = 344508, upload-time = "2025-01-21T18:46:44.288Z" },
 ]
 
 [[package]]
@@ -1343,7 +1343,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "behave" },
-    { name = "codespell", specifier = ">=2.4" },
+    { name = "codespell", specifier = "==2.4.0" },
     { name = "coverage", specifier = ">=7.0" },
     { name = "hypothesis", specifier = ">=6.152.4" },
     { name = "hypothesmith", specifier = ">=0.3.3" },
@@ -1370,7 +1370,7 @@ docs = [
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.25" },
 ]
 lint = [
-    { name = "codespell", specifier = ">=2.4" },
+    { name = "codespell", specifier = "==2.4.0" },
     { name = "pymarkdownlnt", specifier = ">=0.9" },
     { name = "pyright", specifier = ">=1.1" },
     { name = "ruff", specifier = ">=0.5" },
