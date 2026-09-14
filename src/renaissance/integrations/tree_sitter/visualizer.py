@@ -1,5 +1,5 @@
 from renaissance.integrations.tree_sitter.lst import LST
-from renaissance.utils.text_utils import signature2id
+from renaissance.utils.text_utils import signature_to_id
 
 
 class LstVisualizer:
@@ -17,9 +17,9 @@ class LstVisualizer:
     def _render_node(self, node):
         node_id = self._get_node_id(node)
         label = f"""\
-            {node_id}: {node.ast_type.__name__} {{
+            {node_id}: {node.semantic_kind} ({node.parser_kind}) {{
             offset: {node.offset}
-            signature: {signature2id(node.signature)}
+            signature: {signature_to_id(node.signature)}
             }}"""
         label = label.replace("\n", "<br>")
         self.lines.append(f'{node_id}["{label}"]')
