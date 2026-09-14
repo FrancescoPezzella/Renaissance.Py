@@ -210,11 +210,8 @@ class PythonRstNode:
                 child = getattr(node, name)
                 match child:
                     case list():  # Matches any list
-                        if isinstance(node, ast.Global) and name == "names":
-                            if len(child) == 1:
-                                self.name = child[0]
-                            if name == "body":
-                                self.body = self.children
+                        if isinstance(node, ast.Global) and name == "names" and len(child) == 1:
+                            self.name = child[0]
 
                         if isinstance(node, (ImplicitNode, ast.Module)) or len(node._fields) == 1:
                             self.children.extend(PythonRstNode(n, translation_unit, self) for n in child)
