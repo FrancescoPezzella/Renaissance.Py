@@ -20,13 +20,13 @@ class VisitorResult(Enum):
 
 
 class ASTReference:
-    def __init__(self, ast_node: ASTNode, ref_kind: str, properties: dict[str, Any]) -> None:
+    def __init__(self, ast_node: ASTNode[Any, Any], ref_kind: str, properties: dict[str, Any]) -> None:
         self._node = ast_node
         self._ref_kind = ref_kind
         self._properties = properties
 
     @property
-    def node(self) -> ASTNode:
+    def node(self) -> ASTNode[Any, Any]:
         return self._node
 
     @property
@@ -39,7 +39,7 @@ class ASTReference:
 
 
 # To make usage of the concrete class methods easier, ASTNode MUST NOT have ABSTRACT public classes!!
-class ASTNode(ABC):
+class ASTNode[NodeT, TranslationUnitT](ABC):
     cache: dict[str, bytes] = {}
     """
     The base class to represent an AST node.
@@ -51,7 +51,7 @@ class ASTNode(ABC):
         self._parent = None
         self._children: list[Self] = []
         self.show_props: bool = False
-        self.translation_unit: object | None = None
+        self.translation_unit: TranslationUnitT | None = None
         self._kind: str = ""
         self._length: int = 0
         self._offset: int = 0
@@ -59,7 +59,7 @@ class ASTNode(ABC):
         self.root: Self = root
         self._properties = {}
         self._name = ""
-        self.node: object | None = None
+        self.node: NodeT | None = None
         self.indent = ""
 
     def __repr__(self):
@@ -138,12 +138,12 @@ class ASTNode(ABC):
 
     @staticmethod
     @abstractmethod
-    def load(file_path: Path, extra_args: Sequence[str], working_dir: Path) -> ASTNode:
+    def load(file_path: Path, extra_args: Sequence[str], working_dir: Path) -> ASTNode[Any, Any]:
         pass
 
     @staticmethod
     @abstractmethod
-    def load_from_text(text: str, file_name: str, extra_args: Sequence[str], working_dir: Path) -> ASTNode:
+    def load_from_text(text: str, file_name: str, extra_args: Sequence[str], working_dir: Path) -> ASTNode[Any, Any]:
         pass
 
     @property
