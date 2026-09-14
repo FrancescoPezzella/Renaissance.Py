@@ -213,7 +213,9 @@ class PythonRstNode:
                         if isinstance(node, ast.Global) and name == "names" and len(child) == 1:
                             self.name = child[0]
 
-                        if isinstance(node, (ImplicitNode, ast.Module)) or len(node._fields) == 1:
+                        if isinstance(node, (ast.Global, ast.Nonlocal)):
+                            pass  # names is list[str], not AST nodes - nothing to build children from
+                        elif isinstance(node, (ImplicitNode, ast.Module)) or len(node._fields) == 1:
                             # A list field can hold a bare None at a position with no value
                             # None isn't a real AST node, so it has nothing to build a child from.
                             self.children.extend(PythonRstNode(n, translation_unit, self) for n in child if n is not None)
@@ -361,7 +363,11 @@ class PythonRstNode:
         elif isinstance(self.node, (ast.Assert, ast.Break, ast.Pass, ast.Raise, ast.Continue)):
             name = ""
         elif isinstance(self.node, (ast.For, ast.AsyncFor)):
-            if isinstance(self.node.target, ast.Tuple) and len(self.node.target.elts) > 1:
+            if (
+                isinstance(self.node.target, ast.Tuple)
+                and len(self.node.target.elts) > 1
+                and isinstance(self.node.target.elts[1], ast.Name)
+            ):
                 name = self.node.target.elts[1].id
             elif isinstance(self.node.target, ast.Name):
                 name = self.node.target.id
