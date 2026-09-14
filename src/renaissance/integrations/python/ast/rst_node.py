@@ -107,9 +107,16 @@ class PythonRstTranslationUnit:
         assert isinstance(ast_node, PythonRstNode), f"Expected PythonASTNode but got {type(ast_node)}"
         match type(ast_node.node):
             case ast.arg:
+                # TODO: is excluding self here intentional..?
                 if ast_node.name != "self" and isinstance(ast_node.node, ast.arg) and isinstance(ast_node.node.annotation, ast.Name):
                     node_id = ast_node.name
                     ref_id = ast_node.node.annotation.id
+                    ref_kind = "TypeRef"
+                    self.add_reference(node_id, ref_id, ref_kind)
+            case ast.FunctionDef | ast.AsyncFunctionDef:
+                if isinstance(ast_node.node, (ast.FunctionDef, ast.AsyncFunctionDef)) and isinstance(ast_node.node.returns, ast.Name):
+                    node_id = ast_node.name
+                    ref_id = ast_node.node.returns.id
                     ref_kind = "TypeRef"
                     self.add_reference(node_id, ref_id, ref_kind)
             case ast.Assign:
