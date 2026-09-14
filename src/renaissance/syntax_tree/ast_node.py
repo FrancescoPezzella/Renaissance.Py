@@ -49,13 +49,13 @@ class ASTNode(ABC):
     def __init__(self, root: Self) -> None:
         super().__init__()
         self._parent = None
-        self._children = None
-        self.show_props = None
-        self.translation_unit = None
-        self._kind = None
-        self._length = None
-        self._offset = None
-        self._filename = None
+        self._children: list[Self] = []
+        self.show_props: bool = False
+        self.translation_unit: object | None = None
+        self._kind: str = ""
+        self._length: int = 0
+        self._offset: int = 0
+        self._filename: str = ""
         self.root: Self = root
         self._properties = {}
         self._name = ""

@@ -40,7 +40,7 @@ class Variant:
     def __init__(self, index, exp, greedy, expansion_start, end_index=INCOMPLETE_MATCH):
         self.exp: dict = exp
         self.index: int = index
-        self.greedy: str = greedy
+        self.greedy: str | None = greedy
         self.end_index = end_index
         self.expansion_start = expansion_start
 
