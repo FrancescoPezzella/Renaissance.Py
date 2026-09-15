@@ -301,9 +301,10 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
         return re.match("(?i).*(Stmt|Decl)", self.kind)
         return self.semantic_kind in {SemanticKind.STATEMENT, SemanticKind.DECLARATION, SemanticKind.DEFINITION}
 
+    # TODO: can @property work here given matches_kind takes a required node argument?
     @override
     @property
-    def matches_kind(self, node: ASTNode[Any, Any]) -> bool:
+    def matches_kind(self, node: ASTNode[dict[str, Any], ClangJsonTranslationUnit]) -> bool:
         return matches_node_kind(self, node)
 
     @override
@@ -326,7 +327,7 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
 
     @override
     @property
-    def referenced_by(self) -> Sequence[ASTReference]:
+    def referenced_by(self) -> Sequence[ASTReference[dict[str, Any], ClangJsonTranslationUnit]]:
         if self.inserted:
             return []
         self.translation_unit.lazy_create_references(self)
@@ -350,7 +351,7 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
 
     @override
     @property
-    def references(self) -> list[ASTReference]:
+    def references(self) -> list[ASTReference[dict[str, Any], ClangJsonTranslationUnit]]:
         if self.inserted:
             return []
         self.translation_unit.lazy_create_references(self)

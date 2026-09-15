@@ -19,14 +19,14 @@ class VisitorResult(Enum):
     SKIP = 2
 
 
-class ASTReference:
-    def __init__(self, ast_node: ASTNode[Any, Any], ref_kind: str, properties: dict[str, Any]) -> None:
+class ASTReference[NodeT, TranslationUnitT]:
+    def __init__(self, ast_node: ASTNode[NodeT, TranslationUnitT], ref_kind: str, properties: dict[str, Any]) -> None:
         self._node = ast_node
         self._ref_kind = ref_kind
         self._properties = properties
 
     @property
-    def node(self) -> ASTNode[Any, Any]:
+    def node(self) -> ASTNode[NodeT, TranslationUnitT]:
         return self._node
 
     @property
@@ -108,12 +108,12 @@ class ASTNode[NodeT, TranslationUnitT](ABC):
 
     @property
     @abstractmethod
-    def references(self) -> list[ASTReference]:
+    def references(self) -> list[ASTReference[NodeT, TranslationUnitT]]:
         pass
 
     @property
     @abstractmethod
-    def referenced_by(self) -> list[ASTReference]:
+    def referenced_by(self) -> list[ASTReference[NodeT, TranslationUnitT]]:
         pass
 
     def get_ancestor(self, kind: str | re.Pattern[str]) -> Self | None:
@@ -138,12 +138,12 @@ class ASTNode[NodeT, TranslationUnitT](ABC):
 
     @staticmethod
     @abstractmethod
-    def load(file_path: Path, extra_args: Sequence[str], working_dir: Path) -> ASTNode[Any, Any]:
+    def load(file_path: Path, extra_args: Sequence[str], working_dir: Path) -> ASTNode[NodeT, TranslationUnitT]:
         pass
 
     @staticmethod
     @abstractmethod
-    def load_from_text(text: str, file_name: str, extra_args: Sequence[str], working_dir: Path) -> ASTNode[Any, Any]:
+    def load_from_text(text: str, file_name: str, extra_args: Sequence[str], working_dir: Path) -> ASTNode[NodeT, TranslationUnitT]:
         pass
 
     @property
