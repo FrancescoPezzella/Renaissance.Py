@@ -19,7 +19,7 @@ jobs:
 
       - name: Enable auto-merge for patch/minor
         if: |
-          steps.metadata.outputs.dependency-name != 'ruff' &&
+          !contains(steps.metadata.outputs.dependency-names, 'ruff') &&
           (
           steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
           steps.metadata.outputs.update-type == 'version-update:semver-minor'
