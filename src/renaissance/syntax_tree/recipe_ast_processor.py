@@ -82,6 +82,7 @@ class RecipeASTProcessor[TRecipe]:
         in_memory: bool = False,
         max_processes: int = 4,
     ):
+        """AI: Prepare a processor that runs a recipe's steps across a batch of files, optionally in parallel."""
         self.__recipe: TRecipe = recipe
         self.__batch_processor = BatchASTProcessor(in_memory=in_memory, max_processes=max_processes)
         self.__iterableProvider = iterable_provider

@@ -36,6 +36,7 @@ class ImplicitNode(ast.Name):
     }
 
     def __init__(self, name, children=None):
+        """AI: Represent a synthetic AST node inserted where the real source has none."""
         super().__init__(name, children or [])
         self.lineno = 0
         self.col_offset = 0
@@ -48,6 +49,7 @@ class PythonRSTReference:
         return f"{self.node_id}:{self.ref_kind}"
 
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
+        """AI: Represent a reference from one Python RST AST node to another by id."""
         self.node_id = node_id
         self.ref_kind = ref_kind
         self.properties = properties
@@ -57,6 +59,7 @@ class PythonRstTranslationUnit:
     cache = {}
 
     def __init__(self, content, file_name: str):
+        """AI: Parse Python source into a stdlib ast tree with lazily-built reference caches."""
         self.content = content.encode(sys.getfilesystemencoding())
         self.atu = ast.parse(content, file_name)
         self.file_name = file_name
@@ -193,6 +196,7 @@ class PythonRstTranslationUnit:
 
 class PythonRstNode:
     def __init__(self, node: ast.AST, translation_unit: PythonRstTranslationUnit = None, parent=None):
+        """AI: Wrap a stdlib ast node as an AST node within the given translation unit."""
         self.root = parent.root if parent and parent.root else self
         self.node = node
         self.parent = parent

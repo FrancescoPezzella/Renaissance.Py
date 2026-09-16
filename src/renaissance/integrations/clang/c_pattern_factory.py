@@ -63,6 +63,7 @@ class CPatternFactory:
         ref_node: ASTNode | None = None,
         language: str = "c",
     ):
+        """AI: Prepare a pattern factory for creating C-family AST patterns from text."""
         self.factory = factory
         self.header, self.language = derive_header_text(language, ref_node)
 
@@ -256,6 +257,7 @@ class CPatternFactory:
 
 class CPPPatternFactory(CPatternFactory):
     def __init__(self, factory: ASTFactory, ref_node: ASTNode | None = None):
+        """AI: Prepare a pattern factory for creating C++-specific AST patterns from text."""
         super().__init__(factory, ref_node, "cpp")
 
     def create_constructor_call(self, pattern: str):

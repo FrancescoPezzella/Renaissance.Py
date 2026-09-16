@@ -20,6 +20,7 @@ class ASTFactory:
         extra_args: Sequence[str] | None = None,
         working_dir: Path | None = None,
     ) -> None:
+        """AI: Configure a factory that creates AST nodes of the given node-implementation type."""
         self.clazz = clazz
         self.extra_args: Sequence[str] = extra_args if isinstance(extra_args, Sequence) else []
         # TODO: Why not

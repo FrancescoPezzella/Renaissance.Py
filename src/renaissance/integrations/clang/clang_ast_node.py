@@ -28,6 +28,7 @@ PRINT_ALL_NODES = False
 
 class Clangastreference:
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
+        """AI: Represent a reference from one clang AST node to another by id."""
         self.node_id = node_id
         self.ref_kind = ref_kind
         self.properties = properties
@@ -37,6 +38,7 @@ class ClangTranslationUnit:
     cache = []
 
     def __init__(self, clang_atu: ClangCindexTranslationUnit, file_name: str):
+        """AI: Wrap a parsed clang translation unit with lazily-built reference and macro-expansion caches."""
         self.clang_atu = clang_atu
         self.file_name = file_name
         self.references_initialized = False
@@ -98,6 +100,7 @@ class ClangASTNode(ASTNode[Cursor, ClangTranslationUnit]):
         length: int | None = None,
         insert_kind: str | None = None,
     ):
+        """AI: Wrap a clang cursor as an AST node within the given translation unit."""
         super().__init__(self if parent is None else parent.root)
         self.node = node
         self._children = None

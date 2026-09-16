@@ -18,6 +18,7 @@ def _has_semantic_kind(node, kind: SemanticKind) -> bool:
 
 class Extractor:
     def __init__(self, factory: TreeSitterPatternFactory, patterns: list[str]):
+        """AI: Configure an extractor that finds occurrences of the given patterns in code."""
         self.pattern_factory = factory
         self.patterns = patterns
 
@@ -32,6 +33,7 @@ class Extractor:
 
 class BaseCodeGraphExtractor:
     def __init__(self, language: str, lib_path: str):
+        """AI: Configure a code-graph extractor for the given language and grammar library."""
         self.language = language
         self.lib_path = lib_path
         self.adapter = TreeSitterAdapter(lib_path)

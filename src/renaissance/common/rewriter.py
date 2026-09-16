@@ -3,6 +3,7 @@ import sys
 
 class Rewrite:
     def __init__(self, start: int, end: int, replacement: bytes) -> None:
+        """AI: Record a pending replacement of a byte range with new content."""
         self.start = start
         self.end = end
         self.replacement = replacement
@@ -12,6 +13,7 @@ class Rewriter:
     """A class that allows for modifications to a byte sequence."""
 
     def __init__(self, content: bytes) -> None:
+        """AI: Prepare a rewriter that accumulates edits to apply to the given content."""
         self.__content = content
         self.__rewrites: list[Rewrite] = []
 

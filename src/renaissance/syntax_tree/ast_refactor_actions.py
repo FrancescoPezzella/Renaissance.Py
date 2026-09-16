@@ -24,6 +24,7 @@ def _kind_predicate(kind):
 
 class ASTRefactorActions:
     def __init__(self, processor: ASTProcessor, pattern_factory: CPPPatternFactory) -> None:
+        """AI: Provide pattern-based refactoring actions (replace, insert, remove) over an AST."""
         self.processor = processor
         self.pattern_factory = pattern_factory
         self.replaced: set[int] = set()

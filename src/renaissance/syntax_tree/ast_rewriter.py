@@ -40,6 +40,7 @@ class ASTRewriter:
         encoding: str = sys.getfilesystemencoding(),
         correct_indent: bool = True,
     ) -> None:
+        """AI: Accumulate and apply text rewrites (replace/insert/remove) to an AST node's source."""
         self.__rewrites = _RewriteActions(node, encoding, correct_indent=correct_indent)
         self.__filename = node.filename
 

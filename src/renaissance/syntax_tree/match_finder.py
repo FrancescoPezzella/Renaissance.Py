@@ -45,6 +45,7 @@ class Variant:
         expansion_start: int,
         end_index: int = INCOMPLETE_MATCH,
     ):
+        """AI: Track one candidate pattern-match state (bound expansions, greedy position) during matching."""
         self.exp: dict[str, Sequence[NodeProtocol]] = exp
         self.index: int = index
         self.greedy: str | None = greedy
@@ -68,6 +69,7 @@ class Variant:
 
 class PatternMatch:
     def __init__(self, nodes, expansions, patterns):
+        """AI: Represent a successful match of a pattern against a sequence of AST nodes."""
         self.nodes = nodes
         self.expansions = expansions
         self.patterns = patterns

@@ -12,6 +12,7 @@ FEATURES_DIR = Path(__file__).parent.parent
 
 class Ast:
     def __init__(self):
+        """AI: Hold the parsed AST state shared across BDD refactor steps."""
         self.file = ""
         self.atu = None
         self.signature = None

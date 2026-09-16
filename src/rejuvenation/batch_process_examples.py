@@ -128,6 +128,7 @@ class CallInfo:
 
 class AnalysisRecipe:
     def __init__(self):
+        """AI: Initialize an empty recipe for collecting function-call analysis results."""
         self._calls = []
 
     @recipe_step(order=0)

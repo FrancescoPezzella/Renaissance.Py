@@ -219,6 +219,7 @@ def simple_codebase_provider() -> Iterable[tuple[ASTFactory, ASTNode]]:
 
 class MyRefactor:
     def __init__(self):
+        """AI: Initialize an empty recipe for collecting refactoring actions."""
         self._calls = []
 
     @recipe_step(order=0)

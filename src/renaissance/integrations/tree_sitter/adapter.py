@@ -5,6 +5,7 @@ from tree_sitter import Language, Parser
 
 class TreeSitterAdapter:
     def __init__(self, grammar_module):
+        """AI: Configure a tree-sitter parser for the given language grammar."""
         language = Language(grammar_module.language())
         self.language = language
         self.parser = Parser(language)

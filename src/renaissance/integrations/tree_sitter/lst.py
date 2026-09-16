@@ -20,7 +20,7 @@ class LSTNode:
         parent: Self | None = None,
         root: Self | None = None,
     ):
-
+        """AI: Wrap a tree-sitter node as a language-syntax-tree node with derived semantic kind."""
         self.root = root or self
         self.parent = parent
         self.children = [] if children is None else children
@@ -111,4 +111,5 @@ class LSTNode:
 
 class LST:
     def __init__(self, root: LSTNode):
+        """AI: Hold the root node of a language-syntax tree."""
         self.root = root

@@ -18,6 +18,7 @@ class ASTProcessor:
         ast_factory: ASTFactory,
         in_memory: bool = False,
     ) -> None:
+        """AI: Prepare a processor that runs refactoring/analysis steps over the given AST."""
         self.__root_node = root
         self.__rewriter = ASTRewriter(root)
         self.__ast_factory = ast_factory

@@ -26,6 +26,7 @@ class AutoTextSegment:
         end_offset: int,
         location: str = "<memory>",
     ) -> None:
+        """AI: Build a reference text segment whose line/column are derived from the given offsets."""
         self._full_text = full_text
         self._location = location
         self._start_offset = start_offset
@@ -157,6 +158,7 @@ class InconsistentOffsets(AutoTextSegment):
         end_offset: int,
         location: str = "<memory>",
     ) -> None:
+        """AI: Build a text segment whose line/column are deliberately inconsistent with its offsets."""
         super().__init__(full_text, start_offset, end_offset, location)
         # break consistency intentionally
         self._start_column += 1

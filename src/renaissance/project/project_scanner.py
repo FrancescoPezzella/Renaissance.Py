@@ -10,6 +10,7 @@ class ProjectScanner:
 
 class CppScanner(ProjectScanner):
     def __init__(self, compile_commands_path: str = "compile_commands.json"):
+        """AI: Configure a scanner that discovers C/C++ sources from a compilation database."""
         self.compile_commands_path = compile_commands_path
 
     def find_sources(self) -> list[str]:
@@ -22,6 +23,7 @@ class CppScanner(ProjectScanner):
 
 class JavaScanner(ProjectScanner):
     def __init__(self, root_dir: str = "."):
+        """AI: Configure a scanner that discovers Java sources under a root directory."""
         self.root_dir = root_dir
 
     def find_sources(self) -> list[str]:
@@ -31,6 +33,7 @@ class JavaScanner(ProjectScanner):
 
 class PythonScanner(ProjectScanner):
     def __init__(self, root_dir: str = ".", package_dirs: list[str] | None = None):
+        """AI: Configure a scanner that discovers Python sources under known package directories."""
 
         # return (file_path for file_path in current_dir.iterdir() if is_python_file)
 
@@ -51,6 +54,7 @@ class PythonScanner(ProjectScanner):
 
 class BearCppScanner(CppScanner):
     def __init__(self, build_dir: str = ".", compile_commands_path: str = "compile_commands.json"):
+        """AI: Configure a scanner that generates a compilation database via Bear before discovering sources."""
         super().__init__(compile_commands_path)
         self.build_dir = build_dir
 

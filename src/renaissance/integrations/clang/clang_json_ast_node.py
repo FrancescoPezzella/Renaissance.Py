@@ -42,6 +42,7 @@ VERBOSE = False
 
 class ClangJsonASTReference:
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
+        """AI: Represent a reference from one clang-json AST node to another by id."""
         self.node_id = node_id
         self.ref_kind = ref_kind
         self.properties = properties
@@ -49,6 +50,7 @@ class ClangJsonASTReference:
 
 class ClangJsonTranslationUnit:
     def __init__(self, json_root: dict[str, Any], file_name: str):
+        """AI: Wrap a parsed clang JSON AST dump with lazily-built reference caches."""
         self.json_root = json_root
         self.filename = file_name
         self.references_initialized = False
@@ -86,6 +88,7 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
         insert_kind: str | None = None,
         insert_name: str | None = None,
     ) -> None:
+        """AI: Wrap a clang JSON AST dict node as an AST node within the given translation unit."""
         super().__init__(self if parent is None else parent.root)
         self.node = node
         self._children: Sequence[ClangJsonASTNode] | None = None

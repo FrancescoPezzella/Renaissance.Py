@@ -21,6 +21,7 @@ class VisitorResult(Enum):
 
 class ASTReference[NodeT, TranslationUnitT]:
     def __init__(self, ast_node: ASTNode[NodeT, TranslationUnitT], ref_kind: str, properties: dict[str, Any]) -> None:
+        """AI: Represent a reference from one AST node to another, along with the kind of reference."""
         self._node = ast_node
         self._ref_kind = ref_kind
         self._properties = properties
@@ -47,6 +48,7 @@ class ASTNode[NodeT, TranslationUnitT](ABC):
     """
 
     def __init__(self, root: Self) -> None:
+        """AI: Initialize a new AST node rooted at the given translation-unit-level node."""
         super().__init__()
         self._parent = None
         self._children: list[Self] = []

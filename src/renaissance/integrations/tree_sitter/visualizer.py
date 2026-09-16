@@ -4,6 +4,7 @@ from renaissance.utils.text_utils import signature_to_id
 
 class LstVisualizer:
     def __init__(self):
+        """AI: Prepare a visualizer that renders an LST as a Mermaid graph."""
         self.lines = ["graph TD"]
         self.counter = 0
         self.node_ids = {}

@@ -13,6 +13,7 @@ from renaissance.utils.ast_utils import next_sibling, preceding_sibling
 
 class PythonCstTranslationUnit:
     def __init__(self, content, file_name: str):
+        """AI: Parse Python source into a libcst tree with position lookups for AST-node wrapping."""
         self.content = content
         self.lines = content.splitlines()
         self.file_name = file_name
@@ -38,6 +39,7 @@ class PythonCstTranslationUnit:
 
 class PythonCstNode:
     def __init__(self, node: CSTNode, translation_unit: PythonCstTranslationUnit, parent=None):
+        """AI: Wrap a libcst node as an AST node within the given translation unit."""
         self.parent = parent
         if parent and parent.root:
             self.root = parent.root
