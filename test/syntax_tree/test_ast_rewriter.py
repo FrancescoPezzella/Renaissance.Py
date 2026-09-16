@@ -1000,8 +1000,7 @@ class TestAroundComposition:
 
 
 class TestContainedOperations:
-    """Test case to capture the requirements for a (completely) contained operation:
-    it is ignore.
+    """Test case to capture the requirements for a (completely) contained operation: it is ignore.
 
     See https://github.com/TNO/Renaissance-Experiments/wiki/Transform-%E2%80%90-AST%E2%80%90aware-changes#scenario-contained-changes
     """
@@ -1077,8 +1076,7 @@ class TestContainedOperations:
 
 
 class TestOverlappingOperations:
-    """Test case to capture the requirements for partly overlapping operations:
-    an exception is raised.
+    """Test case to capture the requirements for partly overlapping operations: an exception is raised.
 
     See https://github.com/TNO/Renaissance-Experiments/wiki/Transform-%E2%80%90-AST%E2%80%90aware-changes#scenario-overlapping-changes
     """
@@ -1123,7 +1121,8 @@ def f($a,$b,$c):
 
 
 class TestSyntaxAwareNestedComposition:
-    """Test Class for Syntax Aware Nested / Hierarchical Compositions
+    """Test Class for Syntax Aware Nested / Hierarchical Compositions.
+
     In Python
     * Prepend before parent and (first) child
       See https://github.com/TNO/Renaissance-Experiments/wiki/Transform-%E2%80%90-AST%E2%80%90aware-changes#scenario-combination-of-multiple-prepends
@@ -1176,7 +1175,8 @@ class TestSyntaxAwareNestedComposition:
 
 
 class TestSyntaxAwareAdjacentComposition:
-    """Test Class for Syntax Aware Adjacent Compositions
+    """Test Class for Syntax Aware Adjacent Compositions.
+
     In C/C++
     * Consecutive / contiguous nodes - append after first and prepend before second
       See https://github.com/TNO/Renaissance-Experiments/wiki/Transform-%E2%80%90-AST%E2%80%90aware-changes#scenario-combination-of-append-and-prepend-on-consecutive-nodes.

@@ -152,6 +152,7 @@ class TestPythonFactory:
     )
     def test_assert_statement(self, code) -> None:
         """Test for an assert statement.
+
         An assert statement has optionally a message.
         """
         pattern_factory = PythonPatternFactory(self.factory)

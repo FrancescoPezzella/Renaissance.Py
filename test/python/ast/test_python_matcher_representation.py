@@ -13,6 +13,7 @@ class TestPythonMatcherRepresentation:
 
     def test_literal_whole_numbers_representation(self):
         """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html)
+
         with respect to representations of literal instances of whole numbers.
 
         In particular, different representations of literal instances of whole numbers are not semantically relevant.
@@ -101,6 +102,7 @@ class TestPythonMatcherRepresentation:
 
     def test_character_representation(self):
         """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html)
+
         with respect to character representations.
 
         In particular, different character representations are not semantically relevant.

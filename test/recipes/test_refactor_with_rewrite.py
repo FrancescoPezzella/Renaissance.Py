@@ -68,6 +68,7 @@ class TestRefactorWithRewrite:
 
     def test_refactor_replace_multi_placeholder(self, mocker):
         """Test case showing a replacement of a multi placeholder
+
         that matches a non-empty list of AST nodes in the code.
         """
         refactoring = self._create(mocker, "def f(a):\n    f(2, 0)")
@@ -81,6 +82,7 @@ class TestRefactorWithRewrite:
     @pytest.mark.skip("empty array can't be detected")
     def test_refactor_replace_multi_placeholder_empty(self, mocker):
         """Test case showing a replacement of a multi placeholder
+
         that matches an empty list of AST nodes in the code.
         """
         # TODO: is this the behaviour we want?

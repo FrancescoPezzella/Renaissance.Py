@@ -519,8 +519,9 @@ class _RewriteActions:
 
     @staticmethod
     def get_comment_location(start_offset: int, stop_offset: int, content: bytes) -> tuple[int, int]:
-        """Get the location of the comment before the location, but after the stop_location
-        a comment is a line that starts with // or a block that starts with /* and ends with */
+        """Get the location of the comment before the location, but after the stop_location.
+
+        A comment is a line that starts with // or a block that starts with /* and ends with */
         or a line that starts with #.
         """
         # search last occurrence of //, /*, # in a byte array
@@ -551,8 +552,9 @@ class _RewriteActions:
 
     @staticmethod
     def __get_comment_after_location(start_offset: int, end_offset: int, content: bytes) -> tuple[int, int]:
-        """Get the location of the comment before the location, but after the stop_location
-        a comment is a line that starts with // or a block that starts with /* and ends with */
+        """Get the location of the comment before the location, but after the stop_location.
+
+        A comment is a line that starts with // or a block that starts with /* and ends with */
         or a line that starts with #.
         """
         line_end_offset = _RewriteActions.__get_end_of_line(content, start_offset)

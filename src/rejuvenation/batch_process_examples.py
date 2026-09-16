@@ -74,6 +74,7 @@ def print_results(title, batch_processor):
 
 def batch_remove_unused_variable_once_example():
     """This function demonstrates a batch processing example using different AST node implementations.
+
     It iterates over a list of AST node implementations (`ClangASTNode` and `ClangJsonASTNode`),
     and for each implementation, it generates a codebase provider that yields tuples of
     `ASTFactory` and `ASTNode` created from example source texts (`example_1` and `example_2`).
@@ -90,6 +91,7 @@ def batch_remove_unused_variable_once_example():
 
 def batch_repeat_example():
     """Demonstrates the use of a batch processor to perform multiple refactoring operations on a codebase.
+
     This example creates an in-memory batch processor and applies two refactoring operations:
     1. CleanupRefactoring.remove_unused_variables: Removes unused variables from the codebase.
     2. remove_function: Removes all function calls from the codebase.

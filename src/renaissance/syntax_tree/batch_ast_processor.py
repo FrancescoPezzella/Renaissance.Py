@@ -54,6 +54,7 @@ class BatchASTProcessor:
         max_repeat: int = 5,
     ) -> None:
         """Repeats the processing of items provided by the iterableProvider until no changes left.
+
         Up to a maximum number of times.
 
         Args:
