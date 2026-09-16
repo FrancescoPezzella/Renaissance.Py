@@ -12,11 +12,9 @@ class TestPythonMatcherRepresentation:
         self.pattern_factory = PythonPatternFactory(self.factory)
 
     def test_literal_whole_numbers_representation(self):
-        """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html)
+        """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html).
 
-        with respect to representations of literal instances of whole numbers.
-
-        In particular, different representations of literal instances of whole numbers are not semantically relevant.
+        With respect to representations of literal instances of whole numbers, different representations are not semantically relevant.
         """
         normal = "1000"
         readable = "1_000"
@@ -101,11 +99,9 @@ class TestPythonMatcherRepresentation:
             assert_that(expression_fraction, is_not(expression))
 
     def test_character_representation(self):
-        """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html)
+        """This test case documents the semantic power of [the Python parser ast](https://docs.python.org/3/library/ast.html).
 
-        with respect to character representations.
-
-        In particular, different character representations are not semantically relevant.
+        With respect to character representations, different character representations are not semantically relevant.
         """
         normal_single = "'1'"
         normal_double = '"1"'

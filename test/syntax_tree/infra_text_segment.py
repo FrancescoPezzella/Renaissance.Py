@@ -29,9 +29,9 @@ def offset_to_location(text: str, offset: int) -> tuple[int, int]:
 
 
 def location_to_offset(text: str, line: int, column: int) -> int:
-    r"""Convert canonical (line, column) back to a cursor offset, validating that the
+    r"""Convert canonical (line, column) back to a cursor offset.
 
-    (line, column) is a valid cursor position under canonical rules.
+    Validates that the (line, column) is a valid cursor position under canonical rules.
 
     Valid cursor columns:
     - For an empty line (span_len==0): only column==0.

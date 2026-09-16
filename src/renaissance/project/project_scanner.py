@@ -34,7 +34,6 @@ class JavaScanner(ProjectScanner):
 class PythonScanner(ProjectScanner):
     def __init__(self, root_dir: str = ".", package_dirs: list[str] | None = None):
         """AI: Configure a scanner that discovers Python sources under known package directories."""
-
         # return (file_path for file_path in current_dir.iterdir() if is_python_file)
 
         self.root_dir = root_dir

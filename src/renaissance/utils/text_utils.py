@@ -35,9 +35,9 @@ class TextUtils:
 
     @staticmethod
     def strip_indent(text: str, start_line: int = 0) -> str:
-        """Shifts left the text such that the first line has no leading spaces and all other lines shifted left
+        """Shift the text left so the first line has no leading spaces.
 
-        with the first line spaces length.
+        All other lines are shifted left by the same amount.
         """
         matcher = TextUtils.__PRECEDING_SPACES_PATTERN.search(text)
         if matcher:
