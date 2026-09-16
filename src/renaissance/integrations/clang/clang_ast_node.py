@@ -436,7 +436,7 @@ class ClangASTNode(ASTNode[Cursor, ClangTranslationUnit]):
         try:
             if self.node.kind.name in ["VAR_DECL", "STRUCT_DECL"]:
                 end_offset = self.node.extent.end.offset + 1
-            elif self.node.kind.name in ["MACRO_DEFINITION"]:
+            elif self.node.kind.name == "MACRO_DEFINITION":
                 end_offset = self.node.extent.end.offset
             else:
                 end_offset = self.node.extent.end.offset
