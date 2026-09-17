@@ -522,6 +522,7 @@ class _RewriteActions:
         a comment is a line that starts with // or a block that starts with /* and ends with */
         or a line that starts with #.
         """
+        # TODO: the // and # branches below only find the single closest comment line
         # search last occurrence of //, /*, # in a byte array
         comment_start = content.rfind(b"//", start_offset, stop_offset)
         if comment_start != -1:
@@ -554,6 +555,8 @@ class _RewriteActions:
         a comment is a line that starts with // or a block that starts with /* and ends with */
         or a line that starts with #.
         """
+        # TODO: same single-line limitation as get_comment_location - a multi-line trailing
+        # comment block is only captured up to its first line here.
         line_end_offset = _RewriteActions.__get_end_of_line(content, start_offset)
         if line_end_offset == -1:
             line_end_offset = len(content)
