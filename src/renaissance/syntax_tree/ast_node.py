@@ -65,6 +65,7 @@ class ASTNode[NodeT, TranslationUnitT](ABC):
         self.indent = ""
 
     def __repr__(self):
+        """AI: Return the formatted node representation."""
         return format_node(self)
 
     def is_part_of_translation_unit(self) -> bool:

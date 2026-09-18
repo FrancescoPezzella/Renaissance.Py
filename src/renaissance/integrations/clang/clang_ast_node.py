@@ -179,6 +179,7 @@ class ClangASTNode(ASTNode[Cursor, ClangTranslationUnit]):
         return self.semantic_kind if self.semantic_kind is not SemanticKind.NODE else self.parser_kind
 
     def __eq__(self, other):
+        """AI: Return whether this node is structurally equal to `other`, ignoring irrelevant properties/children."""
         return (
             other
             and isinstance(other, type(self))
@@ -188,6 +189,7 @@ class ClangASTNode(ASTNode[Cursor, ClangTranslationUnit]):
         )
 
     def __hash__(self):
+        """AI: Return a hash based on the node's kind key and properties."""
         return hash((self.kind_key, frozenset(self.properties.items())))
 
     @override

@@ -12,9 +12,11 @@ from steps.conftest import FEATURES_BASE_DIR
 
 class Context(dict):
     def __getattr__(self, name):
+        """AI: Return the dict item named `name` as an attribute."""
         return self[name]
 
     def __setattr__(self, name, value):
+        """AI: Set the dict item named `name` as an attribute."""
         self[name] = value
 
 

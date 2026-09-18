@@ -74,6 +74,7 @@ class DummyNode:
             c._parent = self
 
     def __hash__(self):
+        """AI: Return an identity-based hash for the node."""
         return id(self)
 
 

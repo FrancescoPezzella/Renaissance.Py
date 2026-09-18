@@ -172,6 +172,7 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
         self._children = [n for n in self._children if n.parser_kind not in IRRELEVANT_NODE_KINDS]
 
     def __eq__(self, other):
+        """AI: Return whether this node is structurally equal to `other`, ignoring irrelevant properties/children."""
         return (
             isinstance(other, type(self))
             and self.kind == other.kind

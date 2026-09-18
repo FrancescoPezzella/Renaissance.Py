@@ -75,6 +75,7 @@ class PatternMatch:
         self.patterns = patterns
 
     def __str__(self):
+        """AI: Return the newline-joined signatures of the matched nodes."""
         return "\n".join(node.signature for node in self.nodes)
 
     @property
@@ -82,6 +83,7 @@ class PatternMatch:
         return str(self)
 
     def __getitem__(self, key):
+        """AI: Return the newline-joined expansion text for the given placeholder key."""
         return "\n".join(node.signature if isinstance(node, NodeProtocol) else node for node in self.expansions[key])
 
     def match_referenced_by(self, patterns: Sequence[list], recursive: bool = True) -> Sequence[Self]:

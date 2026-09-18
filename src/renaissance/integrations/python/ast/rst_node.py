@@ -46,6 +46,7 @@ class ImplicitNode(ast.Name):
 
 class PythonRSTReference:
     def __repr__(self):
+        """AI: Return a string identifying the referenced node id and reference kind."""
         return f"{self.node_id}:{self.ref_kind}"
 
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
@@ -258,6 +259,7 @@ class PythonRstNode:
         return self.semantic_kind if self.semantic_kind is not SemanticKind.NODE else self.parser_kind
 
     def __eq__(self, other):
+        """AI: Return whether this node is structurally equal to `other`, ignoring irrelevant properties/children."""
         return (
             isinstance(other, type(self))
             and self.kind_key == other.kind_key
@@ -266,6 +268,7 @@ class PythonRstNode:
         )
 
     def __contains__(self, item):
+        """AI: Return whether item(s) are found among this node's children."""
         if not isinstance(item, list):
             item = [item]
         return find_in_list(self.children, item)
@@ -278,6 +281,7 @@ class PythonRstNode:
         return self.children[key]
 
     def __repr__(self):
+        """AI: Return the formatted node representation."""
         return format_node(self)
 
     @property

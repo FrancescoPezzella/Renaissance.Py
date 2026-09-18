@@ -44,9 +44,11 @@ class PythonPattern(NodeProtocol):
             self.name = ""
 
     def __eq__(self, other: NodeProtocol) -> bool:
+        """AI: Return whether `other` matches this pattern node."""
         return is_match(other, self)
 
     def __repr__(self):
+        """AI: Return a dollar-escaped repr of the wrapped node."""
         return use_dollar(str(self.node))
 
     def _derive_pattern_kind(self, node) -> None:

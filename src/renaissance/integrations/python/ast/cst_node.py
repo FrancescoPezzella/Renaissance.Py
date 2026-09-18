@@ -63,9 +63,11 @@ class PythonCstNode:
         self.text = self.signature
 
     def __str__(self):
+        """AI: Return the string representation of the wrapped CST node."""
         return str(self.node)
 
     def __repr__(self):
+        """AI: Return the repr of the wrapped CST node."""
         return repr(self.node)
 
     @property
