@@ -32,6 +32,8 @@ result = [
 
 
 class TestMatchFinder:
+    """AI: Tests for the MatchFinder pattern matching."""
+
     def test_find_in_tree_one_and_all_params(self):
         factory = ASTFactory(ClangASTNode, [])
         patterns = [CPatternFactory(factory).create_statements(statements, extra_declarations=extra_declarations)]

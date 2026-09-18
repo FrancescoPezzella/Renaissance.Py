@@ -10,6 +10,8 @@ from renaissance.recipes.python_refactoring import PythonRefactoring
 
 
 class TestRefactorWithRewrite:
+    """AI: Tests for PythonRefactoring's rewrite-based refactoring support."""
+
     def _create(self, mocker, text) -> PythonRefactoring:
         code = textwrap.dedent(text)
         mocker.patch(

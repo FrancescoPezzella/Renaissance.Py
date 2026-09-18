@@ -10,6 +10,8 @@ from renaissance.recipes.unit_to_pytest import UnitToPytest
 
 
 class TestPythonRefactoring:
+    """AI: Tests for the PythonRefactoring recipe base class."""
+
     def _patch_factory(self, mocker, text="pass", filename="test_foo.py"):
         code = textwrap.dedent(text)
         mocker.patch(

@@ -17,6 +17,8 @@ from utils_for_tests import compress, debug_print
 
 
 class TestCommentLocation:
+    """AI: Tests locating the trailing comment adjacent to a code range."""
+
     @pytest.mark.parametrize(
         "_, start_offset, stop_offset, content, expected",
         [
@@ -80,6 +82,8 @@ class TestCommentLocation:
 
 
 class TestRewrites:
+    """AI: Base class with shared helpers for ASTRewriter rewrite-action tests."""
+
     def test_passing_case_in_clang(self):
         # action: Callable[[ASTRewriter, str, Sequence[ASTNode], bool, bool], None],
         # factory: ASTFactory,code: str, replacement: str, include_whitespace: bool, include_comments: bool, expected: str):
@@ -153,6 +157,8 @@ class TestRewrites:
 
 
 class TestRemove(TestRewrites):
+    """AI: Tests for ASTRewriter.remove."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -194,6 +200,8 @@ class TestRemove(TestRewrites):
 
 
 class TestReplace(TestRewrites):
+    """AI: Tests for ASTRewriter.replace."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -327,6 +335,8 @@ class TestReplace(TestRewrites):
 
 
 class TestInsertBeforeSingleLine(TestRewrites):
+    """AI: Tests for ASTRewriter.insert_before with a single-line insertion."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -459,6 +469,8 @@ class TestInsertBeforeSingleLine(TestRewrites):
 
 
 class TestInsertBeforeMultiLine(TestRewrites):
+    """AI: Tests for ASTRewriter.insert_before with a multi-line insertion."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -609,6 +621,8 @@ class TestInsertBeforeMultiLine(TestRewrites):
 
 
 class TestInsertAfterSingleLine(TestRewrites):
+    """AI: Tests for ASTRewriter.insert_after with a single-line insertion."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -741,6 +755,8 @@ class TestInsertAfterSingleLine(TestRewrites):
 
 
 class TestInsertAfterMultiLine(TestRewrites):
+    """AI: Tests for ASTRewriter.insert_after with a multi-line insertion."""
+
     @pytest.mark.parametrize(
         "name, factory, code, include_whitespace, include_comments, expected",
         list(
@@ -891,6 +907,8 @@ class TestInsertAfterMultiLine(TestRewrites):
 
 
 class TestComposeReplacement:
+    """AI: Tests composing a replacement pattern from a match's placeholder bindings."""
+
     @pytest.mark.parametrize(
         "_, factory, statements, extra_declarations, replacement",
         Factories.extend(

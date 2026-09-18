@@ -20,6 +20,8 @@ def _offset_to_line_col(text: str, offset: int) -> tuple[int, int]:
 
 @dataclass(slots=True)
 class DummyNode:
+    """AI: Minimal SyntaxNode-shaped test double backed by a full-text slice."""
+
     # ---- backing text segment ----
     full_text: str
     location: str

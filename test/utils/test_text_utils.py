@@ -7,6 +7,8 @@ from renaissance.utils.text_utils import snake_case
 
 
 class TestSnakeCase:
+    """AI: Tests for the snake_case text utility."""
+
     @pytest.mark.parametrize(
         "input_str, expected",
         [

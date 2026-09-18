@@ -6,6 +6,8 @@ from renaissance.syntax_tree.match_finder import is_match_dict
 
 
 class TestIsMatchDict:
+    """AI: Tests for the is_match_dict dictionary matching helper."""
+
     def test_is_same_dict(self):
         src = {"a": "asd", "b": "zxc"}
         cmp = {"a": "asd", "b": "zxc"}

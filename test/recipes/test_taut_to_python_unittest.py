@@ -18,6 +18,8 @@ from renaissance.utils.ast_utils import traverse
 
 
 class TestTautToPythonUnittest:
+    """AI: Tests for the TautToPythonUnittest recipe."""
+
     def test_init(self):
         subject = TautToPythonUnittest(Path(targets.__file__).parent / "taut/taut_test.py")
         assert_that(subject.filename, ends_with("taut_test.py"))

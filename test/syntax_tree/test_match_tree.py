@@ -30,6 +30,8 @@ from renaissance.syntax_tree.match_finder import (
 
 
 class TestMatchTree:
+    """AI: Tests for matching AST patterns containing placeholder variants."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

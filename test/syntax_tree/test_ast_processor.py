@@ -7,6 +7,8 @@ from renaissance.syntax_tree import ASTFactory, ASTProcessor, PatternMatch
 
 
 class TestAstProcessor:
+    """AI: Tests for the ASTProcessor pattern-match/find functionality."""
+
     def test_find_match(self, mocker):
         node = mocker.Mock()
         pattern_match = PatternMatch([node, node, node], {}, [])

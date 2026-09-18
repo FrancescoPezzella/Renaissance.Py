@@ -9,6 +9,8 @@ from renaissance.syntax_tree import ASTFactory, ASTProcessor, ASTShower
 
 
 class TestCleanupRefactoring:
+    """AI: Tests for the CleanupRefactoring recipe."""
+
     @pytest.mark.parametrize(
         "name, factory, input_code, expected_code",
         list(

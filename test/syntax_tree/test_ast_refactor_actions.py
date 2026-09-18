@@ -7,6 +7,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class TestASTRefactorActions:
+    """AI: Tests for the ASTRefactorActions helper."""
+
     def test_it_can_be_created(self, mocker):
         proc = mocker.Mock()
         factory = mocker.Mock()

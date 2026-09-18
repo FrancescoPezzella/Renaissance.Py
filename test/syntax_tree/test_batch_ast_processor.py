@@ -7,6 +7,8 @@ from renaissance.syntax_tree import batch_ast_processor as bap
 
 
 class TestBatchASTProcessor:
+    """AI: Tests for the BatchASTProcessor."""
+
     def test_it(self):
         it = BatchASTProcessor(True, 8)
         assert_that(it.in_memory)

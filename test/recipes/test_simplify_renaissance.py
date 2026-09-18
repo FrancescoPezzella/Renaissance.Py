@@ -9,6 +9,8 @@ from renaissance.recipes.simplify_renaissance import SimplifyRenaissance
 
 
 class TestSimplifyRenaissance:
+    """AI: Tests for the SimplifyRenaissance recipe."""
+
     def _create(self, mocker, text) -> SimplifyRenaissance:
         code = textwrap.dedent(text)
         mocker.patch(

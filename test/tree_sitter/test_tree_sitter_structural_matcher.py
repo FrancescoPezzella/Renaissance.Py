@@ -10,6 +10,8 @@ from renaissance.syntax_tree.match_finder import match_pattern
 
 
 class TestTreeSitterStructuralMatcher:
+    """AI: Tests structural (placeholder) pattern matching against tree-sitter-parsed code."""
+
     @pytest.mark.parametrize(
         "code, pattern",
         [

@@ -6,6 +6,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class FakeNode:
+    """AI: Minimal test double satisfying NodeProtocol via duck typing."""
+
     parser_kind = "fake_node"
     semantic_kind = SemanticKind.NODE
     properties = {}

@@ -18,6 +18,8 @@ PATTERN_CALL: str = "f(" + PLACEHOLDER_BEFORE + ", 0, " + PLACEHOLDER_AFTER + ")
 
 
 class TestMatchFinderMultiAssignments:
+    """AI: Tests for MatchFinder matching multiple assignment variants."""
+
     @pytest.mark.skip("not impl. yet")
     def test_find_multi_assignments(self):
         # set up

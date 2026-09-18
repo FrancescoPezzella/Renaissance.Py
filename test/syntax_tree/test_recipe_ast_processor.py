@@ -13,6 +13,8 @@ from renaissance.syntax_tree.recipe_ast_processor import (
 
 
 class TestRecipeASTProcessor:
+    """AI: Tests for the RecipeASTProcessor and its decorator helpers."""
+
     def test_receipe_proc(self):
         it = RecipeASTProcessor(lambda n: n, lambda: (), "")
         assert_that(it, is_(RecipeASTProcessor))

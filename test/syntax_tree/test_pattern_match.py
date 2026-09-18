@@ -13,6 +13,8 @@ from renaissance.syntax_tree.match_finder import match_pattern
 
 
 class TestPatternMatch:
+    """AI: Tests for the PatternMatch container returned by pattern matching."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

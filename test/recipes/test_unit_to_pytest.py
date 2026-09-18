@@ -11,6 +11,8 @@ from renaissance.recipes.unit_to_pytest import UnitToPytest
 
 
 class TestUnitToPytest:
+    """AI: Tests for the UnitToPytest recipe."""
+
     def test_init(self):
         subject = UnitToPytest(Path(targets.__file__).parent / "demo.py")
         assert_that(subject.filename, ends_with("demo.py"))
