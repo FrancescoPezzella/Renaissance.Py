@@ -1,3 +1,5 @@
+"""Tests documenting basic code-to-code matching for the Python pattern matcher."""
+
 from collections.abc import Sequence
 
 import pytest

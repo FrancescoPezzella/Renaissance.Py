@@ -1,3 +1,5 @@
+"""Tests for matching Python AST patterns via MatchFinder."""
+
 import ast
 import textwrap
 

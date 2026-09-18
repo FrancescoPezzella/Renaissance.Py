@@ -1,3 +1,5 @@
+"""Tests that Python AST/CST/LST nodes expose consistent parser and semantic kind metadata."""
+
 from ast import AST
 
 import pytest

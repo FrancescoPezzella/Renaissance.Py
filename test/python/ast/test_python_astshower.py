@@ -1,3 +1,5 @@
+"""Tests for rendering Python AST nodes via ASTShower."""
+
 import pytest
 from hamcrest import assert_that, contains_string, not_, starts_with
 

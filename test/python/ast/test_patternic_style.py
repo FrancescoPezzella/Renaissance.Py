@@ -1,3 +1,5 @@
+"""Tests for the Pythonic-style (RST) AST pattern matching."""
+
 import pytest
 from hamcrest import assert_that, empty, has_length, is_, is_in, is_not
 

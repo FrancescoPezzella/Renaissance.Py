@@ -1,3 +1,5 @@
+"""Tests that the native ast-based Python node exposes the expected NodeProtocol metadata."""
+
 import ast
 
 from renaissance.integrations.python.ast.cst_node import PythonCstNode

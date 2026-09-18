@@ -1,3 +1,5 @@
+"""Tests for Python RST AST node references."""
+
 import tempfile
 
 import pytest

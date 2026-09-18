@@ -1,3 +1,5 @@
+"""Tests for the Pythonic RST AST node wrapper."""
+
 import ast
 
 from hamcrest import assert_that, is_, not_none

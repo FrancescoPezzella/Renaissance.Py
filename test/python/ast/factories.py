@@ -1,3 +1,5 @@
+"""AI: Shared Python AST factory fixtures used across the python.ast test suite."""
+
 import ast
 from itertools import product
 

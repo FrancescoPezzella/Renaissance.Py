@@ -1,3 +1,5 @@
+"""Tests for the LST-based Python AST node implementation."""
+
 import hypothesmith
 import libcst
 import pytest

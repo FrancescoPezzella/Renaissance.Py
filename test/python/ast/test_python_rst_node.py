@@ -1,3 +1,5 @@
+"""Tests for the RST-based Python AST node implementation."""
+
 import textwrap
 from pathlib import Path
 

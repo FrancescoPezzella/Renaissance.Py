@@ -1,3 +1,5 @@
+"""Tests for building Python AST patterns via PythonPatternFactory."""
+
 import pytest
 from hamcrest import assert_that, has_length, is_, is_in
 

@@ -1,3 +1,5 @@
+"""Tests documenting the representation of Python AST pattern matches."""
+
 import pytest
 from hamcrest import assert_that, is_, is_not
 
