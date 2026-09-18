@@ -123,6 +123,7 @@ def process_atu(
     in_memory: bool,
     max_repeat: int,
 ) -> Sequence[Callable[[], None]]:
+    """AI: Run the given actions against one ATU, repeating up to max_repeat times, and return deferred result callables."""
     atu = self._replace_if_in_memory(atu)
     ast_processor = ASTProcessor(atu[1], atu[0], in_memory)
     results: list[Callable[[], None]] = []

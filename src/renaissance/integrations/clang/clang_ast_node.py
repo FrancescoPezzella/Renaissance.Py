@@ -523,6 +523,7 @@ SYSTEM_MACROS = {
 
 
 def is_system_macro(n):
+    """AI: Return True if n is a predefined/builtin compiler or system macro that should be filtered from output."""
     return n.kind.name == "MACRO_DEFINITION" and (
         n.displayname.startswith("__")
         or n.displayname.startswith("_MS")

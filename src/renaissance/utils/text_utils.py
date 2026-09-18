@@ -115,6 +115,7 @@ class TextUtils:
 
 
 def signature_to_id(signature: str) -> str:
+    """AI: Derive a short, filesystem/identifier-safe id from a node signature."""
     text = signature.replace("\n", " ")
     return re.sub(r"[^\w\s]", "", text)[:30]  # Remove punctuation, limit length
 
@@ -130,6 +131,7 @@ def snake_case(snippet: str) -> str:
 
 
 def fix_indent(code_string: str) -> str | None:
+    """AI: Reformat code_string's indentation by round-tripping it through a temporary file and an external formatter."""
     with tempfile.NamedTemporaryFile(suffix=".py", mode="w+", delete=False) as temp_file:
         file_path = temp_file.name
         temp_file.write(code_string)

@@ -647,6 +647,7 @@ ImprovedStub.store_args = {}
 
 
 def insert_doc(content: str, date):
+    """AI: Insert a change-log comment line just before the existing copyright comment block in content."""
     pattern = r"# -+(#)?\n(#\s+#\n)?#\s+Copyright \(c\) \d{4}, XXXX"
     match = re.search(pattern, content)
 

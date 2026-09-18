@@ -2,12 +2,14 @@
 
 
 def matches_node_kind(mine, other) -> bool:
+    """AI: Return True if two nodes share the same semantic kind or parser kind."""
     if mine.semantic_kind.value != "node" and other.semantic_kind.value != "node":
         return mine.semantic_kind is other.semantic_kind
     return mine.parser_kind == other.parser_kind
 
 
 def is_clang_kind(node, *parser_kinds: str) -> bool:
+    """AI: Return True if node's parser_kind matches one of the given kind strings."""
     return node.parser_kind in parser_kinds
 
 

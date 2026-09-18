@@ -26,6 +26,7 @@ def _matches_kind(node, kind) -> bool:
 
 
 def derive_header_text(language: str, ref_node: ASTNode | None):
+    """AI: Build the header text (includes, defines, declarations) needed to compile a standalone pattern snippet."""
     # collect includes #defines  and var decl from the refNode
     header = "\n"
     if ref_node:

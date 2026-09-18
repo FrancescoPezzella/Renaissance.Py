@@ -61,12 +61,15 @@ class ASTFinder:
 
 
 def find_nodes(ast_node: NodeProtocol, predicate) -> Sequence[NodeProtocol]:
+    """AI: Return all descendants (and ast_node itself) matching predicate, via a full traversal."""
     return [node for node in traverse(ast_node) if predicate(node)]
 
 
 def matches_node(ast_node: NodeProtocol, predicate) -> bool:
+    """AI: Return True if ast_node itself satisfies predicate."""
     return predicate(ast_node)
 
 
 def find_semantic_kind(ast_node: NodeProtocol, kind: SemanticKind) -> Sequence[NodeProtocol]:
+    """AI: Return all nodes under ast_node whose semantic kind matches the given kind."""
     return find_nodes(ast_node, lambda node: node.semantic_kind is kind)

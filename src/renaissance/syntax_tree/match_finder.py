@@ -17,6 +17,7 @@ _TOP_LEVEL_KINDS = {"Module", "TRANSLATION_UNIT"}
 
 
 def pattern_kind(node: NodeProtocol) -> PatternKind | None:
+    """AI: Return the pattern kind (MATCH_ONE/MATCH_ALL) of a pattern placeholder node, or None if not one."""
     value = getattr(node, "pattern_kind", None)
     if value is not None:
         return value
@@ -28,6 +29,7 @@ def pattern_kind(node: NodeProtocol) -> PatternKind | None:
 
 
 def node_kinds_match(source: NodeProtocol, pattern: NodeProtocol) -> bool:
+    """AI: Return True if source and pattern nodes have the same semantic kind (or parser kind as fallback)."""
     if (
         source.semantic_kind is not None
         and pattern.semantic_kind is not None
@@ -123,10 +125,12 @@ def _resolve_match_one(name: str, src: NodeProtocol, expansions: dict):
 
 
 def is_match_tree(src: Sequence | None, cmp: Sequence | None, expansions=None):
+    """AI: Return True if the entire src sequence matches the cmp pattern sequence."""
     return find_in_list(src, cmp, expansions, 0) == len(src) - 1
 
 
 def variant_in_match_stmt(src: NodeProtocol, cmp: NodeProtocol, expansions) -> list:
+    """AI: Return the list of matching Variants of a single src node against a single cmp pattern node."""
     if pattern_kind(cmp) is PatternKind.MATCH_ONE and cmp.name:
         matched = _resolve_match_one(cmp.name, src, expansions)
         return [Variant(0, expansions, None, 0, 0)] if matched else []
@@ -204,6 +208,7 @@ def _advance_greedy(variant: Variant, cmp: Sequence, src: Sequence, i: int):
 
 
 def find_variants(src: Sequence, cmp: Sequence, expansion=None, start: int = 0, parent=None):
+    """AI: Compute all candidate Variant matches of the cmp pattern sequence against the src node sequence."""
     if expansion is None:
         expansion = {}
     if cmp is None:
@@ -260,6 +265,7 @@ def find_variants(src: Sequence, cmp: Sequence, expansion=None, start: int = 0, 
 
 
 def find_in_list(src: Sequence, cmp: Sequence, exp=None, start: int = 0):
+    """AI: Return the end index of the first full match of cmp within src starting at start, or -2 if none."""
     if exp is None:
         exp = {}
     variants = find_variants(src, cmp, exp, start)
@@ -272,10 +278,12 @@ def find_in_list(src: Sequence, cmp: Sequence, exp=None, start: int = 0):
 
 
 def is_match(src: NodeProtocol, cmp: NodeProtocol, expansions=None) -> bool:
+    """AI: Return True if the single src node matches the single cmp pattern node."""
     return variant_in_match_stmt(src, cmp, expansions) != []
 
 
 def is_match_dict(src: dict, cmp: dict, expansions: dict | None = None) -> bool:
+    """AI: Return True if all cmp properties match the corresponding src properties, binding $-placeholders."""
     if expansions is None:
         expansions = {}
 
@@ -290,6 +298,7 @@ def is_match_dict(src: dict, cmp: dict, expansions: dict | None = None) -> bool:
 
 
 def match_pattern(src_nodes, patterns, recursive=True) -> Sequence[PatternMatch]:
+    """AI: Find all matches of patterns within src_nodes, recursing into children when recursive is True."""
     found_statements = []
     to_do = 0
     while to_do < len(src_nodes):
@@ -306,6 +315,7 @@ def match_pattern(src_nodes, patterns, recursive=True) -> Sequence[PatternMatch]
 
 
 def find_all(src_nodes, *patterns, recursive: bool = True) -> Sequence[PatternMatch]:
+    """AI: Find all matches of any of the given patterns within src_nodes."""
     return [m for pattern in patterns for m in match_pattern(src_nodes, pattern, recursive)]
 
 
