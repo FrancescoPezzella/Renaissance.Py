@@ -23,6 +23,7 @@ class Factories:
 
     @staticmethod
     def extend(test_parameters: list[tuple]) -> list[tuple]:
+        """AI: Expand test parameter tuples with a factory-name-prefixed label for each registered node backend."""
         result = [
             (str(factory[0]) + " " + str(pars[0]), factory[1], *pars) for factory, pars in product(Factories.factories, test_parameters)
         ]

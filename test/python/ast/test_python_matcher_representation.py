@@ -12,6 +12,7 @@ class TestPythonMatcherRepresentation:
 
     @pytest.fixture(autouse=True)
     def setup(self):
+        """AI: Build the shared Python AST factory and pattern factory used by the representation tests."""
         self.factory = PythonFactory(PythonRstNode)
         self.pattern_factory = PythonPatternFactory(self.factory)
 

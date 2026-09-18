@@ -59,6 +59,7 @@ class TestPythonNodes:
         ),
     )
     def test_stmt_kind(self, _, factory, raw, kind):
+        """AI: Verify each statement kind (AnnAssign, Assert, For, If, Try, etc.) parses to the expected kind across all backends."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_statement(raw)
         if isinstance(it.node, LSTNode) and kind in ["Assign", "AugAssign"]:
@@ -94,11 +95,13 @@ def outer():
         ),
     )
     def test_stmt_kind_in_context(self, _, factory, raw, kind):
+        """AI: Verify context-dependent statement kinds (With, Await, BinOp, Nonlocal, etc.) are found somewhere in the parsed tree."""
         it = factory.create_from_text(raw, "context.py")
         assert_that(any(has_parser_or_semantic_kind(node, kind) for node in traverse(it) if hasattr(node, "parser_kind")), is_(True))
 
     @pytest.mark.parametrize("_, factory, raw, kind", Factories.extend([("global x", "Global")]))
     def test_global_stmt(self, _, factory, raw, kind):
+        """AI: Verify a global statement parses to the expected parser/semantic kind."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_statement(raw)
         assert_parser_or_semantic_kind(it, kind)
@@ -127,6 +130,7 @@ def outer():
         ),
     )
     def test_expr_kind(self, _, factory, raw, kind):
+        """AI: Verify each expression kind (Call, Dict, Lambda, Subscript, Yield, etc.) parses to the expected parser/semantic kind."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_expression(raw)
         assert_parser_or_semantic_kind(it, kind)
@@ -149,6 +153,7 @@ def outer():
         ),
     )
     def test_comperator_operator(self, _, factory, raw, kind):
+        """AI: Verify comparator operators (==, in, is, <, >, etc.) parse as binary operation expressions."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_expression(raw)
         if isinstance(it.node, (LSTNode, PythonCstNode)):
@@ -175,6 +180,7 @@ def outer():
         ),
     )
     def test_match_patterns(self, _, factory, raw, kind):
+        """AI: Verify each match-case pattern kind (MatchSingleton, MatchOr, MatchClass, etc.) parses to the expected parser kind."""
         pattern_factory = PythonPatternFactory(factory)
         sample_code = f"match data:\n  {raw}\n  case _: pass"
         stmt = pattern_factory.create_statement(sample_code)
@@ -206,6 +212,7 @@ def outer():
         ),
     )
     def test_binary_operator(self, _, factory, raw, kind):
+        """AI: Verify each binary operator (%, /, //, <<, *, **, -, +) parses as a binary operation expression."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_expression(raw)
         assert it.semantic_kind is SemanticKind.BINARY_OPERATION or it.children[1].semantic_kind is SemanticKind.BINARY_OPERATION
@@ -222,6 +229,7 @@ def outer():
         ),
     )
     def test_unary_operator(self, _, factory, raw, kind):
+        """AI: Verify each unary operator (+, -, ~, not) parses as a unary operation expression."""
         pattern_factory = PythonPatternFactory(factory)
         it = pattern_factory.create_expression(raw)
         assert it.semantic_kind is SemanticKind.UNARY_OPERATION or it.parser_kind in {"UnaryOp", "unary_expression", "not_operator"}
