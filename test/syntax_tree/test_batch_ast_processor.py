@@ -10,11 +10,13 @@ class TestBatchASTProcessor:
     """AI: Tests for the BatchASTProcessor."""
 
     def test_it(self):
+        """AI: Verify BatchASTProcessor stores its in_memory flag and max_processes count."""
         it = BatchASTProcessor(True, 8)
         assert_that(it.in_memory)
         assert_that(it.max_processes, is_(8))
 
     def test_once(self, mocker):
+        """AI: Verify once() invokes the processor's internal __process method."""
         processor = BatchASTProcessor(True, 8)
         iterable_items = [mocker.Mock()]
         actions_mock = mocker.Mock()
@@ -23,6 +25,7 @@ class TestBatchASTProcessor:
         assert_that(process_method_spy.called)
 
     def test_repeat(self, mocker):
+        """AI: Verify repeat() invokes the processor's internal __process method."""
         processor = BatchASTProcessor(True, 8)
         iterable_items = [mocker.Mock()]
         actions_mock = mocker.Mock()
@@ -33,6 +36,7 @@ class TestBatchASTProcessor:
         assert_that(process_method_spy.called)
 
     def test__process(self, mocker):
+        """AI: Verify the internal __process method invokes process_atu for each item."""
         processor = BatchASTProcessor(True, 8)
         dummy_atu_item = (mocker.Mock(), mocker.Mock())
         atu_items = [dummy_atu_item]
@@ -42,6 +46,7 @@ class TestBatchASTProcessor:
         assert_that(process_atu_spy.called)
 
     def test_replace_if_in_memory(self, mocker):
+        """AI: Verify _replace_if_in_memory swaps in in-memory file content when registered, and passes through otherwise."""
         processor = BatchASTProcessor(True, 8)
         fake_factory = mocker.Mock()
         fake_node = mocker.Mock()
@@ -63,6 +68,7 @@ class TestBatchASTProcessor:
         fake_factory.create_from_text.assert_called_with(in_memory_content, fake_node.filename)
 
     def test_process_atu(self, mocker):
+        """AI: Verify process_atu runs the given action on the ASTProcessor and returns its results."""
         processor = BatchASTProcessor(True, 8)
 
         dummy_factory = mocker.Mock()

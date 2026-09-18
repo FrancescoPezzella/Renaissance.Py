@@ -22,6 +22,7 @@ class TestMatchFinderMultiAssignments:
 
     @pytest.mark.skip("not impl. yet")
     def test_find_multi_assignments(self):
+        """AI: Verify find_variants produces two distinct assignment variants for a placeholder call pattern (not yet implemented)."""
         # set up
         factory = PythonFactory(PythonRstNode)
         atu = factory.create_from_text(code)

@@ -16,10 +16,13 @@ class TestRecipeASTProcessor:
     """AI: Tests for the RecipeASTProcessor and its decorator helpers."""
 
     def test_receipe_proc(self):
+        """AI: Verify RecipeASTProcessor can be constructed from a recipe, iterable provider, and path."""
         it = RecipeASTProcessor(lambda n: n, lambda: (), "")
         assert_that(it, is_(RecipeASTProcessor))
 
     def test_run(self, mocker):
+        """AI: Verify run() invokes each recipe_step-decorated method via BatchASTProcessor.repeat."""
+
         # define a simple recipe class with one recipe_step
         class SimpleRecipe:
             def __init__(self):
@@ -50,6 +53,8 @@ class TestRecipeASTProcessor:
         assert_that(recipe.ran, is_(["done"]))
 
     def test_annotate_decorator(self):
+        """AI: Verify annotate_decorator preserves the wrapped decorator's name and attaches a recipe_action name."""
+
         def foreign(f):
             return f
 
@@ -65,6 +70,8 @@ class TestRecipeASTProcessor:
         assert_that(sample.recipe_action, is_("test_decorator"))
 
     def test_get_methods_with_decorator(self):
+        """AI: Verify get_methods_with_decorator finds methods decorated with @recipe_step."""
+
         class Sample:
             @recipe_step()
             def step1(self):
@@ -75,6 +82,8 @@ class TestRecipeASTProcessor:
         assert_that(methods[0].__name__, is_("step1"))
 
     def test_final_action(self):
+        """AI: Verify get_methods_with_decorator finds methods decorated with @final_action."""
+
         class Sample:
             @final_action()
             def final(self):

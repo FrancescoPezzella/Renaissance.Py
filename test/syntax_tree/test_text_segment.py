@@ -55,38 +55,47 @@ class AutoTextSegment:
     # --- Protocol properties ---
     @property
     def full_text(self) -> str:
+        """AI: Return the full source text."""
         return self._full_text
 
     @property
     def location(self) -> str:
+        """AI: Return the segment's source location."""
         return self._location
 
     @property
     def start_line(self) -> int:
+        """AI: Return the segment's 0-based start line."""
         return self._start_line
 
     @property
     def start_column(self) -> int:
+        """AI: Return the segment's 0-based start column."""
         return self._start_column
 
     @property
     def start_offset(self) -> int:
+        """AI: Return the segment's start offset."""
         return self._start_offset
 
     @property
     def end_line(self) -> int:
+        """AI: Return the segment's 0-based end line."""
         return self._end_line
 
     @property
     def end_column(self) -> int:
+        """AI: Return the segment's 0-based end column."""
         return self._end_column
 
     @property
     def end_offset(self) -> int:
+        """AI: Return the segment's end offset."""
         return self._end_offset
 
     @property
     def text_segment(self) -> str:
+        """AI: Return the text slice between start_offset and end_offset."""
         return self._full_text[self._start_offset : self._end_offset]
 
 
@@ -95,6 +104,7 @@ class MissingProperty:
 
     @property
     def full_text(self) -> str:
+        """AI: Return a dummy full_text value (this class deliberately omits the rest of the protocol)."""
         return "x"
 
 
@@ -106,38 +116,47 @@ class BadTypesButProtocolLike:
 
     @property
     def full_text(self):  # not str
+        """AI: Return a value of the wrong type (int) for full_text, to trigger a validation failure."""
         return 123
 
     @property
     def location(self):  # not str
+        """AI: Return a value of the wrong type (None) for location, to trigger a validation failure."""
         return None
 
     @property
     def start_line(self):  # not int
+        """AI: Return a value of the wrong type (str) for start_line, to trigger a validation failure."""
         return "hello"
 
     @property
     def start_column(self):  # not int
+        """AI: Return a value of the wrong type (str) for start_column, to trigger a validation failure."""
         return "hello"
 
     @property
     def start_offset(self):  # not int
+        """AI: Return a value of the wrong type (str) for start_offset, to trigger a validation failure."""
         return "hello"
 
     @property
     def end_line(self):  # not int
+        """AI: Return a value of the wrong type (str) for end_line, to trigger a validation failure."""
         return "hello"
 
     @property
     def end_column(self):  # not int
+        """AI: Return a value of the wrong type (str) for end_column, to trigger a validation failure."""
         return "hello"
 
     @property
     def end_offset(self):  # not int
+        """AI: Return a value of the wrong type (str) for end_offset, to trigger a validation failure."""
         return "hello"
 
     @property
     def text_segment(self):  # not str
+        """AI: Return a value of the wrong type (int) for text_segment, to trigger a validation failure."""
         return 456
 
 
@@ -146,6 +165,7 @@ class InconsistentTextSlice(AutoTextSegment):
 
     @property
     def text_segment(self) -> str:
+        """AI: Return a fixed, deliberately-wrong text_segment value to trigger a validation failure."""
         return "NOT THE SLICE"
 
 

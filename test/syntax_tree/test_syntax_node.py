@@ -36,43 +36,53 @@ class DummyNode:
     # ---- TextSegment derived properties ----
     @property
     def start_line(self) -> int:
+        """AI: Return the 0-based start line derived from start_offset."""
         return _offset_to_line_col(self.full_text, self.start_offset)[0]
 
     @property
     def start_column(self) -> int:
+        """AI: Return the 0-based start column derived from start_offset."""
         return _offset_to_line_col(self.full_text, self.start_offset)[1]
 
     @property
     def end_line(self) -> int:
+        """AI: Return the 0-based end line derived from end_offset."""
         return _offset_to_line_col(self.full_text, self.end_offset)[0]
 
     @property
     def end_column(self) -> int:
+        """AI: Return the 0-based end column derived from end_offset."""
         return _offset_to_line_col(self.full_text, self.end_offset)[1]
 
     @property
     def text_segment(self) -> str:
+        """AI: Return the slice of full_text between start_offset and end_offset."""
         return self.full_text[self.start_offset : self.end_offset]
 
     # ---- SyntaxNode protocol properties ----
     @property
     def children(self) -> list[Self]:
+        """AI: Return this node's child nodes."""
         return self._children
 
     @property
     def syntax_attributes(self) -> dict[str, Any]:
+        """AI: Return an empty syntax-attributes dict (not exercised by these tests)."""
         return {}
 
     @property
     def parent(self) -> Self | None:
+        """AI: Return this node's parent, or None if it has none."""
         return self._parent
 
     @property
     def original_node(self) -> Self:
+        """AI: Return this node itself, satisfying the SyntaxNode original_node protocol."""
         return self
 
     # ---- safe mutator for tests (avoids "protected access" warnings) ----
     def set_children(self, children: list[Self]) -> None:
+        """AI: Set this node's children and link each child's parent back to this node."""
         self._children = children
         for c in children:
             c._parent = self
