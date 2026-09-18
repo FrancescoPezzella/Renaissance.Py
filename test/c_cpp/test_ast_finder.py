@@ -1,3 +1,5 @@
+"""Tests for finding nodes within C/C++ ASTs."""
+
 from pathlib import Path
 
 import pytest

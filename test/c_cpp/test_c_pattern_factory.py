@@ -1,3 +1,5 @@
+"""Tests for building C AST patterns via CPatternFactory."""
+
 import pytest
 from hamcrest import assert_that, contains_string, greater_than_or_equal_to, is_, less_than_or_equal_to, not_, not_none
 

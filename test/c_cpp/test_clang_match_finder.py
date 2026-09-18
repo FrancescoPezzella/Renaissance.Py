@@ -1,3 +1,5 @@
+"""Tests for matching patterns against Clang AST nodes."""
+
 from hamcrest import assert_that, has_length, is_
 
 from renaissance.integrations.clang import ClangASTNode, CPatternFactory

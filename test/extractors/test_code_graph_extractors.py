@@ -1,3 +1,5 @@
+"""Tests for the tree-sitter-based code graph extractors."""
+
 from unittest.mock import MagicMock, patch
 
 import networkx as nx

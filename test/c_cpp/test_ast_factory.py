@@ -1,3 +1,5 @@
+"""Tests for creating C/C++ AST nodes via ASTFactory."""
+
 import pytest
 from hamcrest import assert_that, is_, not_none
 

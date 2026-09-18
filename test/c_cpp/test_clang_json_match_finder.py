@@ -1,3 +1,5 @@
+"""Tests for matching patterns against Clang JSON AST nodes."""
+
 import pytest
 from hamcrest import assert_that, has_length
 from more_itertools import last

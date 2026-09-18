@@ -1,3 +1,5 @@
+"""Tests for resolving C/C++ AST node references."""
+
 import tempfile
 
 import pytest

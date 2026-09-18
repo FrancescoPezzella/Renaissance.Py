@@ -1,3 +1,5 @@
+"""Tests for the Clang AST node kind predicate helpers."""
+
 from renaissance.integrations.clang.predicates import (
     is_clang_compound_statement,
     is_clang_constructor,

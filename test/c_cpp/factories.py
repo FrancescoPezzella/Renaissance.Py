@@ -1,3 +1,5 @@
+"""AI: Shared C/C++ AST factory fixtures used across the c_cpp test suite."""
+
 from itertools import product
 
 from renaissance.integrations.clang import ClangASTNode

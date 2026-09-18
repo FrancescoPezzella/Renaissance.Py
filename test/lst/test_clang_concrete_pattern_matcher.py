@@ -1,3 +1,5 @@
+"""Tests for concrete (LST-level) pattern matching against Clang-parsed C++ code."""
+
 import pytest
 from hamcrest import assert_that, empty, has_length, is_, is_not
 

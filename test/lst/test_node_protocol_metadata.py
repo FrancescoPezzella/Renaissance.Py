@@ -1,3 +1,5 @@
+"""Tests that tree-sitter LST nodes expose the expected NodeProtocol metadata."""
+
 import tree_sitter_python
 
 from renaissance.integrations.tree_sitter.adapter import TreeSitterAdapter

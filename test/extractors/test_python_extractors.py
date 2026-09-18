@@ -1,3 +1,5 @@
+"""Tests for the Python AST codebase extractor."""
+
 from pathlib import Path
 
 from hamcrest import assert_that, empty, is_not

@@ -1,3 +1,5 @@
+"""Tests that the tree-sitter LST adapter works across multiple languages."""
+
 import pytest
 import tree_sitter_cpp as tscpp
 import tree_sitter_java as tsjava

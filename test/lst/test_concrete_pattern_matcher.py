@@ -1,3 +1,5 @@
+"""Tests for concrete (LST-level) pattern matching against tree-sitter-parsed Python code."""
+
 import pytest
 import tree_sitter_python
 from hamcrest import assert_that, empty, has_length, is_, is_not

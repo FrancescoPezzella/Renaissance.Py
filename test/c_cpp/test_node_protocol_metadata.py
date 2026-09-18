@@ -1,3 +1,5 @@
+"""Tests that Clang JSON AST nodes expose the expected NodeProtocol metadata."""
+
 from pathlib import Path
 
 from renaissance.integrations.clang.clang_json_ast_node import ClangJsonASTNode

@@ -1,3 +1,5 @@
+"""Tests for matching tree-sitter LST nodes by semantic kind."""
+
 import pytest
 import tree_sitter_cpp as tscpp
 from hamcrest import assert_that, has_length

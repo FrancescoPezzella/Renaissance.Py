@@ -1,3 +1,5 @@
+"""Tests for the Python CST/LST/RST rewriting example scripts."""
+
 from hamcrest import assert_that, is_
 
 from rejuvenation.python_cst_example import python_cst_smoke_test

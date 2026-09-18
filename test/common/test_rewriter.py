@@ -1,3 +1,5 @@
+"""Tests for the byte-level content Rewriter."""
+
 import pytest
 from hamcrest import assert_that, is_
 

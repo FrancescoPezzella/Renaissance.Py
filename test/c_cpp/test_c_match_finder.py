@@ -1,3 +1,5 @@
+"""Tests for matching C AST patterns via MatchFinder."""
+
 import logging
 
 import pytest

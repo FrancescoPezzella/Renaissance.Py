@@ -1,3 +1,5 @@
+"""Tests for the Clang-based LST adapter."""
+
 from pathlib import Path
 
 import pytest

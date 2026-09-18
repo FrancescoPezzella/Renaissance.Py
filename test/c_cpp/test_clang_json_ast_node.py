@@ -1,3 +1,5 @@
+"""Tests for the Clang JSON-backed ASTNode implementation."""
+
 from pathlib import Path
 
 import pytest

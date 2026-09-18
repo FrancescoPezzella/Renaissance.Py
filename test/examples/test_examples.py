@@ -1,3 +1,5 @@
+"""Tests for the batch AST processing example script."""
+
 from collections.abc import Callable
 
 import pytest

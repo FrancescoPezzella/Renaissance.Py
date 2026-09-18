@@ -1,3 +1,5 @@
+"""Tests for the Clang-backed ASTNode implementation."""
+
 import pytest
 from hamcrest import assert_that, has_length, has_string, is_
 

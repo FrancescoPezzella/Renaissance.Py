@@ -1,3 +1,5 @@
+"""Tests for the descendant AST pattern matching example helper."""
+
 import pytest
 from hamcrest import assert_that, has_length, is_
 

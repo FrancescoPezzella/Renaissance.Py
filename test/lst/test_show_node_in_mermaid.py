@@ -1,3 +1,5 @@
+"""Tests for rendering tree-sitter LST nodes as Mermaid diagrams."""
+
 import textwrap
 
 import pytest

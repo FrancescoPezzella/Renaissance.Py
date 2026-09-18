@@ -1,3 +1,5 @@
+"""Tests for the project source-file scanners."""
+
 import json
 
 import pytest

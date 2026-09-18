@@ -1,3 +1,5 @@
+"""AI: Shared pytest configuration, including known pre-existing test failures tracked for follow-up."""
+
 import pytest
 
 # Known pre-existing failures (not caused by any recent change) tracked for follow-up.
