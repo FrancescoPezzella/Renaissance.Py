@@ -45,7 +45,6 @@ class TestCMatchFinder:
 
     def test_simple_pattern(self):
         """AI: Verify a single-statement pattern matches its occurrence in parsed source."""
-
         factory = ASTFactory(ClangASTNode, [])
         patterns = CPatternFactory(factory).create_statements("b--;")
 
