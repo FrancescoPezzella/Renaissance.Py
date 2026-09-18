@@ -46,10 +46,12 @@ class FindMatchTest(unittest.TestCase):
         self.assertEqual(self.a, 5)
         self.assertEqual(55, self.b)
         self.assertTrue(
-            self.a == self.a, "A statement matches itself"
+            self.a == self.a,
+            "A statement matches itself",
         )  # TODO: self.a is an expression (see first assert of this test case), so msg is incorrect
         self.assertFalse(
-            self.a == "statement1_pattern", "A statement doesn't match an expression"
+            self.a == "statement1_pattern",
+            "A statement doesn't match an expression",
         )  # TODO: self.a and a string are both expression, so msg is incorrect
 
     @parameterized.expand(Factories.factories)
