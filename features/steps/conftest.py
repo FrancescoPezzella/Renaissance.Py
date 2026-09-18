@@ -50,6 +50,7 @@ _XFAIL_TAGS = {
 
 
 def pytest_collection_modifyitems(items):
+    """AI: Convert bare Examples-block tags into properly configured xfail markers."""
     for item in items:
         for tag, xfail_kwargs in _XFAIL_TAGS.items():
             if item.get_closest_marker(tag) is not None:

@@ -12,4 +12,4 @@ class NodeMatchProtocol(Protocol):
 
 
 def is_match(src: NodeMatchProtocol, cmp: NodeMatchProtocol) -> bool:
-    pass
+    """AI: Structurally compare two Go AST nodes for a match."""

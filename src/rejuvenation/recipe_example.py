@@ -213,6 +213,7 @@ void main(){
 
 # generate a simple code base provider in real life use a compilation database
 def simple_codebase_provider() -> Iterable[tuple[ASTFactory, ASTNode]]:
+    """AI: Yield a (factory, ATU) pair for the example C++ snippet using the Clang integration."""
     for impl_type in [ClangASTNode, ClangJsonASTNode][0:1]:
         factory = ASTFactory(impl_type)
         atu1 = factory.create_from_text(example_1, impl_type.__name__ + "1.cpp")
@@ -289,6 +290,7 @@ class MyRefactor:
 
 
 def batch_recipe_example():
+    """AI: Run `MyRefactor` over the example codebase and copy the rewritten source to the clipboard."""
     print("example batch analysis using recipe:\n")
     recipe_ast_processor = RecipeASTProcessor(MyRefactor(), simple_codebase_provider, r".*", in_memory=True)
     recipe_ast_processor.run()

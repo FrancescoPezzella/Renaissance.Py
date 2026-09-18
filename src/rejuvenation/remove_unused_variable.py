@@ -51,6 +51,7 @@ expected_result_refactor = """
 
 
 def remove_unused_variable_using_refactor_method(node_type1: type[ASTNode]):
+    """AI: Remove unused variables from the example code via `CleanupRefactoring.remove_unused_variables`."""
     factory = ASTFactory(node_type1, [])
     # create translation unit
     atu = factory.create_from_text(example_code, "test.c")
@@ -67,6 +68,7 @@ def remove_unused_variable_using_refactor_method(node_type1: type[ASTNode]):
 
 
 def remove_unused_variable_low_level(node_type1: type[ASTNode]):
+    """AI: Remove unused variables from the example code using low-level pattern matching directly."""
     factory = ASTFactory(ClangJsonASTNode, [])
     # Create a pattern factory (using the factory (hence also its args)
     # create translation unit

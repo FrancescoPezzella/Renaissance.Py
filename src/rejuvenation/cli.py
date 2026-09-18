@@ -11,6 +11,7 @@ from renaissance.syntax_tree import ASTShower
 
 
 def refactor():
+    """AI: Run the `refactor`/`extract`/`inspect` CLI subcommands based on `sys.argv`."""
     if sys.argv[1] == "refactor":
         refactoring = sys.argv[2]
         files = [sys.argv[3]] if len(sys.argv) > 3 else PythonScanner().find_sources()

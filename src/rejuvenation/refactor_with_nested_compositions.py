@@ -65,6 +65,7 @@ void f(){
 
 
 def refactor_with_nested_compositions(args):
+    """AI: Demonstrate nested pattern composition by rewriting calls inside matched if-statement bodies."""
     # the first argument is the code to be parsed
     code = args[1] if len(args) > 1 else ""
 

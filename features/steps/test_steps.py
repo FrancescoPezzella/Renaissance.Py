@@ -24,11 +24,13 @@ class Ast:
 
 @pytest.fixture
 def context():
+    """AI: Provide a fresh `Ast` instance for a BDD scenario."""
     return Ast()
 
 
 @given(parsers.parse("'{file}' file"))
 def step_given_file(context, file):
+    """AI: Parse the named file into an AST and record its signature."""
     context.file = str(FEATURES_DIR / file)
     context.factory = PythonFactory(PythonRstNode)
     context.atu = context.factory.create(context.file)
@@ -38,6 +40,7 @@ def step_given_file(context, file):
 @given(parsers.parse("it contains '{statement}'"))
 @then(parsers.parse("it should contain '{statement}'"))
 def step_given_contains(context, statement):
+    """AI: Assert the AST signature contains the given statement."""
     statement = statement.replace("\\n", "\n")
     assert_that(context.signature, contains_string(statement), f"Expected '{statement}' in source")
 
@@ -45,6 +48,7 @@ def step_given_contains(context, statement):
 @given("an AST extracted from that source file without errors")
 @then("AST extracted from that conversion should without errors")
 def step_given_ast_no_errors(context):
+    """AI: Assert diagnostics can be checked without raising an exception."""
     assert_that(
         calling(context.atu.translation_unit.check_diagnostics),
         is_not(raises(Exception)),
@@ -53,4 +57,5 @@ def step_given_ast_no_errors(context):
 
 @then(parsers.parse("it should not contain '{statement}'"))
 def step_then_not_contain(context, statement):
+    """AI: Assert the AST signature does not contain the given statement."""
     assert_that(context.signature, not_(contains_string(statement)))

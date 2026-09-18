@@ -106,10 +106,12 @@ class TestBasicNoNamespace(TestCase):
 
 
 def test_it_can_be_created():
+    """AI: Assert a PythonRstNode wrapping an ast.Pass node can be constructed."""
     it = PythonRstNode(ast.Pass())
     assert it
 
 
 def test_it_has_elements():
+    """AI: Assert a PythonRstNode's item access matches its children list."""
     it = PythonRstNode(ast.parse("def fun():  pass"))
     assert it[0] == it.children[0]

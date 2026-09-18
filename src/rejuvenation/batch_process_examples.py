@@ -59,6 +59,7 @@ example_2 = textwrap.dedent("""
 
 # generate a simple code base provider in real life use a compilation database
 def simple_codebase_provider() -> Iterable[tuple[ASTFactory, ASTNode]]:
+    """AI: Yield (factory, ATU) pairs for the two example C snippets, once per Clang integration."""
     for impl_type in [ClangASTNode, ClangJsonASTNode]:
         factory = ASTFactory(impl_type)
         atu1 = factory.create_from_text(example_1, impl_type.__name__ + "1.c")
@@ -68,6 +69,7 @@ def simple_codebase_provider() -> Iterable[tuple[ASTFactory, ASTNode]]:
 
 
 def print_results(title, batch_processor):
+    """AI: Print the given title followed by each in-memory file's path and rewritten content."""
     print(title + ":")
     for file, code in batch_processor.in_memory_files.items():
         print(TextUtils.shift_right(file, 4) + "\n")
@@ -169,6 +171,7 @@ class AnalysisRecipe:
 
 
 def batch_recipe_example():
+    """AI: Run the analysis recipe over the example codebase and print discovered calls."""
     print("example batch analysis using recipe:\n")
     recipe_ast_processor = RecipeASTProcessor(AnalysisRecipe(), simple_codebase_provider, r".*", in_memory=True)
     recipe_ast_processor.run()

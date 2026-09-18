@@ -23,6 +23,7 @@ pa(54)
 
 
 def python_cst_smoke_test():
+    """AI: Demonstrate matching and rewriting `example_code` using the CST integration."""
 
     # adapter = TreeSitterAdapter(tree_sitter_python)
     # tree = adapter.parse_code(code)
@@ -69,6 +70,7 @@ def python_cst_smoke_test():
 
 
 def refactor(match, replacement_text, rewriter):
+    """AI: Expand placeholders in `replacement_text` from `match` and queue the rewrite."""
     for placeholder in match.expansions:
         replacement_text = replacement_text.replace(placeholder, match[placeholder])
     return rewriter.replace(replacement_text, match.nodes)
