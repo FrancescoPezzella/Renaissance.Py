@@ -1,7 +1,7 @@
 """AI: Scanners that discover project source files from a compilation database or file system."""
 
 import json
-from os import system
+import subprocess
 from pathlib import Path
 
 
@@ -37,31 +37,29 @@ class JavaScanner(ProjectScanner):
         self.root_dir = root_dir
 
     def find_sources(self) -> list[str]:
-        """AI: Discover Java source files recursively under the root directory."""
+        # TODO: is this correct? does this filter out files correctly?
         java_files = Path(self.root_dir).rglob("*.java")
         return sorted(str(f) for f in java_files)
 
 
 class PythonScanner(ProjectScanner):
-    """AI: Scanner that discovers Python sources under known package directories."""
+    EXCLUDED_DIRS = frozenset({".git", "__pycache__", ".venv", "venv"})
+    # TODO: incomplete list, extend this list with more files/directories that should always be ignored
 
     def __init__(self, root_dir: str = ".", package_dirs: list[str] | None = None):
-        """AI: Configure a scanner that discovers Python sources under known package directories."""
-        # return (file_path for file_path in current_dir.iterdir() if is_python_file)
-
+        """package_dirs, when given, narrows the scan to those subdirectories of root_dir.
+        Left as None (the default), the whole of root_dir is scanned
+        """
         self.root_dir = root_dir
-        self.package_dirs = package_dirs or ["src", "lib", "test"]
-        # TODO: Why this hardcoded default heuristic?
-        #       Why not what Python by default enforces or what is derived from the project config?
+        self.package_dirs = package_dirs
 
-    def find_sources(self) -> list[str]:
-        """AI: Discover Python source files under each configured package directory."""
+    def find_sources(self) -> list[Path]:
+        roots = [Path(self.root_dir) / d for d in self.package_dirs] if self.package_dirs else [Path(self.root_dir)]
         files = []
-
-        for d in self.package_dirs:
-            file_path = Path(self.root_dir) / d
-            if file_path.exists():
-                files.extend(file_path.glob("**/*.py"))
+        for root in roots:
+            if not root.exists():
+                continue
+            files.extend(path for path in root.rglob("*.py") if not any(part in self.EXCLUDED_DIRS for part in path.parts))
         return sorted(files)
 
 
@@ -76,8 +74,8 @@ class BearCppScanner(CppScanner):
     def run_bear(self):
         """AI: Regenerate the compilation database by running Bear over the configured build."""
         print("Running Bear to generate compile_commands.json...")
-        result = system(f"bear -- make -C {self.build_dir}")
-        if result != 0:
+        result = subprocess.run(["bear", "--", "make", "-C", self.build_dir])
+        if result.returncode != 0:
             raise RuntimeError("Bear failed to run or make failed.")
 
     def find_sources(self) -> list[str]:
