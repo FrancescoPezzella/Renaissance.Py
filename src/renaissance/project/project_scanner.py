@@ -9,6 +9,7 @@ class ProjectScanner:
     """AI: Base scanner interface for discovering a project's source files."""
 
     def find_sources(self) -> list[str]:
+        """AI: Discover and return this project's source file paths."""
         raise NotImplementedError
 
 
@@ -20,6 +21,7 @@ class CppScanner(ProjectScanner):
         self.compile_commands_path = compile_commands_path
 
     def find_sources(self) -> list[str]:
+        """AI: Discover C/C++ source files listed in the compilation database."""
         if not Path(self.compile_commands_path).exists():
             raise FileNotFoundError("compile_commands.json not found")
         with Path(self.compile_commands_path).open() as f:
@@ -35,6 +37,7 @@ class JavaScanner(ProjectScanner):
         self.root_dir = root_dir
 
     def find_sources(self) -> list[str]:
+        """AI: Discover Java source files recursively under the root directory."""
         java_files = Path(self.root_dir).rglob("*.java")
         return sorted(str(f) for f in java_files)
 
@@ -52,6 +55,7 @@ class PythonScanner(ProjectScanner):
         #       Why not what Python by default enforces or what is derived from the project config?
 
     def find_sources(self) -> list[str]:
+        """AI: Discover Python source files under each configured package directory."""
         files = []
 
         for d in self.package_dirs:
@@ -70,12 +74,14 @@ class BearCppScanner(CppScanner):
         self.build_dir = build_dir
 
     def run_bear(self):
+        """AI: Regenerate the compilation database by running Bear over the configured build."""
         print("Running Bear to generate compile_commands.json...")
         result = system(f"bear -- make -C {self.build_dir}")
         if result != 0:
             raise RuntimeError("Bear failed to run or make failed.")
 
     def find_sources(self) -> list[str]:
+        """AI: Generate the compilation database via Bear if missing, then discover C/C++ sources from it."""
         if not Path(self.compile_commands_path).exists():
             self.run_bear()
         return super().find_sources()
