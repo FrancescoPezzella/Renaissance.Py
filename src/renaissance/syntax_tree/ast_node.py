@@ -207,7 +207,7 @@ class ASTNode[NodeT, TranslationUnitT](ABC):
         process_node(self, function)
 
     def accept(self, function: Callable[[Self], VisitorResult]) -> None:
-        """Accepts a visitor function and applies it to the current node and its children.
+        """Accept a visitor function and apply it to the current node and its children.
 
         Args:
             function (Callable[[Self], VisitorResult]): A function that takes an ASTNode as an argument and returns a VisitorResult.

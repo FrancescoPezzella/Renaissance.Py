@@ -12,7 +12,7 @@ class CleanupRefactoring:
 
     @staticmethod
     def remove_unused_variables(ast_refactor: ASTProcessor) -> None:
-        """Removes all unused variables from a function."""
+        """Remove all unused variables from a function."""
         refs = flatten(
             find_semantic_kind(n, SemanticKind.DECLARATION) for n in find_semantic_kind(ast_refactor.node, SemanticKind.STATEMENT)
         )

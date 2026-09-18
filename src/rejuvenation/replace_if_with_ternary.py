@@ -35,7 +35,7 @@ expected_result = """
 
 
 def replace_if_with_ternary():
-    """Replaces if-else statements in the given C code with ternary operator expressions.
+    """Replace if-else statements in the given C code with ternary operator expressions.
 
     This function performs the following steps:
     1. Creates an AST factory with the specified arguments.

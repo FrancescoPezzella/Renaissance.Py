@@ -116,7 +116,7 @@ def signature_to_id(signature: str) -> str:
 
 
 def snake_case(snippet: str) -> str:
-    """Converts a camelCase or PascalCase string to snake_case, preserving acronyms as single words.
+    """Convert a camelCase or PascalCase string to snake_case, preserving acronyms as single words.
 
     Leaves a string already in snake_case unchanged.
     """

@@ -12,7 +12,7 @@ class Factories:
 
     @staticmethod
     def extend(test_parameters: list[tuple]) -> list[tuple]:
-        """Combines a list of tuples with factory tuples to generate a new list of tuples.
+        """Combine a list of tuples with factory tuples to generate a new list of tuples.
 
         Args:
             test_parameters (list[tuple]): A list of tuples where each tuple contains test parameters to be combined with factory tuples.

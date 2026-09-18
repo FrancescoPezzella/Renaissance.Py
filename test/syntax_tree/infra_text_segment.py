@@ -152,7 +152,7 @@ def _check_column_range(
 
 
 def split_lines_with_newlines(text: str) -> list[str]:
-    r"""Reference 'lines' derived from split(text, '\n') with all but last extended by '\n'.
+    r"""Derive reference 'lines' from split(text, '\n') with all but last extended by '\n'.
 
     This yields a list where each element corresponds to the characters of that line span,
     and all '\n' characters belong to the line they terminate.

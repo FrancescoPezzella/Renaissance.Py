@@ -96,7 +96,7 @@ class ASTProcessor:
         return self.__rewriter.apply_to_string()
 
     def commit(self) -> ASTProcessor:
-        """Commits the current changes to the AST (Abstract Syntax Tree) and returns a new ASTProcessor instance.
+        """Commit the current changes to the AST (Abstract Syntax Tree) and return a new ASTProcessor instance.
 
         This method applies the current changes to the source code and creates a new ASTProcessor instance
         with the updated AST. If the changes are in-memory, it directly creates the new AST from the updated

@@ -73,7 +73,7 @@ def print_results(title, batch_processor):
 
 
 def batch_remove_unused_variable_once_example():
-    """This function demonstrates a batch processing example using different AST node implementations.
+    """Demonstrate a batch processing example using different AST node implementations.
 
     It iterates over a list of AST node implementations (`ClangASTNode` and `ClangJsonASTNode`),
     and for each implementation, it generates a codebase provider that yields tuples of

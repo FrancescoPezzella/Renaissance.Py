@@ -32,7 +32,7 @@ class BatchASTProcessor:
         actions: Action | Sequence[Action],
         file_filter: str | re.Pattern[str] | None = None,
     ) -> None:
-        """Processes a given iterable of ATU objects or an IterableProvider with specified actions.
+        """Process a given iterable of ATU objects or an IterableProvider with specified actions.
 
         Args:
             iterable (Iterable[ATU] | IterableProvider): The iterable or provider of ATU objects to process.

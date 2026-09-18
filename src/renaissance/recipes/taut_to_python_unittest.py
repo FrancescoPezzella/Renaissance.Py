@@ -448,7 +448,7 @@ ImprovedStub.store_args = {}
             self.replace(replace_pattern, match.nodes, False, False)
 
     def convert_testdoubles_fun(self):
-        """This is used for taut migration, where the function pattern is found in a class."""
+        """Use this for taut migration, where the function pattern is found in a class."""
         # case1 two TestDoubles are defined
         pattern1 = self.pattern_factory.create_statements("""def $a($$b):
         self.doubles.append(
@@ -522,7 +522,7 @@ ImprovedStub.store_args = {}
         self.commit()
 
     def refactor_testdoubles_fun(self):
-        """This is used for unittest, where the function pattern is not found in a class."""
+        """Use this for unittest, where the function pattern is not found in a class."""
         # case1 two TestDoubles are defined
         pattern1 = self.pattern_factory.create_statements("""def $a($$b):
     self.doubles.append(

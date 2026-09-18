@@ -308,7 +308,7 @@ class MatchFinder:
         *patterns: Sequence[NodeProtocol],
         recursive: bool = True,
     ) -> Sequence[PatternMatch]:
-        """Finds all pattern matches in the given source nodes."""
+        """Find all pattern matches in the given source nodes."""
         return find_all(src_nodes, *patterns, recursive=recursive)
 
     @staticmethod
@@ -317,7 +317,7 @@ class MatchFinder:
         patterns: Sequence[NodeProtocol],
         recursive: bool = True,
     ) -> Sequence[PatternMatch]:
-        """Matches source nodes against a list of pattern nodes, optionally recursing into children."""
+        """Match source nodes against a list of pattern nodes, optionally recursing into children."""
         return match_pattern(src_nodes, patterns, recursive)
 
 

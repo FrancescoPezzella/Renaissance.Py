@@ -266,7 +266,7 @@ class _RewriteActions:
         include_whitespace: bool,
         include_comments: bool,
     ):
-        """Replaces the content of the given node(s) with new content.
+        """Replace the content of the given node(s) with new content.
 
         Args:
             nodes (Sequence[Rewritable]): The nodes whose content is to be replaced.
@@ -299,7 +299,7 @@ class _RewriteActions:
         include_whitespace: bool = False,
         include_comments: bool = False,
     ):
-        """Removes a list of AST nodes from the content, optionally including surrounding whitespace and comments.
+        """Remove a list of AST nodes from the content, optionally including surrounding whitespace and comments.
 
         Args:
             nodes (Sequence[Rewritable]): The list of AST nodes to remove.
@@ -376,7 +376,7 @@ class _RewriteActions:
             self.__replace_bytes(rewriter, ext_end_offset, ext_end_offset, white_space + new_content)
 
     def __replace_bytes(self, rewriter: Rewriter, start: int, end: int, new_content: str) -> None:
-        """Replaces the content in the specified range with new content.
+        """Replace the content in the specified range with new content.
 
         Args:
             start (int): The starting index of the range to be replaced.
