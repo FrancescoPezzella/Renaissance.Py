@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating nested pattern replacements when rewriting C source."""
+
 # This script demonstrates the use of the syntax_tree library to parse and rewrite C code.
 # It specifically showcases nested replacements and multiple patterns.
 import textwrap

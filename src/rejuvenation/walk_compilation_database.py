@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating loading and walking a Clang compilation database."""
+
 # use clang to load and walk a compilation database
 
 from pathlib import Path

@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating AST-based rewriting of Python source using the standard library `ast` integration."""
+
 import textwrap
 from ast import AST
 

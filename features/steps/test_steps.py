@@ -1,3 +1,5 @@
+"""AI: Step definitions for the refactor-python-file BDD feature scenarios."""
+
 from pathlib import Path
 
 import pytest

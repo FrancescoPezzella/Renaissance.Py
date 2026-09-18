@@ -1,3 +1,5 @@
+"""AI: Command-line entry point for running Python refactoring recipes on source files."""
+
 import sys
 from pathlib import Path
 

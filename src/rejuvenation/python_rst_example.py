@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating RST-based rewriting of Python source, including nested replacements and multiple patterns."""
+
 # This script demonstrates the use of the syntax_tree library to parse and rewrite Python code.
 # It specifically showcases nested replacements and multiple patterns.
 import textwrap

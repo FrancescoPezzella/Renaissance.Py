@@ -1,3 +1,5 @@
+"""AI: Structural matching protocol and helper for Go AST nodes."""
+
 from typing import Protocol, Self, runtime_checkable
 
 

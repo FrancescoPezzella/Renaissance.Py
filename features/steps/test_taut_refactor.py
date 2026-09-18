@@ -1,3 +1,5 @@
+"""AI: Step definitions for the refactor-taut-test BDD feature scenario."""
+
 from pathlib import Path
 
 from pytest_bdd import scenario, when

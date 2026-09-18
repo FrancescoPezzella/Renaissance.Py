@@ -1,4 +1,6 @@
 # use clang to load and walk a compilation database
+"""AI: Example script demonstrating batch AST processing across a Clang compilation database."""
+
 import textwrap
 from collections.abc import Callable, Iterable
 from dataclasses import dataclass

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""AI: Command-line entry point for locating and refactoring taut-style unit test files."""
+
 import fnmatch
 import sys
 from pathlib import Path

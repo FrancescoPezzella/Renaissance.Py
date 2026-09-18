@@ -1,5 +1,5 @@
-# This script demonstrates the use of the syntax_tree library to parse and rewrite C code.
-# It specifically showcases the replacement of if-else statements with ternary operators.
+"""AI: Example script demonstrating removal of unused variables from C source via the cleanup refactoring recipe."""
+
 from more_itertools import flatten
 
 from renaissance.integrations.clang import ClangASTNode

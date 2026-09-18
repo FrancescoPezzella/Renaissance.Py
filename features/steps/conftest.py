@@ -1,3 +1,5 @@
+"""AI: Shared pytest fixtures and configuration for the BDD feature test suite."""
+
 from pathlib import Path
 
 import pytest

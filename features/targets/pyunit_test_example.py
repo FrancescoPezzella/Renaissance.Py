@@ -1,3 +1,5 @@
+"""AI: Example unittest-style module used as a parsing target combining C and Python AST matching."""
+
 import ast
 import unittest
 from unittest import TestCase

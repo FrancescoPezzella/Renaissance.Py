@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating tree-sitter LST-based rewriting of Python source."""
+
 import textwrap
 
 from renaissance.integrations.python.ast.factory import PythonFactory, PythonPatternFactory

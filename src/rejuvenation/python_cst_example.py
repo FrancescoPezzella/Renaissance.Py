@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating CST-based rewriting of Python source."""
+
 import textwrap
 
 from rejuvenation.python_lst_example import python_lst_smoke_test

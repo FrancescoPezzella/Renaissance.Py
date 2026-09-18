@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating multiple C AST refactoring styles: adding comments, replacing types, and finding nodes."""
+
 # This script demonstrates various techniques for refactoring C code using an abstract syntax tree (AST) approach.
 # It showcases how to add comments, replace types, and find specific nodes in the AST using different methods.
 from renaissance.integrations.clang import ClangASTNode, CPatternFactory

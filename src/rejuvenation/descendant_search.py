@@ -1,3 +1,5 @@
+"""AI: Example helper for matching nested (descendant) AST patterns."""
+
 from arpeggio import flatten
 
 from renaissance.syntax_tree import PatternMatch

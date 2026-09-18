@@ -1,3 +1,5 @@
+"""AI: Extractor that builds a codebase graph of nodes and edges from Go AST files."""
+
 from pathlib import Path
 
 from targets.go.node import GoAstNode

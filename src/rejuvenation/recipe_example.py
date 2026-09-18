@@ -1,3 +1,5 @@
+"""AI: Example script demonstrating a C++ refactoring recipe applied across a Clang compilation database."""
+
 # use clang to load and walk a compilation database
 import textwrap
 from collections.abc import Iterable

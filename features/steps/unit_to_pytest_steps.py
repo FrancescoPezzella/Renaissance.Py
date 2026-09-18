@@ -1,3 +1,5 @@
+"""AI: Step definitions for the convert-unit-to-pytest BDD feature scenario."""
+
 from pytest_bdd import scenario, when
 
 from renaissance.recipes.unit_to_pytest import UnitToPytest

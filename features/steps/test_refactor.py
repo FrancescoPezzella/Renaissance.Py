@@ -1,3 +1,5 @@
+"""AI: Step definitions for the rewrite-semantics BDD feature scenarios."""
+
 from pathlib import Path
 
 import pytest

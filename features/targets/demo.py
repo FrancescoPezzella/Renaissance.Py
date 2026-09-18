@@ -1,3 +1,6 @@
+"""AI: Sample target module used by BDD feature scenarios exercising Python refactoring."""
+
+
 def some_old_fun():
     a = 1
     b = a
