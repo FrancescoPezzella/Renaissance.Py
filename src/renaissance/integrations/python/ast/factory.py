@@ -104,17 +104,20 @@ class PythonFactory:
             clazz.indent = ""
 
     def create(self, file_path: Path) -> PythonRstNode | PythonCstNode:
+        """AI: Parse the Python source file at file_path into an AST node tree."""
         atu = self.clazz.load(file_path=file_path)
         assert isinstance(atu, self.clazz)
         return atu
 
     def create_from_text(self, text: str, file_name: str = "snippet.py") -> PythonRstNode | PythonCstNode | LSTNode | ast.AST:
+        """AI: Parse Python source text (attributed to file_name) into an AST node tree."""
         atu = self.clazz.load_from_text(text, file_name)
         assert isinstance(atu, self.clazz)
         return atu
 
     @staticmethod
     def load_from_lst(text: str, _file_name: str) -> LSTNode:
+        """AI: Parse Python source text with tree-sitter into an LST node tree."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         tree = adapter.parse_code(text)
         return adapter.to_lst(text, tree).root
@@ -131,14 +134,17 @@ class PythonPatternFactory:
         return PythonPattern(self.factory.create_from_text(text, "pattern.py"))
 
     def create(self, text: str) -> PythonPattern:
+        """AI: Parse text as a Python pattern, substituting placeholder dollar syntax first."""
         text = replace_dollar(text)
         return self._create(text)
 
     def create_statements(self, text: str) -> Sequence[PythonPattern]:
+        """AI: Parse text and return its top-level statement pattern nodes."""
         atu = self.create(text)
         return atu.children
 
     def create_statement(self, text: str) -> PythonPattern:
+        """AI: Parse text and return its last top-level statement pattern node."""
         stmt = self.create_statements(text)[-1]
         if isinstance(stmt.node.node, SimpleStatementLine):
             return stmt.children[0]
@@ -146,6 +152,7 @@ class PythonPatternFactory:
         # return stmt
 
     def create_expression(self, text: str) -> PythonPattern:
+        """AI: Parse text and return the expression pattern node of its last statement."""
         my_pattern = self.create_statement(text)
         if isinstance(my_pattern.node, PythonRstNode):
             return PythonPattern(my_pattern.node.expression)
@@ -154,9 +161,11 @@ class PythonPatternFactory:
         return PythonPattern(my_pattern.node.children[0])
 
     def create_decorators(self, param):
+        """AI: Parse param as a decorator applied to a dummy test function and return the decorator pattern node."""
         return self.create_statement(param + "\ndef test(): pass").children[2]
 
     @staticmethod
     def create_kwargs(kw_str) -> Sequence[PythonPattern]:
+        """AI: Parse kw_str as call keyword arguments and return their pattern nodes."""
         call = ast.parse(f"fun({replace_dollar(kw_str)})", "kwarg_pattern.py", type_comments=True).body[0].value
         return [PythonPattern(PythonRstNode(kwarg)) for kwarg in call.keywords]
