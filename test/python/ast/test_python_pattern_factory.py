@@ -11,6 +11,8 @@ from renaissance.syntax_tree.pattern_kind import PatternKind
 
 
 class TestPythonFactory:
+    """AI: Tests for building Python AST patterns via PythonPatternFactory."""
+
     @pytest.fixture(autouse=True)
     def setup(self) -> None:
         self.factory = PythonFactory(PythonRstNode)

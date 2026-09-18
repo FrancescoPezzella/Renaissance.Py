@@ -13,6 +13,8 @@ from utils_for_tests import reject_unsupported_code
 
 
 class TestPythonLstNode:
+    """AI: Tests for the LST-based Python AST node implementation."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(LSTNode)

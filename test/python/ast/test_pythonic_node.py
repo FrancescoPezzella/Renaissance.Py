@@ -8,6 +8,8 @@ from renaissance.integrations.python.ast.rst_node import PythonRstNode
 
 
 class TestPythonicNode:
+    """AI: Tests for the Pythonic RST AST node wrapper."""
+
     def test_it_can_be_created(self):
         it = PythonRstNode(ast.Pass())
         assert_that(it, is_(not_none()))

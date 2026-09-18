@@ -68,6 +68,8 @@ a_instance = A("Derived", "Extra")
 
 
 class TestPythonNode:
+    """AI: Tests resolving references between Python AST nodes (function calls, definitions)."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         """Set up fixture state before each test method."""

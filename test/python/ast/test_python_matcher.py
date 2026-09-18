@@ -19,6 +19,8 @@ from renaissance.syntax_tree.pattern_kind import PatternKind
 
 
 class TestPythonMatcher:
+    """AI: Tests for matching Python AST patterns via MatchFinder."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

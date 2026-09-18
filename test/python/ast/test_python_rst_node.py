@@ -25,6 +25,8 @@ from utils_for_tests import reject_unsupported_code
 
 
 class TestPythonRstNode:
+    """AI: Tests for the RST-based Python AST node implementation."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

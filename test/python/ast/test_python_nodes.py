@@ -25,6 +25,8 @@ def has_parser_or_semantic_kind(node, parser_kind: str) -> bool:
 
 
 class TestPythonNodes:
+    """AI: Tests that Python AST/CST/LST nodes expose consistent parser and semantic kind metadata."""
+
     @pytest.mark.parametrize(
         "_, factory, raw, kind",
         Factories.extend(

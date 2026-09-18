@@ -10,6 +10,8 @@ from renaissance.syntax_tree.pattern_kind import PatternKind
 
 
 class TestPythonicStyle:
+    """AI: Tests for the Pythonic-style (RST) AST pattern matching."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

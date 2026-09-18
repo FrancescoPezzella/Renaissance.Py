@@ -20,6 +20,8 @@ from renaissance.syntax_tree import ASTShower
 
 
 class TestPythonCstNode:
+    """AI: Tests for the CST-based Python AST node implementation."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonCstNode)

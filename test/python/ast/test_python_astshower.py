@@ -9,6 +9,8 @@ from renaissance.syntax_tree import ASTShower
 
 
 class TestPythonShower:
+    """AI: Tests for rendering Python AST nodes via ASTShower."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)

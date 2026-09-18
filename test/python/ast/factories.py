@@ -10,6 +10,8 @@ from renaissance.integrations.tree_sitter.lst import LSTNode
 
 
 class Factories:
+    """AI: Shared list of (name, PythonFactory) pairs for each Python node backend, plus a helper to expand test parameters across them."""
+
     # add factories here to test different ASTNode implementations
     node_types = [
         ("ast", ast.AST),

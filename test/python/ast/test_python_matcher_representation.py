@@ -8,6 +8,8 @@ from renaissance.integrations.python.ast.rst_node import PythonRstNode
 
 
 class TestPythonMatcherRepresentation:
+    """AI: Tests documenting the representation of Python AST pattern matches."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = PythonFactory(PythonRstNode)
