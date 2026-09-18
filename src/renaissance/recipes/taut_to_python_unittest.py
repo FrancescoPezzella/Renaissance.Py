@@ -666,8 +666,7 @@ def get_change_comment(date=None):
     """Generate a formatted change comment with today's date.
 
     Args:
-        change_id (str): The change ID (e.g., 'SWCHGxxxxxxxx')
-        description (str): The description of the change
+        date (str, optional): The date to use for the change comment, in "%m-%d-%Y" format. Defaults to today's date if None.
 
     Returns:
         str: Formatted change comment string

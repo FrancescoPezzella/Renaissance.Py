@@ -269,8 +269,11 @@ class _RewriteActions:
         """Replace the content of the given node(s) with new content.
 
         Args:
-            nodes (Sequence[Rewritable]): The nodes whose content is to be replaced.
+            rewriter (Rewriter): The rewriter used to apply the content replacement.
             new_content (str): The new content to insert in the specified range.
+            nodes (Sequence[Rewritable]): The nodes whose content is to be replaced.
+            include_whitespace (bool): Whether to include surrounding whitespace when determining the replacement range.
+            include_comments (bool): Whether to include surrounding comments when determining the replacement range.
 
         """
         if not nodes:
@@ -302,6 +305,7 @@ class _RewriteActions:
         """Remove a list of AST nodes from the content, optionally including surrounding whitespace and comments.
 
         Args:
+            rewriter (Rewriter): The rewriter used to apply the removal.
             nodes (Sequence[Rewritable]): The list of AST nodes to remove.
             include_whitespace (bool, optional): Whether to include surrounding whitespace in the removal. Defaults to False.
             include_comments (bool, optional): Whether to include surrounding comments in the removal. Defaults to False.
@@ -379,6 +383,7 @@ class _RewriteActions:
         """Replace the content in the specified range with new content.
 
         Args:
+            rewriter (Rewriter): The rewriter used to apply the byte replacement.
             start (int): The starting index of the range to be replaced.
             end (int): The ending index of the range to be replaced.
             new_content (str): The new content to insert in the specified range.
