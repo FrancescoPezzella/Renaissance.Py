@@ -4,6 +4,8 @@ import sys
 
 
 class Rewrite:
+    """AI: Represent one pending replacement of a byte range with new content."""
+
     def __init__(self, start: int, end: int, replacement: bytes) -> None:
         """AI: Record a pending replacement of a byte range with new content."""
         self.start = start

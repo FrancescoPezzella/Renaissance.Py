@@ -9,6 +9,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class PythonExtractor:
+    """AI: Extractor that builds a codebase graph of Python modules and their contained statements."""
+
     graph = nx.DiGraph()
     codebase: dict = {}
 

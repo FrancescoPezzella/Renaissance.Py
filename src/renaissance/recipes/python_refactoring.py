@@ -16,6 +16,8 @@ from renaissance.utils.text_utils import snake_case
 
 
 class PythonRefactoring(ASTProcessor):
+    """AI: Base processor for Python-specific source refactoring recipes."""
+
     def __init__(self, file):
         """AI: Prepare a Python-specific refactoring processor for the given source file."""
         factory = PythonFactory(PythonRstNode)

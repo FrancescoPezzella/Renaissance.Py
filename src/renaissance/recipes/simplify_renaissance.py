@@ -7,6 +7,8 @@ from renaissance.recipes.python_refactoring import PythonRefactoring
 
 
 class SimplifyRenaissance(PythonRefactoring):
+    """AI: Recipe that simplifies Renaissance's own unit-to-pytest conversion files."""
+
     def __init__(self, file):
         """AI: Prepare a refactoring processor scoped to Renaissance's own unit-to-pytest conversion files."""
         super().__init__(file)

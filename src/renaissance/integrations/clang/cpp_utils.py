@@ -12,6 +12,8 @@ def is_clang_kind(node, *parser_kinds: str) -> bool:
 
 
 class CPPUtils:
+    """AI: Constants and helpers for working with C++ reserved keywords and type names."""
+
     # a set of cpp reserved keywords in reverse alphabetical order:
     RESERVED_KEYWORDS = {
         "while",

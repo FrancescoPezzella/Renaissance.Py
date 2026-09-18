@@ -39,6 +39,8 @@ def node_kinds_match(source: NodeProtocol, pattern: NodeProtocol) -> bool:
 
 
 class Variant:
+    """AI: Track one candidate pattern-match state (bound expansions, greedy position) during matching."""
+
     def __init__(
         self,
         index: int,
@@ -70,6 +72,8 @@ class Variant:
 
 
 class PatternMatch:
+    """AI: Represent a successful match of a pattern against a sequence of AST nodes."""
+
     def __init__(self, nodes, expansions, patterns):
         """AI: Represent a successful match of a pattern against a sequence of AST nodes."""
         self.nodes = nodes
@@ -306,6 +310,8 @@ def find_all(src_nodes, *patterns, recursive: bool = True) -> Sequence[PatternMa
 
 
 class MatchFinder:
+    """AI: Static entry points for finding pattern matches against source AST nodes."""
+
     @staticmethod
     def find_all(
         src_nodes: Sequence[NodeProtocol],

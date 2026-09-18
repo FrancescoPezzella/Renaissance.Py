@@ -7,6 +7,8 @@ from renaissance.utils.ast_utils import detect_placeholder
 
 
 class ClangAdapter:
+    """AI: Adapter that parses C/C++ source with libclang into the internal LST representation."""
+
     def __init__(self, clang_path: str | None = None, args: list | None = None):
         """AI: Configure the libclang native library location and default parse arguments."""
         if clang_path and cindex.Config.library_path is None:

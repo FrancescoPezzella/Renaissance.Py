@@ -14,6 +14,8 @@ from renaissance.utils.ast_utils import next_sibling, preceding_sibling
 
 
 class PythonCstTranslationUnit:
+    """AI: Parse Python source into a libcst tree with position lookups for AST-node wrapping."""
+
     def __init__(self, content, file_name: str):
         """AI: Parse Python source into a libcst tree with position lookups for AST-node wrapping."""
         self.content = content
@@ -40,6 +42,8 @@ class PythonCstTranslationUnit:
 
 
 class PythonCstNode:
+    """AI: ASTNode implementation backed by libcst's concrete syntax tree."""
+
     def __init__(self, node: CSTNode, translation_unit: PythonCstTranslationUnit, parent=None):
         """AI: Wrap a libcst node as an AST node within the given translation unit."""
         self.parent = parent

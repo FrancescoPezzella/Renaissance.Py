@@ -14,6 +14,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class ASTProcessor:
+    """AI: Processor that coordinates parsing, pattern matching, and rewriting of a single AST."""
+
     def __init__(
         self,
         root: ASTNode,

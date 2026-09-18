@@ -76,6 +76,8 @@ def after_step(step: str) -> TFunc:
 
 
 class RecipeASTProcessor[TRecipe]:
+    """AI: Processor that runs a recipe's steps across a batch of files, optionally in parallel."""
+
     def __init__(
         self,
         recipe: TRecipe,

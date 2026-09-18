@@ -14,6 +14,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class UnitToPytest(PythonRefactoring):
+    """AI: Recipe that converts unittest-style test files to pytest style."""
+
     def __init__(self, file):
         """Hide internal administration in the parent class so that this class you only deals with specific refactors."""
         super().__init__(file)

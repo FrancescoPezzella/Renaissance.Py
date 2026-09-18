@@ -26,6 +26,8 @@ SHOW_NODE = False
 
 
 class PythonPattern(NodeProtocol):
+    """AI: Wrap a Python AST/RST node as a matchable pattern, detecting match-all/match-one placeholders."""
+
     def __init__(self, node):
         """AI: Wrap a Python AST/RST node as a matchable pattern, detecting match-all/match-one placeholders."""
         self.node: PythonRstNode = node
@@ -73,6 +75,8 @@ class PythonPattern(NodeProtocol):
 
 
 class PythonFactory:
+    """AI: Factory for creating Python AST nodes of a configured node-implementation type."""
+
     def __init__(self, clazz: type[PythonRstNode | PythonCstNode | LSTNode | ast.AST]) -> None:
         """AI: Configure a factory that creates Python AST nodes of the given node-implementation type."""
         self.clazz = clazz
@@ -117,6 +121,8 @@ class PythonFactory:
 
 
 class PythonPatternFactory:
+    """AI: Factory for building Python AST patterns from text."""
+
     def __init__(self, factory: PythonFactory):
         """AI: Prepare a pattern factory for creating Python AST patterns from text."""
         self.factory = factory

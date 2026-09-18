@@ -13,6 +13,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class TautToPythonUnittest(PythonRefactoring):
+    """AI: Recipe that converts taut-style test files to Python's unittest style."""
+
     def __init__(self, file):
         """AI: Prepare a refactoring processor that converts taut-style tests to Python unittest style."""
         super().__init__(file)

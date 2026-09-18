@@ -16,6 +16,8 @@ IterableProvider = Callable[[], Iterable[AST_FACTORY_AND_ATU]]
 
 
 class BatchASTProcessor:
+    """AI: Process multiple ASTs in parallel by applying a shared action to each."""
+
     def __init__(self, in_memory: bool = False, max_processes: int = 4):
         """Initialize the BatchASTProcessor.
 

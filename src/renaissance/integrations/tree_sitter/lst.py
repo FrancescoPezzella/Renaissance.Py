@@ -12,6 +12,8 @@ IRRELEVANT_NODE = {"comment"}
 
 
 class LSTNode:
+    """AI: Lossless syntax tree (LST) node implementation backed by tree-sitter."""
+
     def __init__(
         self,
         node_type: str,
@@ -115,6 +117,8 @@ class LSTNode:
 
 
 class LST:
+    """AI: Hold the root node of a language-syntax tree."""
+
     def __init__(self, root: LSTNode):
         """AI: Hold the root node of a language-syntax tree."""
         self.root = root

@@ -8,6 +8,8 @@ from renaissance.utils.ast_utils import replace_dollar
 
 
 class TreeSitterPatternFactory:
+    """AI: Factory for building tree-sitter AST patterns from text."""
+
     def __init__(self, adapter: TreeSitterAdapter, language: str = "python"):
         """AI: Prepare a pattern factory for creating tree-sitter AST patterns from text."""
         self.adapter = adapter

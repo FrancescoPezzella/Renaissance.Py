@@ -17,6 +17,8 @@ from .semantic_kind import SemanticKind
 
 @runtime_checkable
 class Rewritable(Protocol):
+    """AI: Structural protocol describing the offset/text shape required for byte-level rewriting."""
+
     offset: int
     end_offset: int
     extended_end_offset: int
@@ -36,6 +38,8 @@ DEFAULT_INDENT = 4
 
 
 class ASTRewriter:
+    """AI: Rewriter that translates AST-level replace/remove/insert actions into byte-level edits."""
+
     def __init__(
         self,
         node,

@@ -10,6 +10,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class ASTExtension:
+    """AI: Static trait methods patched onto the stdlib ast.AST class to satisfy the node protocol."""
+
     @staticmethod
     def load_from_ast(text, file):
         root = ast.parse(text, file)

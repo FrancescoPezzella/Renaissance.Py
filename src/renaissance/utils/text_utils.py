@@ -10,6 +10,8 @@ import pyperclip
 
 
 class TextUtils:
+    """AI: Text manipulation utilities for shifting, indenting, and clipboard operations on source text."""
+
     __PRECEDING_SPACES_PATTERN = re.compile(r"([\t\s]*)")
 
     @staticmethod

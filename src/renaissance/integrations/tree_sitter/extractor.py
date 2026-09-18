@@ -19,6 +19,8 @@ def _has_semantic_kind(node, kind: SemanticKind) -> bool:
 
 
 class Extractor:
+    """AI: Find occurrences of a set of patterns in tree-sitter-parsed code."""
+
     def __init__(self, factory: TreeSitterPatternFactory, patterns: list[str]):
         """AI: Configure an extractor that finds occurrences of the given patterns in code."""
         self.pattern_factory = factory
@@ -34,6 +36,8 @@ class Extractor:
 
 
 class BaseCodeGraphExtractor:
+    """AI: Base class that extracts a code graph from a language's tree-sitter-parsed files."""
+
     def __init__(self, language: str, lib_path: str):
         """AI: Configure a code-graph extractor for the given language and grammar library."""
         self.language = language
@@ -61,6 +65,8 @@ class BaseCodeGraphExtractor:
 
 
 class PythonCodeGraphExtractor(BaseCodeGraphExtractor):
+    """AI: Extract a code graph (functions, calls) from Python source files."""
+
     def _process_file(self, file_path, lst):
         folder = str(Path(file_path).parent)
         self.graph.add_node(file_path, type="file", folder=folder)
@@ -80,6 +86,8 @@ class PythonCodeGraphExtractor(BaseCodeGraphExtractor):
 
 
 class JavaCodeGraphExtractor(BaseCodeGraphExtractor):
+    """AI: Extract a code graph (methods, calls) from Java source files."""
+
     def _process_file(self, file_path, lst):
         folder = str(Path(file_path).parent)
         self.graph.add_node(file_path, type="file", folder=folder)
@@ -99,6 +107,8 @@ class JavaCodeGraphExtractor(BaseCodeGraphExtractor):
 
 
 class CppCodeGraphExtractor(BaseCodeGraphExtractor):
+    """AI: Extract a code graph (functions, calls) from C++ source files."""
+
     def _process_file(self, file_path, lst):
         folder = str(Path(file_path).parent)
         self.graph.add_node(file_path, type="file", folder=folder)

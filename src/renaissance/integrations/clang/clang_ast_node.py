@@ -29,6 +29,8 @@ PRINT_ALL_NODES = False
 
 
 class Clangastreference:
+    """AI: Represent a reference from one clang AST node to another by id."""
+
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
         """AI: Represent a reference from one clang AST node to another by id."""
         self.node_id = node_id
@@ -37,6 +39,8 @@ class Clangastreference:
 
 
 class ClangTranslationUnit:
+    """AI: Wrap a parsed clang translation unit with lazily-built reference and macro-expansion caches."""
+
     cache = []
 
     def __init__(self, clang_atu: ClangCindexTranslationUnit, file_name: str):
@@ -76,6 +80,8 @@ class ClangTranslationUnit:
 
 
 class ClangASTNode(ASTNode[Cursor, ClangTranslationUnit]):
+    """AI: ASTNode implementation backed by libclang cursors."""
+
     @staticmethod
     def set_library_path() -> None:
         try:
@@ -526,9 +532,10 @@ def is_system_macro(n):
 
 
 class ReferenceHelper:
+    """AI: Static helpers that populate reference caches between clang AST nodes."""
+
     @staticmethod
     def create_references(ast_node: ClangASTNode) -> None:
-        assert isinstance(ast_node, ClangASTNode), f"Expected ClangASTNode but got {type(ast_node)}"
         references = []
         node_id: str = ast_node.node.hash
         ast_node.translation_unit._references[node_id] = references

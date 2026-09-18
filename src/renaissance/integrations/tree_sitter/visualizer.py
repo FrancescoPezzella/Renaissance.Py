@@ -5,6 +5,8 @@ from renaissance.utils.text_utils import signature_to_id
 
 
 class LstVisualizer:
+    """AI: Render a tree-sitter LST as a Mermaid graph for visualization."""
+
     def __init__(self):
         """AI: Prepare a visualizer that renders an LST as a Mermaid graph."""
         self.lines = ["graph TD"]

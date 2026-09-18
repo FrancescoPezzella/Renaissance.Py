@@ -8,6 +8,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class CleanupRefactoring:
+    """AI: Static-only namespace exposing AST cleanup recipe steps (e.g. removing unused variables)."""
+
     def __init__(self):
         """AI: Prevent instantiation; this class only exposes static cleanup recipe steps."""
         raise Exception("This class should not be instantiated")

@@ -16,12 +16,16 @@ from renaissance.utils.text_utils import TextUtils
 
 # enum with ABORT, CONTINUE and SKIP
 class VisitorResult(Enum):
+    """AI: Signal how an AST traversal should continue after visiting a node."""
+
     ABORT = 0
     CONTINUE = 1
     SKIP = 2
 
 
 class ASTReference[NodeT, TranslationUnitT]:
+    """AI: Represent a reference from one AST node to another, along with the kind of reference."""
+
     def __init__(self, ast_node: ASTNode[NodeT, TranslationUnitT], ref_kind: str, properties: dict[str, Any]) -> None:
         """AI: Represent a reference from one AST node to another, along with the kind of reference."""
         self._node = ast_node
@@ -43,11 +47,12 @@ class ASTReference[NodeT, TranslationUnitT]:
 
 # To make usage of the concrete class methods easier, ASTNode MUST NOT have ABSTRACT public classes!!
 class ASTNode[NodeT, TranslationUnitT](ABC):
-    cache: dict[str, bytes] = {}
-    """
-    The base class to represent an AST node.
+    """The base class to represent an AST node.
+
     It is an abstract class that should be inherited by concrete classes that represent specific AST nodes.
     """
+
+    cache: dict[str, bytes] = {}
 
     def __init__(self, root: Self) -> None:
         """AI: Initialize a new AST node rooted at the given translation-unit-level node."""

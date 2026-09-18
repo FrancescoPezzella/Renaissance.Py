@@ -11,6 +11,8 @@ from .semantic_kind import SemanticKind
 
 
 class ASTFinder:
+    """AI: Static helpers for finding AST nodes matching a predicate or semantic kind."""
+
     KIND_MATCH = re.compile(r"[\W_]+")
 
     @staticmethod

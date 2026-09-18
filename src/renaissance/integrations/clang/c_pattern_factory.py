@@ -56,6 +56,8 @@ def derive_header_text(language: str, ref_node: ASTNode | None):
 
 
 class CPatternFactory:
+    """AI: Factory for building C-family AST patterns from text, with reserved placeholder names."""
+
     reserved_function_name = "__rejuvenation__reserved__function__name__"
     reserved_variable_name = "__rejuvenation__reserved__variable__name__"
 
@@ -259,6 +261,8 @@ class CPatternFactory:
 
 
 class CPPPatternFactory(CPatternFactory):
+    """AI: Factory for building C++-specific AST patterns, extending CPatternFactory with constructor-call support."""
+
     def __init__(self, factory: ASTFactory, ref_node: ASTNode | None = None):
         """AI: Prepare a pattern factory for creating C++-specific AST patterns from text."""
         super().__init__(factory, ref_node, "cpp")

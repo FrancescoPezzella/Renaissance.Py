@@ -43,6 +43,8 @@ VERBOSE = False
 
 
 class ClangJsonASTReference:
+    """AI: Represent a reference from one clang-json AST node to another by id."""
+
     def __init__(self, node_id: str, ref_kind: str, properties: dict[str, Any]) -> None:
         """AI: Represent a reference from one clang-json AST node to another by id."""
         self.node_id = node_id
@@ -51,6 +53,8 @@ class ClangJsonASTReference:
 
 
 class ClangJsonTranslationUnit:
+    """AI: Wrap a parsed clang JSON AST dump with lazily-built reference caches."""
+
     def __init__(self, json_root: dict[str, Any], file_name: str):
         """AI: Wrap a parsed clang JSON AST dump with lazily-built reference caches."""
         self.json_root = json_root
@@ -72,6 +76,8 @@ class ClangJsonTranslationUnit:
 
 
 class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
+    """AI: ASTNode implementation backed by clang's JSON AST dump format."""
+
     parse_args = [
         "-fparse-all-comments",
         "-ferror-limit=0",
@@ -490,6 +496,8 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
 
 
 class ReferenceHelper:
+    """AI: Static helpers that populate reference caches between clang-json AST nodes."""
+
     @staticmethod
     def create_references(ast_node: ClangJsonASTNode) -> None:
         assert isinstance(ast_node, ClangJsonASTNode), (

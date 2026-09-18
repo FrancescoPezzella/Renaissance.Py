@@ -13,6 +13,8 @@ from renaissance.utils.ast_utils import display_context
 
 @runtime_checkable
 class Displayable(Protocol):
+    """AI: Structural protocol describing the shape required for rendering a node via ASTShower."""
+
     parser_kind: str
     semantic_kind: object
     children: list[Self]
@@ -21,6 +23,8 @@ class Displayable(Protocol):
 
 
 class ASTShower:
+    """AI: Render an AST node tree to the console for debugging and inspection."""
+
     focus: str = "NO-FOCUS-DEFINED"
 
     @staticmethod
