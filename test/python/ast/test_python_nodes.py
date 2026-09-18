@@ -15,12 +15,14 @@ from renaissance.utils.ast_utils import traverse
 
 
 def assert_parser_or_semantic_kind(node, parser_kind: str) -> None:
+    """AI: Assert node matches parser_kind directly, or has a non-generic semantic kind as a fallback."""
     if node.parser_kind == parser_kind:
         return
     assert node.semantic_kind is not SemanticKind.NODE, (node.parser_kind, parser_kind)
 
 
 def has_parser_or_semantic_kind(node, parser_kind: str) -> bool:
+    """AI: Return True if node matches parser_kind directly, or has a non-generic semantic kind as a fallback."""
     return node.parser_kind == parser_kind or node.semantic_kind is not SemanticKind.NODE
 
 
