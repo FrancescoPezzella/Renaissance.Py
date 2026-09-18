@@ -13,6 +13,8 @@ pytest.mark.skip("empty workdir should also work right?")
 
 
 class TestClangJsonAstNode:
+    """AI: Tests for the Clang JSON-backed ASTNode implementation."""
+
     def test_load_from_text_empty_dir(self):
         node = ClangJsonASTNode.load_from_text("int main(){return 0;}", "hello.c", [], Path())
         assert_that(isinstance(node, ClangJsonASTNode))

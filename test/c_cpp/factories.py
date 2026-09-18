@@ -8,6 +8,8 @@ from renaissance.syntax_tree import ASTFactory
 
 
 class Factories:
+    """AI: Shared list of (name, ASTFactory) pairs for each clang backend, plus a helper to expand test parameters across them."""
+
     # add factories here to test different ASTNode implementations
     node_types = [("clang", ClangASTNode), ("clang_json", ClangJsonASTNode)]
     factories = [(name_type[0], ASTFactory(name_type[1])) for name_type in node_types]

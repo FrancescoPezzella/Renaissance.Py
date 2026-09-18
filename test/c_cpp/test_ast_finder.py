@@ -14,12 +14,16 @@ from .factories import Factories
 
 
 class TestFinder:
+    """AI: Shared base for tests that search a C/C++ AST model for nodes matching a predicate."""
+
     def load_model(self, factory: ASTFactory):
         # note: make sure to load a corresponding model for the language
         return factory.create(Path(targets.__file__).parent / "main.c")
 
 
 class TestKindFinder(TestFinder):
+    """AI: Tests ASTFinder.find single-node lookups by semantic/parser kind."""
+
     @pytest.mark.parametrize("_, factory", Factories.factories)
     def test_find_bogus(self, _, factory):
         model = self.load_model(factory)
@@ -34,6 +38,8 @@ class TestKindFinder(TestFinder):
 
 
 class TestAllFinder(TestFinder):
+    """AI: Tests ASTFinder.find_all lookups against a predicate."""
+
     @pytest.mark.parametrize("_, factory", Factories.factories)
     def test_find_all_bogus(self, _, factory):
         model = self.load_model(factory)

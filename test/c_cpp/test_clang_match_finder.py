@@ -9,6 +9,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class ClangMatchFinderTest:
+    """AI: Tests matching patterns against Clang AST nodes."""
+
     def test_is_match(self):
         code = """
         #define BAR "bar"

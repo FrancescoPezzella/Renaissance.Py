@@ -13,6 +13,8 @@ result = (
 
 
 class TestPythonExamples:
+    """AI: Tests the Python CST/LST/RST rewriting example scripts still run and produce output."""
+
     # def test_python_ast_still_works(self):
     #     result = python_ast_smoke_test()
     #     assert_that(result, is_(result))

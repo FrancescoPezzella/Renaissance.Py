@@ -19,6 +19,8 @@ from renaissance.project.project_scanner import (
 
 
 class TestProjectScanner:
+    """AI: Tests the base ProjectScanner raises NotImplementedError."""
+
     def test_find_sources_raises_not_implemented(self):
         scanner = ProjectScanner()
         assert_that(calling(scanner.find_sources), raises(NotImplementedError))
@@ -30,6 +32,8 @@ class TestProjectScanner:
 
 
 class TestCppScanner:
+    """AI: Tests discovering C/C++ sources from a compilation database via CppScanner."""
+
     def test_raises_file_not_found_when_compile_commands_missing(self, tmp_path):
         scanner = CppScanner(str(tmp_path / "compile_commands.json"))
         assert_that(calling(scanner.find_sources), raises(FileNotFoundError))
@@ -78,6 +82,8 @@ class TestCppScanner:
 
 
 class TestJavaScanner:
+    """AI: Tests discovering Java sources under a root directory via JavaScanner."""
+
     def test_finds_java_files_recursively(self, tmp_path):
         (tmp_path / "src").mkdir()
         (tmp_path / "src" / "Main.java").write_text("class Main {}")
@@ -121,6 +127,8 @@ class TestJavaScanner:
 
 
 class TestPythonScanner:
+    """AI: Tests discovering Python sources under known package directories via PythonScanner."""
+
     def test_finds_python_files_in_package_dirs(self, tmp_path):
         src = tmp_path / "src"
         src.mkdir()
@@ -188,6 +196,8 @@ class TestPythonScanner:
 
 
 class TestBearCppScanner:
+    """AI: Tests generating a compilation database via Bear before discovering sources."""
+
     def test_find_sources_calls_run_bear_when_compile_commands_missing(self, tmp_path, mocker):
         scanner = BearCppScanner(
             build_dir=str(tmp_path),

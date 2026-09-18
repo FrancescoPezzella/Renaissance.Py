@@ -11,6 +11,8 @@ from renaissance.syntax_tree.match_finder import is_match, is_match_tree, match_
 
 
 class TestConcretePatternMatcher:
+    """AI: Tests concrete (LST-level) pattern matching against tree-sitter-parsed Python code."""
+
     @pytest.mark.parametrize(
         "code, pattern",
         [

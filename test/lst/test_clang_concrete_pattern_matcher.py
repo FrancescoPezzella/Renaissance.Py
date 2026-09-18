@@ -10,6 +10,8 @@ from renaissance.syntax_tree.match_finder import MIS_MATCH, MatchFinder, find_va
 
 
 class TestClangConcretePatternMatcher:
+    """AI: Tests concrete (LST-level) pattern matching against Clang-parsed C++ code."""
+
     @pytest.mark.parametrize(
         "code, pattern",
         [
@@ -118,7 +120,7 @@ class TestClangConcretePatternMatcher:
 
 
 class Matchfinder:
-    pass
+    """AI: Unused placeholder class."""
 
 
 if __name__ == "__main__":

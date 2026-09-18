@@ -16,6 +16,8 @@ from .factories import Factories
 
 
 class TestASTReference:
+    """AI: Tests resolving C/C++ AST node references."""
+
     @pytest.mark.parametrize(
         "_, factory, code, args",
         Factories.extend(

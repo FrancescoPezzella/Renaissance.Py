@@ -12,6 +12,8 @@ from renaissance.utils.ast_utils import traverse
 
 
 class TestLanguages:
+    """AI: Tests that the tree-sitter LST adapter works across multiple languages."""
+
     @pytest.mark.parametrize(
         "lang, code",
         [

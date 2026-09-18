@@ -42,6 +42,8 @@ from renaissance.syntax_tree.ast_node import ASTNode
 
 
 class TestRefactorWithNestedCompositions:
+    """AI: Tests the nested-compositions refactor example produces the expected rewritten code."""
+
     def test_refactor_with_nested_compositions(self):
         result = refactor_with_nested_compositions(["", ""])
         assert_that(result, is_not(None))
@@ -85,6 +87,8 @@ f2(a,c);
 
 
 class TestReplaceIfWithTernaryOperator:
+    """AI: Tests the replace-if-with-ternary refactor example produces the expected rewritten code."""
+
     # didn't check expected result
     def test_refactor_with_nested_compositions(self):
         result = replace_if_with_ternary()
@@ -103,6 +107,8 @@ class TestReplaceIfWithTernaryOperator:
 
 # add a testcase for remove unused variable
 class TestRemoveUnusedVariable:
+    """AI: Tests the remove-unused-variable refactor examples produce the expected rewritten code."""
+
     @pytest.mark.parametrize("_, node_type", Factories.node_types)
     def test_remove_unused_variable_using_refactor_method(self, _: str, node_type: type[ASTNode]):
         result, expected = remove_unused_variable_using_refactor_method(node_type)
@@ -115,6 +121,8 @@ class TestRemoveUnusedVariable:
 
 
 class TestExamplesDifferentStyles:
+    """AI: Tests the same refactor produces identical results across different AST-finder styles."""
+
     @pytest.mark.parametrize(
         "_, factory, _node_type, method",
         list(

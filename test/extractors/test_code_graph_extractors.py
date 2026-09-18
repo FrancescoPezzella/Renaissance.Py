@@ -29,6 +29,8 @@ def make_lst_node(kind, signature, name=None):
 
 
 class TestBaseCodeGraphExtractor:
+    """AI: Tests the shared BaseCodeGraphExtractor behavior (abstract hook, file iteration, graph saving)."""
+
     def test_is_abstract(self):
         with patch("renaissance.integrations.tree_sitter.adapter.TreeSitterAdapter"):
             extractor = BaseCodeGraphExtractor.__new__(BaseCodeGraphExtractor)
@@ -91,6 +93,8 @@ class TestBaseCodeGraphExtractor:
 
 
 class TestPythonCodeGraphExtractor(TestBaseCodeGraphExtractor):
+    """AI: Tests extracting a code graph from Python tree-sitter nodes."""
+
     @staticmethod
     def _make_extractor():
         with patch("renaissance.integrations.tree_sitter.adapter.TreeSitterAdapter"):
@@ -183,6 +187,8 @@ class TestPythonCodeGraphExtractor(TestBaseCodeGraphExtractor):
 
 
 class TestJavaCodeGraphExtractor(TestBaseCodeGraphExtractor):
+    """AI: Tests extracting a code graph from Java tree-sitter nodes."""
+
     @staticmethod
     def _make_extractor():
         with patch("renaissance.integrations.tree_sitter.adapter.TreeSitterAdapter"):
@@ -254,6 +260,8 @@ class TestJavaCodeGraphExtractor(TestBaseCodeGraphExtractor):
 
 
 class TestCppCodeGraphExtractor(TestBaseCodeGraphExtractor):
+    """AI: Tests extracting a code graph from C++ tree-sitter nodes."""
+
     @staticmethod
     def _make_extractor():
         with patch("renaissance.integrations.tree_sitter.adapter.TreeSitterAdapter"):

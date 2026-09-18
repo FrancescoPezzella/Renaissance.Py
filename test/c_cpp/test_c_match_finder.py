@@ -23,6 +23,8 @@ logger = logging.getLogger(__name__)
 
 
 class TestCMatchFinder:
+    """AI: Shared base for C/C++ pattern-matching tests, providing sample source and match helpers."""
+
     SIMPLE_CPP = """
         void f(){
             int a = 3;
@@ -71,6 +73,8 @@ class TestCMatchFinder:
 
 
 class TestExpressions(TestCMatchFinder):
+    """AI: Tests matching C/C++ expression patterns."""
+
     def test_match_expr(self):
         factory = ASTFactory(ClangJsonASTNode, [])
         expr_node = CPatternFactory(factory).create_expression("a == $x")
@@ -125,6 +129,8 @@ class TestExpressions(TestCMatchFinder):
 
 
 class TestStatements(TestCMatchFinder):
+    """AI: Tests matching C/C++ statement patterns, including placeholder expansions."""
+
     @pytest.mark.parametrize(
         "_, factory, statements, expected_dicts_per_match",
         Factories.extend(
@@ -204,6 +210,8 @@ class TestStatements(TestCMatchFinder):
 
 
 class TestFunctionCallStatements(TestCMatchFinder):
+    """AI: Tests matching C/C++ function-call statement patterns with variadic argument placeholders."""
+
     @pytest.mark.parametrize(
         "_, factory, statements, extra_declarations, expected_dicts_per_match",
         Factories.extend(
@@ -264,6 +272,8 @@ class TestFunctionCallStatements(TestCMatchFinder):
 
 
 class TestMultiAssignments(TestCMatchFinder):
+    """AI: Tests matching statement patterns that repeat the same placeholder across multiple call sites."""
+
     @pytest.mark.parametrize(
         "_, factory, statements, extra_declarations, expected_dicts_per_match",
         Factories.extend(
@@ -366,6 +376,8 @@ class TestMultiAssignments(TestCMatchFinder):
 
 
 class TestUseAtuToCreatePattern(TestCMatchFinder):
+    """AI: Tests building a pattern directly from a parsed translation unit's own nodes."""
+
     @pytest.mark.parametrize(
         "name, factory, statements, pattern_type, expected, names",
         Factories.extend(
@@ -483,6 +495,8 @@ class TestUseAtuToCreatePattern(TestCMatchFinder):
 
 
 class TestIndividualCases:
+    """AI: Ad-hoc regression tests for specific C/C++ pattern-matching cases."""
+
     def test_multi_single(self):
         factory = ASTFactory(ClangASTNode)
         atu = factory.create_from_text(

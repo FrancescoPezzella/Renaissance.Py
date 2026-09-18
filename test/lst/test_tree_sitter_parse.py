@@ -26,6 +26,8 @@ java_code = b"public class Test {\n    public static void main(String[] args) {\
 
 
 class TestTreeSitterParse:
+    """AI: Tests raw tree-sitter parsing across multiple language grammars."""
+
     def test_parse_py_code(self):
         assert_that(py_code, is_(py_parser.parse(py_code).root_node.text))
 

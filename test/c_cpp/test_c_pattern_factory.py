@@ -13,6 +13,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class TestCPatternFactory:
+    """AI: Tests deriving header text from a C/C++ translation unit."""
+
     def test_derive_header(self):
         code = """
                 #include <stdint.h>
@@ -63,6 +65,8 @@ class TestCPatternFactory:
 
 
 class TestExpression:
+    """AI: Tests building C/C++ expression patterns via CPatternFactory."""
+
     @pytest.mark.parametrize(
         "_, factory, expression, expected",
         Factories.extend(
@@ -159,6 +163,8 @@ class TestExpression:
 
 
 class TestDeclaration:
+    """AI: Tests building C/C++ declaration patterns via CPatternFactory."""
+
     @pytest.mark.parametrize(
         "_, factory, declaration_text, types, parameters, expected_vars, expected_refs",
         Factories.extend(
@@ -196,6 +202,8 @@ class TestDeclaration:
 
 
 class TestStatements:
+    """AI: Tests building C/C++ statement patterns via CPatternFactory."""
+
     @pytest.mark.parametrize(
         "_, factory, statement_text, extra_declarations, expected_stmts, expected_refs",
         list(

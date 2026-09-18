@@ -12,6 +12,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class TestClangJsonMatchFinder:
+    """AI: Tests matching patterns against Clang JSON AST nodes."""
+
     @pytest.mark.skip
     def test_is_match_using_macro_from_atu(self):
         code = """

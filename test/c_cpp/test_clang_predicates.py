@@ -12,8 +12,9 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class Node:
+    """AI: Build a minimal stand-in node for exercising clang predicate functions."""
+
     def __init__(self, parser_kind: str, semantic_kind: SemanticKind = SemanticKind.NODE):
-        """AI: Build a minimal stand-in node for exercising clang predicate functions."""
         self.parser_kind = parser_kind
         self.semantic_kind = semantic_kind
 

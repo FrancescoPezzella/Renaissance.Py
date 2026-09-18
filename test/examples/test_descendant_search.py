@@ -13,6 +13,8 @@ from renaissance.syntax_tree.node_protocol import NodeProtocol
 
 
 class TestFindDescendantMatch:
+    """AI: Tests finding a descendant expression match nested inside an outer statement pattern."""
+
     code_text: str = """
             int my_function();
 
@@ -58,6 +60,8 @@ class TestFindDescendantMatch:
 
 
 class TestBasic:
+    """AI: Tests basic literal/placeholder expression matching via CPatternFactory."""
+
     code_text: str = """
             int my_function();
             void your_function() {

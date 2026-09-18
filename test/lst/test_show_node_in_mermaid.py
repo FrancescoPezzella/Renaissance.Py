@@ -13,6 +13,8 @@ from renaissance.integrations.tree_sitter.visualizer import LstVisualizer
 
 
 class TestShowNodeInMermaid:
+    """AI: Tests for rendering tree-sitter LST nodes as Mermaid diagrams."""
+
     def process_code(self, grammar_module, code):
         adapter = TreeSitterAdapter(grammar_module)
         tree = adapter.parse_code(code)

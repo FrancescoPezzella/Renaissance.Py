@@ -13,6 +13,8 @@ from renaissance.utils.ast_utils import traverse
 
 
 class TestMatchers:
+    """AI: Tests for matching tree-sitter LST nodes by semantic kind."""
+
     @pytest.fixture(autouse=True)
     def setUp(self):
         adapter = TreeSitterAdapter(tscpp)

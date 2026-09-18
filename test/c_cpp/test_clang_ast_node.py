@@ -8,6 +8,8 @@ from renaissance.syntax_tree import ASTFactory
 
 
 class TestClangAstNode:
+    """AI: Tests for the Clang-backed ASTNode implementation."""
+
     def test_is_same_node(self):
         factory = ASTFactory(ClangASTNode, [])
         src = CPatternFactory(factory).create_statements("a == 3;a == 3;")

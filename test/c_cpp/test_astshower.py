@@ -10,6 +10,8 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 class TestCcppShower:
+    """AI: Tests rendering C/C++ AST nodes via ASTShower."""
+
     @pytest.fixture(autouse=True)
     def setup(self):
         self.factory = ASTFactory(ClangASTNode, [])

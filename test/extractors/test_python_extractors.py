@@ -9,6 +9,8 @@ from renaissance.integrations.python.ast.extractor import PythonExtractor
 
 
 class TestPythonExtractor:
+    """AI: Tests for the Python AST codebase extractor."""
+
     def test_extractor(self):
         extractor = PythonExtractor()
         assert_that(extractor, is_not(None))
