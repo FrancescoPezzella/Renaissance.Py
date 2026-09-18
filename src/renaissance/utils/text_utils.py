@@ -105,6 +105,7 @@ class TextUtils:
 
     @staticmethod
     def to_clipboard(text: str) -> None:
+        """AI: Copy the given text to the system clipboard."""
         pyperclip.copy(text)
 
     @staticmethod

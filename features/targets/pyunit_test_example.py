@@ -21,6 +21,7 @@ class FindMatchTest(unittest.TestCase):
     # def setUpClass(cls):
     #     cls.code_text: str = "int my_function();"
     def setUp(self):
+        """AI: Initialize test fixture strings used by the C AST pattern-matching tests."""
         self.b = 55
         print(f"{self.b=}")
         self.a = 5
@@ -33,6 +34,7 @@ class FindMatchTest(unittest.TestCase):
             print(f"{self.extra_declarations_inner_text[0]}")
 
     def tearDown(self):
+        """AI: Clear the fixture strings set up in setUp."""
         self.outer_text: str = None
         self.inner_text: str = None
         self.extra_declarations_inner_text = None
@@ -41,6 +43,7 @@ class FindMatchTest(unittest.TestCase):
     #     cls.code_text: str = None
 
     def test_is_match(self):
+        """AI: Assert basic equality/identity semantics used to sanity-check the test fixtures."""
         self.assertIn(self.a, [self.a], "An expression matches itself")
 
         self.assertEqual(self.a, 5)
@@ -56,6 +59,7 @@ class FindMatchTest(unittest.TestCase):
 
     @parameterized.expand(Factories.factories)
     def test_case(self, _: str, factory: ASTFactory):
+        """AI: Assert an inner expression pattern doesn't spuriously match an unrelated outer statement pattern."""
         pattern_factory = CPatternFactory(factory)
         code_pattern = factory.create_from_text(self.code_text, "text.c")
         outer_pattern = pattern_factory.create_statement(self.outer_text)
@@ -98,6 +102,7 @@ class TestBasicNoNamespace(TestCase):
     @unittest.skip("stmt and expr are the same")
     # unused param
     def test_snippet(self, _: str, factory: ASTFactory, snippet: str, extra_declarations: list[str]):
+        """AI: Assert a literal or placeholder snippet matches exactly one node among the code's children."""
         pattern_factory = CPatternFactory(factory)
         code_pattern = factory.create_from_text(self.code_text, "text.c")  # file extension consistent with C Pattern Factory
         snippet_pattern = pattern_factory.create_expression(snippet, extra_declarations)

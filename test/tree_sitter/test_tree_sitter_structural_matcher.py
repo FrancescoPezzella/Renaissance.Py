@@ -38,6 +38,7 @@ class TestTreeSitterStructuralMatcher:
         ],
     )
     def test_python_patterns(self, code, pattern):
+        """AI: Assert a placeholder Python pattern matches its corresponding concrete code snippet."""
         adapter = TreeSitterAdapter(tspython)
         ast = adapter.parse_code(code)
         lst = adapter.to_lst(code, ast)
@@ -81,6 +82,7 @@ class TestTreeSitterStructuralMatcher:
         ],
     )
     def test_cpp_patterns(self, code, pattern):
+        """AI: Assert a placeholder C++ pattern matches its corresponding concrete code snippet."""
         adapter = TreeSitterAdapter(tscpp)
         ast = adapter.parse_code(code)
         lst = adapter.to_lst(code, ast)

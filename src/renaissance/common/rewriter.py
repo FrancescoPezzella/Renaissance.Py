@@ -69,6 +69,7 @@ class Rewriter:
 
     @property
     def content(self) -> bytes:
+        """AI: Return the original, unmodified content this rewriter was constructed with."""
         return self.__content
 
 

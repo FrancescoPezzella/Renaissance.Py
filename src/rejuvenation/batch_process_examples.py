@@ -143,6 +143,7 @@ class AnalysisRecipe:
 
     @recipe_step(order=0)
     def store_function_call(self, ast_processor: ASTProcessor) -> Callable[[], None] | None:
+        """AI: Collect all function-call nodes found by the processor and queue them for single-threaded storage."""
         # find all function calls and store them, this routing is invoked in parallel!
         calls: list[CallInfo] = []
         [AnalysisRecipe._add_function_call(node, calls) for node in ast_processor.find_semantic_kind(SemanticKind.CALL)]
@@ -155,10 +156,12 @@ class AnalysisRecipe:
 
     @after_step("store_function_call")
     def just_show_the_method(self):
+        """AI: Print a marker showing this hook ran after store_function_call."""
         print("called after store_function_call")
 
     @final_action()
     def final_action(self):
+        """AI: Print all collected function calls after the recipe finishes."""
         print("Calls:")
         for call in self._calls:
             print("    " + call.callee + " --  calls --> " + call.calls)

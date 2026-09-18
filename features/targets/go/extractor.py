@@ -13,6 +13,7 @@ class GoExtractor:
     edges: dict = {}
 
     def process_file(self, file: Path):
+        """AI: Parse a Go source file and merge its nodes and reference edges into the codebase graph."""
         root = GoAstNode.load(file)
         tu = root.translation_unit
         tu.lazy_create_refers(root)

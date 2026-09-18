@@ -229,6 +229,7 @@ class MyRefactor:
 
     @recipe_step(order=0)
     def recipe(self, ast_processor: ASTProcessor):
+        """AI: Apply the example text, name, and declaration replacements to the processed AST."""
         pattern = CPPPatternFactory(ast_processor.factory)
         actions = ASTRefactorActions(ast_processor, pattern)
         actions.replace_text("ListView_LEGACY", "ListViewCustom", skip_kind=is_clang_type_reference)
