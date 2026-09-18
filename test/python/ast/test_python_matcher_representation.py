@@ -66,7 +66,7 @@ class TestPythonMatcherRepresentation:
             assert_that(expression_signed, is_not(expression))
 
     def test_literal_real_numbers_representation(self):
-        """How are the different representations of literal instances of real numbers handled by the parser?"""
+        """Document how the different representations of literal instances of real numbers are handled by the parser."""
         normal = "0.123456"
         more_significant_digits = "0.123456000"
         readable = "0.123_456"
@@ -130,7 +130,7 @@ class TestPythonMatcherRepresentation:
                 assert_that(expression1, is_(expression2))
 
     def test_string_representation(self):
-        """How are the different string representations handled by the parser?"""
+        """Document how the different string representations are handled by the parser."""
         normal_single = "'abcdef'"
         normal_double = '"abcdef"'
 
@@ -175,7 +175,7 @@ class TestPythonMatcherRepresentation:
                 assert_that(expression_explicit_concatenated, is_not(expression))
 
     def test_statements_with_comment_and_whitespace(self):
-        """How are statements with comments and whitespace handled by the parser?"""
+        """Document how statements with comments and whitespace are handled by the parser."""
         statement = "x = 1"
         statement_with_comment = "x = 1  # This is a comment"
         statement_with_new_line = "x        =       1   "

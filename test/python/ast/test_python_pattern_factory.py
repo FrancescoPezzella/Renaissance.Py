@@ -233,7 +233,7 @@ class TestPythonFactory:
 
     @pytest.mark.parametrize("code", ["\"hello = 'hello' # comment to hello\""])
     def test_comments(self, code) -> None:
-        """TODO: what is tested?"""
+        """Document that a `#` inside a string literal is not mistaken for a comment by the pattern factory."""
         pattern_factory = PythonPatternFactory(self.factory)
         node = pattern_factory.create_statement(code)
         assert_that(node.parser_kind, is_("Expr"))
