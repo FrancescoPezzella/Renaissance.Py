@@ -28,6 +28,7 @@ class PythonRefactoring(ASTProcessor):
         self.white_list_pattern = ""
 
     def replace_stmt(self, find, repl):
+        """AI: Replace all statements matching the find pattern with the repl template, expanding captures."""
         pattern = self.pattern_factory.create_statements(find)
         for match in match_pattern(self.root.children, pattern):
             replacement = repl
@@ -54,7 +55,8 @@ class PythonRefactoring(ASTProcessor):
 
     @property
     def body(self) -> Sequence[PythonRstNode]:
+        """AI: Return the root node's body statements."""
         return cast("PythonRstNode", cast("object", self.root)).body
 
     def run(self):
-        pass
+        """AI: Run this refactoring recipe. Subclasses override this to perform the refactoring."""

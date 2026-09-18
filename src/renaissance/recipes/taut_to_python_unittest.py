@@ -23,6 +23,7 @@ class TautToPythonUnittest(PythonRefactoring):
         self.comp = "ABCD"
 
     def run(self):
+        """AI: Apply the full sequence of taut-to-unittest migration transforms and write the migrated file."""
         if re.search(self.black_list_reg, self.filename):
             print(f"skipping:         {Path(self.filename).resolve()}")
             return
@@ -95,9 +96,11 @@ class TautToPythonUnittest(PythonRefactoring):
         ]
 
     def remove_decorator(self):
+        """AI: Remove the @TAUT.log_stub decorator."""
         [self.remove(node, False, False) for node in self.find_semantic_kind(SemanticKind.ATTRIBUTE) if node.name == "TAUT.log_stub"]
 
     def add_self(self):
+        """AI: Prefix known TAUT helper attribute names with "self." so they resolve as instance members."""
         matching = [
             "emrwxread",
             "emrwxwidxread",
@@ -132,6 +135,7 @@ class TautToPythonUnittest(PythonRefactoring):
         ]
 
     def convert_assert(self):
+        """AI: Replace TAUT-style assert_false/assert_true/assert_equal calls with unittest equivalents."""
         [
             self.replace("self.assertFalse", node, False, False)
             for node in self.find_semantic_kind(SemanticKind.ATTRIBUTE)
@@ -149,9 +153,11 @@ class TautToPythonUnittest(PythonRefactoring):
         ]
 
     def remove_stubserver(self):
+        """AI: Remove references to TAUT.StubServer."""
         [self.remove(node, False, False) for node in self.find_semantic_kind(SemanticKind.ATTRIBUTE) if node.name == "TAUT.StubServer"]
 
     def replace_mock(self):
+        """AI: Replace mock.patch decorators with patch."""
         [
             self.replace("patch", node, False, False)
             for node in self.find_semantic_kind(SemanticKind.ATTRIBUTE)
@@ -159,6 +165,7 @@ class TautToPythonUnittest(PythonRefactoring):
         ]
 
     def replace_log_compxtl(self, comp):
+        """AI: Replace direct and assigned calls to {comp}xtl with a fake_{comp}xtl double, including TestDoubles blocks."""
         func_call = self.pattern_factory.create_statements(f"{comp}xtl.$a($$bb)")
         for call in match_pattern(self.root.children, func_call):
             repl = call.signature.replace(f"{comp}xtl", f"fake_{comp}xtl")
@@ -178,6 +185,7 @@ class TautToPythonUnittest(PythonRefactoring):
         self.commit()
 
     def remove_taut_import(self):
+        """AI: Remove the "import TAUT" statement."""
         taut_import = self.pattern_factory.create_statements("import TAUT\n")
         for match in match_pattern(self.root.children, taut_import):
             self.remove(match.nodes, False, False)
@@ -201,6 +209,7 @@ class TautToPythonUnittest(PythonRefactoring):
             self.replace(repl, match.nodes, False, False)
 
     def convert_tds(self):
+        """AI: Convert self.tds.append(TestDoubles(...)) calls into add_patcher calls or direct stub assignments."""
         tds = self.pattern_factory.create_statements("self.tds.append(TestDoubles($a, $b=$c))")
         for match in match_pattern(self.root.children, tds):
             repl = f"self.add_patcher({match['$a']}, '{match['$b']}', {match['$c']})"
@@ -212,6 +221,7 @@ class TautToPythonUnittest(PythonRefactoring):
             self.replace(repl, match.nodes, False, False)
 
     def convert_setup_common(self):
+        """AI: Convert self.tds = [...] blocks into ImprovedStub setup plus patch.object patcher lists."""
         insert_code = """ImprovedStub.ret_vals = {}
 ImprovedStub.ret_vals_ex = {}
 ImprovedStub.call_logs = {}
@@ -240,6 +250,7 @@ ImprovedStub.store_args = {}
             self.replace(repl, match.nodes, False, False)
 
     def convert_teardown_common(self):
+        """AI: Replace tearDownCommon's body with logic that stops all patchers."""
         teardown_common = self.pattern_factory.create_statements("def tearDownCommon(self):\n    $$aa")
         repl = """def tearDownCommon(self):
     for p in self.patchers:
@@ -252,6 +263,7 @@ ImprovedStub.store_args = {}
             self.replace(repl, match.nodes, False, False)
 
     def convert_add_patcher(self):
+        """AI: Insert an add_patcher helper method into tearDownCommon if one doesn't already exist."""
         pattern = self.pattern_factory.create_statements("def tearDownCommon(self):\n    $$aa")
         for match in match_pattern(self.root.children, pattern):
             patcher_pattern = [node for node in self.find_semantic_kind(SemanticKind.FUNCTION) if node.name == "add_patcher"]
@@ -259,6 +271,7 @@ ImprovedStub.store_args = {}
                 self.insert_after(tst_class.insert_add_patcher, match.nodes)
 
     def find_import_interface(self, name: str):
+        """AI: Return the top-level module/interface name that name was imported from, or name itself."""
         interface = name
         if name.islower():
             node_list = [node for node in self.find_semantic_kind(SemanticKind.IMPORT) if node.name == name]
@@ -270,6 +283,7 @@ ImprovedStub.store_args = {}
         return interface.split(".")[0]
 
     def convert_setup(self):
+        """AI: Convert TAUT.TestDoubles-based setUp logic into patch/patch.object based setup with self.patches."""
         # remove doubles init
         pattern1 = self.pattern_factory.create_statements("doubles = []")
         replacement = "self.patches = []"
@@ -329,6 +343,7 @@ ImprovedStub.store_args = {}
         ]
 
     def convert_teardown(self):
+        """AI: Replace tearDown's body with logic that stops all patches."""
         matched_pattern = self.pattern_factory.create_statements("def tearDown(self):\n    $$aa")
         repl_pattern = """def tearDown(self):
     for p in self.patches:
@@ -337,6 +352,7 @@ ImprovedStub.store_args = {}
             self.replace(repl_pattern, match.nodes, False, False)
 
     def refactor_teardown(self):
+        """AI: Replace the doubles-exit teardown loop with patch.stopall() and reset context method attributes."""
         self.comp = "abcd"
         pattern1 = self.pattern_factory.create_statements("for double in self.doubles:\n    double.exit()")
         replace_pattern = "patch.stopall()"
@@ -354,6 +370,7 @@ ImprovedStub.store_args = {}
             self.insert_before(insert_code, match.nodes, False, False)
 
     def convert_test_doubles(self, doubles: str):
+        """AI: Convert matches of the given doubles-append pattern into self.patches.append(patch(...)) calls."""
         mappings: dict[str, str] = {
             "emrmxcontext": "EMRMxCONTEXT",
             "acbdxcontext": "ACBDxCONTEXT",
@@ -369,6 +386,7 @@ ImprovedStub.store_args = {}
             self.replace(repl_pattern, match.nodes, False, False)
 
     def insert_patch_import(self):
+        """AI: Insert a try/except import of unittest.mock.patch (falling back to mock.patch) if missing."""
         insert = "\ntry:\n    from unittest.mock import patch\nexcept ImportError:\n    from mock import patch"
         insert_pattern = self.pattern_factory.create_statements(insert)
         if len(match_pattern(self.root.children, insert_pattern)) == 0:
@@ -381,24 +399,28 @@ ImprovedStub.store_args = {}
         [self.replace("@unittest.skip", node) for node in self.find_semantic_kind(SemanticKind.ATTRIBUTE) if node.name == "TAUT.skip_test"]
 
     def convert_import_verify(self):
+        """AI: Replace self.import_and_verify_module('$a') calls with a real import plus an assertIsNotNone check."""
         import_verify = self.pattern_factory.create_statements("self.import_and_verify_module('$a')")
         for match in match_pattern(self.root.children, import_verify):
             repl = f"import {match.expansions['$a'][0]}\nself.assertIsNotNone({match.expansions['$a'][0]})"
             self.replace(repl, match.nodes, False, False)
 
     def with_testdoubles(self):
+        """AI: Replace "with TAUT.TestDoubles(...)" blocks with equivalent "with patch.object(...)" blocks."""
         pattern1 = self.pattern_factory.create_statements("with TAUT.TestDoubles(module=$a, $b=$c):\n    $$ee")
         for match in match_pattern(self.root.children, pattern1):
             repl_pattern = f"with patch.object({match['$a']}, '{match['$b']}', new={match['$c']}):\n    {match['$$ee']}"
             self.replace(repl_pattern, match.nodes, False, False)
 
     def shared_setup(self):
+        """AI: Rename a sharedSetUp method to setUp."""
         setup_function = self.pattern_factory.create_statements("def sharedSetUp(self):\n    $$stmts")
         for match in match_pattern(self.root.children, setup_function):
             repl = match.signature.replace("def sharedSetUp", "    def setUp")
             self.replace(textwrap.dedent(repl), match.nodes, False, False)
 
     def insert_class(self):
+        """AI: Insert the Asserter helper class if it doesn't already exist in the file."""
         class_pattern = self.pattern_factory.create_statements("class Asserter(unittest.TestCase):\n    $$aa")
         if len(match_pattern(self.root.children, class_pattern)) == 0:
             insert_pattern = self.pattern_factory.create_statements("def b():\n    $$bb")
@@ -407,18 +429,21 @@ ImprovedStub.store_args = {}
                 self.insert_after(insert_code, match.nodes, False, False)
 
     def insert_asserter(self):
+        """AI: Insert the assert_double_equal helper function's replacement code."""
         insert_pattern = self.pattern_factory.create_statements("def assert_double_equal($$arg, $$other=$$value):\n    $$bb")
         insert_code = tst_insert.insert_code
         for match in match_pattern(self.root.children, insert_pattern):
             self.insert_after(insert_code, match.nodes, False, False)
 
     def remove_assert_func(self):
+        """AI: Remove the original assert_double_equal function definition."""
         pattern = self.pattern_factory.create_statements("def assert_double_equal($$arg, $$other=$$value):\n    $$bb")
         for match in match_pattern(self.root.children, pattern):
             self.remove(match.nodes, False, False)
             self.commit()
 
     def replace_unittest_with_asserter(self):
+        """AI: Make classes that use assert_raises/assert_double_equal extend Asserter instead of TAUT.TestCase."""
         pattern = self.pattern_factory.create_statements("class $a(TAUT.TestCase):\n    $$bb")
         for match in match_pattern(self.root.children, pattern):
             if match["$a"] != "Asserter" and ("assert_raises" in match["$$bb"] or "assert_double_equal" in match["$$bb"]):
@@ -427,6 +452,7 @@ ImprovedStub.store_args = {}
         self.commit()
 
     def assert_func(self):
+        """AI: Prefix assert_raises and assert_double_equal usages with "self."."""
         matching = [
             "assert_raises",
             "assert_double_equal",
@@ -438,6 +464,7 @@ ImprovedStub.store_args = {}
         ]
 
     def move_indent(self, indent):
+        """AI: Replace a doubles-append call inside a function with an indented patch.object with-block."""
         pattern1 = self.pattern_factory.create_statements("""def $a($$b):
     self.doubles.append(TAUT.TestDoubles($mod, $e, $f))
     $$c""")
@@ -452,7 +479,7 @@ ImprovedStub.store_args = {}
             self.replace(replace_pattern, match.nodes, False, False)
 
     def convert_testdoubles_fun(self):
-        """Use this for taut migration, where the function pattern is found in a class."""
+        """AI: Use this for taut migration, where the function pattern is found in a class."""
         # case1 two TestDoubles are defined
         pattern1 = self.pattern_factory.create_statements("""def $a($$b):
         self.doubles.append(
@@ -590,6 +617,7 @@ ImprovedStub.store_args = {}
             self.replace(replace_pattern, match.nodes, False, False)
 
     def refactor_testdoubles_class(self):
+        """AI: Convert a class-level TAUT.TestDoubles-based setUp/tearDown into patch.object based setup/teardown."""
         pattern = self.pattern_factory.create_statements("""class $a(TAUT.TestCase):
 
         def setUp(self):
@@ -637,6 +665,7 @@ ImprovedStub.store_args = {}
             self.replace(replace_pattern, match.nodes, False, False)
 
     def insert_doc_func(self):
+        """AI: Insert a change-log comment before the existing copyright comment block."""
         pattern = self.pattern_factory.create_statements("""# -----------------------------------------------------------------------------#
 #                                                                             #
 #                   Copyright (c) 2016, XXXX Netherlands B.V.                 #
