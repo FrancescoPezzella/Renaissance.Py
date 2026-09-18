@@ -27,6 +27,7 @@ class Extractor:
         self.patterns = patterns
 
     def run(self, raw: str) -> list[PatternMatch]:
+        """AI: Find occurrences of the configured patterns in raw code and return the matches."""
         code = self.pattern_factory.create_statements(raw)
         results = []
         for rule in self.patterns:
@@ -46,6 +47,7 @@ class BaseCodeGraphExtractor:
         self.graph = nx.DiGraph()
 
     def extract(self, files):
+        """AI: Parse each file and build the code graph by processing its LST."""
         for f in files:
             try:
                 code = Path(f).read_text()
@@ -59,6 +61,7 @@ class BaseCodeGraphExtractor:
         raise NotImplementedError
 
     def save_graph(self, filename: str):
+        """AI: Write the extracted code graph to a GraphML file named filename."""
         path = Path(GRAPHML_DIR) / filename
         nx.write_graphml(self.graph, path)
         print(f"Graph saved to: {path}")

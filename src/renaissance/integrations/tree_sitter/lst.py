@@ -53,6 +53,7 @@ class LSTNode:
 
     @property
     def kind_key(self) -> SemanticKind | str:
+        """AI: Return the semantic kind, or the raw parser kind when no semantic kind applies."""
         return self.semantic_kind if self.semantic_kind is not SemanticKind.NODE else self.parser_kind
 
     def __eq__(self, other):
@@ -69,34 +70,42 @@ class LSTNode:
         return hash((self.kind_key, frozenset(self.properties.items()), tuple(self.children)))
 
     def match_props(self, properties) -> bool:
+        """AI: Return whether this node's properties match the given properties, ignoring irrelevant ones."""
         all_keys = (self.properties.keys() | properties.keys()) - IRRELEVANT_PROPS
         return all(self.properties.get(n) == properties.get(n) for n in all_keys)
 
     def match_children(self, children):
+        """AI: Return whether this node's children match the given children at each corresponding index."""
         return all(i < len(self.children) and self.children[i] == child for i, child in enumerate(children))
 
     def add_child(self, child):  # LSTNode):
+        """AI: Append child to this node's children and set its parent to this node."""
         self.children.append(child)
         child.parent = self
 
     @property
     def preceding_sibling(self) -> Self | None:
+        """AI: Return the sibling node immediately preceding this one, or None."""
         return preceding_sibling(self)
 
     @property
     def next_sibling(self) -> Self | None:
+        """AI: Return the sibling node immediately following this one, or None."""
         return next_sibling(self)
 
     @property
     def name(self) -> str:
+        """AI: Return this node's "name" property, or an empty string if absent."""
         return self.properties.get("name", "")
 
     def binary_file_content(self):
+        """AI: Return this node's source code encoded as bytes using the filesystem encoding."""
         src = cast("str", self.properties.get("source_code"))
         return src.encode(sys.getfilesystemencoding())
 
     @property
     def node(self):
+        """AI: Return this node itself."""
         return self
 
     def __repr__(self):
@@ -113,6 +122,7 @@ class LSTNode:
         # )
 
     def is_part_of_translation_unit(self):
+        """AI: Return whether this node belongs to a translation unit (has a root)."""
         return self.root is not None
 
 

@@ -15,9 +15,11 @@ class TreeSitterAdapter:
         self.parser = Parser(language)
 
     def parse_code(self, source_code: str):
+        """AI: Parse source_code with tree-sitter and return the resulting parse tree."""
         return self.parser.parse(bytes(source_code, "utf8"))
 
     def to_lst(self, source_code: str, tree) -> LST:
+        """AI: Convert a tree-sitter parse tree of source_code into an LST."""
         root_node = tree.root_node
         source_code = replace_dollar(source_code)
         return LST(self._convert_node(root_node, source_code, None))

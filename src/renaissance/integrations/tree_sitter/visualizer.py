@@ -34,5 +34,6 @@ class LstVisualizer:
             self.lines.append(f"{node_id} --> {child_id}")
 
     def render(self, lst: LST):
+        """AI: Render the given LST as a Mermaid graph diagram string."""
         self._render_node(lst.root)
         return "\n".join(self.lines)
