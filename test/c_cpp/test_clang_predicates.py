@@ -20,6 +20,7 @@ class Node:
 
 
 def test_clang_parser_predicates_cover_native_and_json_spellings():
+    """AI: Assert clang predicates recognize both native cursor-kind and clang_json spellings."""
     assert is_clang_type_reference(Node("TypeRef"))
     assert is_clang_type_reference(Node("TYPE_REF"))
     assert is_clang_type_reference(Node("type_identifier"))
@@ -34,6 +35,7 @@ def test_clang_parser_predicates_cover_native_and_json_spellings():
 
 
 def test_clang_macro_and_semantic_predicates_are_explicit():
+    """AI: Assert macro-definition predicates and semantic-kind defaults behave as expected."""
     assert is_clang_macro_definition(Node("MacroDefinition"))
     assert is_clang_macro_definition(Node("MACRO_DEFINITION"))
     assert Node("FunctionDecl", SemanticKind.FUNCTION).semantic_kind is SemanticKind.FUNCTION

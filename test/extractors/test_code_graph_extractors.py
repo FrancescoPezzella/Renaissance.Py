@@ -21,6 +21,7 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 
 def make_lst_node(kind, signature, name=None):
+    """AI: Build a mock LST node with the given semantic kind, signature, and optional name property."""
     node = MagicMock()
     node.semantic_kind = kind
     node.signature = signature
