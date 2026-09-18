@@ -15,6 +15,7 @@ class Node:
     """AI: Build a minimal stand-in node for exercising clang predicate functions."""
 
     def __init__(self, parser_kind: str, semantic_kind: SemanticKind = SemanticKind.NODE):
+        """AI: Store the parser-reported kind string and semantic kind for this stand-in node."""
         self.parser_kind = parser_kind
         self.semantic_kind = semantic_kind
 

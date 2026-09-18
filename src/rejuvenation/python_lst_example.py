@@ -23,7 +23,6 @@ pa(54)
 
 def python_lst_smoke_test():
     """AI: Demonstrate matching and rewriting `example_code` using the tree-sitter LST integration."""
-
     # adapter = TreeSitterAdapter(tree_sitter_python)
     # tree = adapter.parse_code(code)
     # lst = adapter.to_lst(code, tree)

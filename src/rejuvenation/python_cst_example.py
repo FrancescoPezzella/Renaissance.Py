@@ -24,7 +24,6 @@ pa(54)
 
 def python_cst_smoke_test():
     """AI: Demonstrate matching and rewriting `example_code` using the CST integration."""
-
     # adapter = TreeSitterAdapter(tree_sitter_python)
     # tree = adapter.parse_code(code)
     # lst = adapter.to_lst(code, tree)
