@@ -16,6 +16,7 @@ class TestCPatternFactory:
     """AI: Tests deriving header text from a C/C++ translation unit."""
 
     def test_derive_header(self):
+        """AI: Verify derive_header_text extracts includes, defines, and typedefs from a translation unit."""
         code = """
                 #include <stdint.h>
                 int print(const char*,...);
@@ -153,6 +154,7 @@ class TestExpression:
         ),
     )
     def test(self, _, factory, expression, expected):
+        """AI: Verify create_expression builds a pattern node matching the expected rendered signature."""
         pattern_factory = CPatternFactory(factory)
         node = pattern_factory.create_expression(expression)
         text = ASTShower.get_node(node)
@@ -188,6 +190,7 @@ class TestDeclaration:
         expected_vars,
         expected_refs,
     ):
+        """AI: Verify create_declarations builds the expected number of declaration and reference nodes."""
         pattern_factory = CPatternFactory(factory)
         created_declarations = list(pattern_factory.create_declarations(declaration_text, parameters=parameters, types=types))
 
@@ -228,6 +231,7 @@ class TestStatements:
         expected_stmts,
         expected_refs,
     ):
+        """AI: Verify create_statements builds the expected number of statement and reference nodes."""
         pattern_factory = CPatternFactory(factory)
         created_statements = list(pattern_factory.create_statements(statement_text, extra_declarations=extra_declarations))
 
@@ -260,6 +264,7 @@ class TestUseAtuToCreatePatterns:
         ),
     )
     def test(self, _, factory, statement_text, expected_stmts, expected_refs):
+        """AI: Verify a complex pattern built from a translation unit's typedef/struct/define/statement matches the source."""
         code = """
         int print(const char*,const char*,const char*,const char*);
         #define FOO "foo"

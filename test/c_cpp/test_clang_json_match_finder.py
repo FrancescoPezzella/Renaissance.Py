@@ -16,6 +16,7 @@ class TestClangJsonMatchFinder:
 
     @pytest.mark.skip
     def test_is_match_using_macro_from_atu(self):
+        """AI: Verify a pattern derived from a translation unit's own macro matches the equivalent source usage."""
         code = """
         #define BAR "bar"
         void f(){

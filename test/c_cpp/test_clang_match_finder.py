@@ -12,6 +12,7 @@ class ClangMatchFinderTest:
     """AI: Tests matching patterns against Clang AST nodes."""
 
     def test_is_match(self):
+        """AI: Verify a pattern derived from a translation unit's macro matches the corresponding statement in source."""
         code = """
         #define BAR "bar"
         void g(int,int);
@@ -34,6 +35,7 @@ class ClangMatchFinderTest:
         assert_that(result, has_length(1))
 
     def test_typedef_in_pattern(self):
+        """AI: Verify a pattern built with a typedef declaration parses without error."""
         factory = ASTFactory(ClangASTNode, [])
         pattern_factory = CPatternFactory(factory)
 

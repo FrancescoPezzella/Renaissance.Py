@@ -14,6 +14,7 @@ class TestCcppShower:
 
     @pytest.fixture(autouse=True)
     def setup(self):
+        """AI: Prepare a shared AST factory, parsed model, and pattern factory for shower tests."""
         self.factory = ASTFactory(ClangASTNode, [])
         self.atu = self.factory.create_from_text(
             """
@@ -27,6 +28,7 @@ class TestCcppShower:
         self.pattern_factory = CPatternFactory(self.factory, self.atu)
 
     def test_show_call_using_repr(self):
+        """AI: Verify the string repr of a matched call node renders its signature and location."""
         pattern = self.pattern_factory.create("""
         int $xx;
         void $pa();
@@ -41,12 +43,14 @@ class TestCcppShower:
         )
 
     def test_show_main(self):
+        """AI: Verify ASTShower renders the translation unit and its top-level declarations."""
         text = ASTShower.get_node(self.atu, display_parser_kind=True)
         assert_that(text, starts_with("(TRANSLATION_UNIT,"))
         assert_that(text, contains_string("(FUNCTION_DECL, ba,"))
         assert_that(text, contains_string("(VAR_DECL, na,"))
 
     def test_show_body(self):
+        """AI: Verify ASTShower renders each top-level declaration's body correctly."""
         assert_that(
             ASTShower.get_node(self.atu.children[0], display_parser_kind=True),
             matches_regexp("(FUNCTION_DECL, ba, test.c[\\d+:\\d+]): |void ba(int i){}|\n"),
@@ -65,6 +69,7 @@ class TestCcppShower:
         )
 
     def test_show_ast(self):
+        """AI: Verify ASTShower renders the full AST including nested declarations and expressions."""
         text = ASTShower.get_node(self.atu, display_parser_kind=True)
         assert_that(text, contains_string("(TRANSLATION_UNIT,"))
         assert_that(text, contains_string("(FUNCTION_DECL, ba,"))
@@ -77,6 +82,7 @@ class TestCcppShower:
         assert_that(text, not_(contains_string("FunctionDef")))
 
     def test_show_if_else(self):
+        """AI: Verify ASTShower renders an if/else statement and its branches correctly."""
         factory = ASTFactory(ClangASTNode, [])
         atu = factory.create_from_text(
             """
