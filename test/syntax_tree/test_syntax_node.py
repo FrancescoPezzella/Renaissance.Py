@@ -97,6 +97,7 @@ class _SegmentCallCounter:
 
 @pytest.fixture
 def segment_validator_counter(monkeypatch: pytest.MonkeyPatch) -> _SegmentCallCounter:
+    """AI: Monkeypatch assert_valid_text_segment with a counter fixture to record its call arguments."""
     counter = _SegmentCallCounter()
     monkeypatch.setattr(test.syntax_tree.infra_text_segment, "assert_valid_text_segment", counter)
     return counter
@@ -107,6 +108,7 @@ def segment_validator_counter(monkeypatch: pytest.MonkeyPatch) -> _SegmentCallCo
 # ----------------------------
 @pytest.mark.skip("result is empty")
 def test_assert_valid_syntax_node_ok(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node validates a well-formed node and its direct children."""
     text = "ab\ncd\nef"
     loc = "mem://t"
 
@@ -124,6 +126,7 @@ def test_assert_valid_syntax_node_ok(segment_validator_counter: _SegmentCallCoun
 
 @pytest.mark.skip("result is empty")
 def test_assert_valid_syntax_tree_ok(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_tree validates a well-formed multi-level tree."""
     text = "ab\ncd\nef"
     loc = "mem://t"
 
@@ -146,6 +149,7 @@ def test_assert_valid_syntax_tree_ok(segment_validator_counter: _SegmentCallCoun
 
 
 def test_children_must_be_ordered_by_start_offset(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node rejects children not ordered by non-decreasing start_offset."""
     text = "abcdef"
     loc = "mem://t"
 
@@ -160,6 +164,7 @@ def test_children_must_be_ordered_by_start_offset(segment_validator_counter: _Se
 
 
 def test_children_must_not_overlap(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node rejects overlapping sibling children."""
     text = "abcdef"
     loc = "mem://t"
 
@@ -174,6 +179,7 @@ def test_children_must_not_overlap(segment_validator_counter: _SegmentCallCounte
 
 
 def test_child_must_be_within_parent_span(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node rejects a child whose span lies outside its parent's span."""
     text = "abcdef"
     loc = "mem://t"
 
@@ -187,6 +193,7 @@ def test_child_must_be_within_parent_span(segment_validator_counter: _SegmentCal
 
 
 def test_child_must_point_back_to_parent(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node rejects a child whose parent reference doesn't point back to it."""
     text = "abcdef"
     loc = "mem://t"
 
@@ -201,6 +208,7 @@ def test_child_must_point_back_to_parent(segment_validator_counter: _SegmentCall
 
 
 def test_child_must_share_text_and_location(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_node rejects a child whose full_text differs from its parent's."""
     text = "abcdef"
     loc = "mem://t"
 
@@ -219,6 +227,7 @@ def test_child_must_share_text_and_location(segment_validator_counter: _SegmentC
 
 
 def test_assert_valid_syntax_tree_detects_cycle(segment_validator_counter: _SegmentCallCounter) -> None:
+    """AI: Assert assert_valid_syntax_tree detects a cycle formed by a node being its own descendant."""
     text = "abc"
     loc = "mem://t"
 

@@ -171,11 +171,13 @@ class InconsistentOffsets(AutoTextSegment):
 
 
 def test_runtime_checkable_protocol_accepts_structural_implementation() -> None:
+    """AI: Assert a structurally-conforming object is recognized as a TextSegment via isinstance."""
     seg = AutoTextSegment("abc", 0, 1)
     assert isinstance(seg, TextSegment)
 
 
 def test_runtime_checkable_protocol_rejects_missing_members() -> None:
+    """AI: Assert an object missing required members is rejected by isinstance against TextSegment."""
     seg = MissingProperty()
     assert not isinstance(seg, TextSegment)
 
@@ -207,6 +209,7 @@ def test_runtime_checkable_protocol_rejects_missing_members() -> None:
     ],
 )
 def test_assert_valid_text_segment_accepts_semantically_correct_segments(text: str, start: int, end: int, expected_slice: str) -> None:
+    """AI: Assert assert_valid_text_segment accepts segments whose text_segment matches the expected slice."""
     seg = AutoTextSegment(text, start, end)
     assert seg.text_segment == expected_slice
     assert_valid_text_segment(seg)
@@ -218,6 +221,7 @@ def test_assert_valid_text_segment_accepts_semantically_correct_segments(text: s
 
 
 def test_validator_rejects_wrong_types_even_if_protocol_like() -> None:
+    """AI: Assert assert_valid_text_segment rejects a structurally-protocol-like object with wrong property types."""
     seg = BadTypesButProtocolLike()
     # runtime protocol check likely passes (structural), but validator must fail
     assert isinstance(seg, TextSegment)
@@ -229,12 +233,14 @@ def test_validator_rejects_wrong_types_even_if_protocol_like() -> None:
 
 
 def test_validator_rejects_start_offset_greater_than_end_offset() -> None:
+    """AI: Assert assert_valid_text_segment rejects a segment whose start_offset exceeds its end_offset."""
     seg = AutoTextSegment("abc", 2, 1)
     with pytest.raises(AssertionError, match=r"^Property end_offset before start_offset: \d+ < \d+$"):
         assert_valid_text_segment(seg)
 
 
 def test_validator_rejects_offsets_out_of_range() -> None:
+    """AI: Assert assert_valid_text_segment rejects a segment whose end_offset exceeds the full_text length."""
     seg = AutoTextSegment("abc", 0, 4)
     with pytest.raises(
         AssertionError,
@@ -244,6 +250,7 @@ def test_validator_rejects_offsets_out_of_range() -> None:
 
 
 def test_validator_rejects_inconsistent_text_segment_slice() -> None:
+    """AI: Assert assert_valid_text_segment rejects a segment whose text_segment doesn't match the offset slice."""
     seg = InconsistentTextSlice("ab\ncd", 0, 2)
     with pytest.raises(
         AssertionError,
@@ -253,12 +260,15 @@ def test_validator_rejects_inconsistent_text_segment_slice() -> None:
 
 
 def test_validator_rejects_inconsistent_offset_and_line_column() -> None:
+    """AI: Assert assert_valid_text_segment rejects a segment whose start offset doesn't match its (line, column)."""
     seg = InconsistentOffsets("ab\ncd", 0, 2)
     with pytest.raises(AssertionError, match="Start offset and \\(line, column\\) are inconsistent"):
         assert_valid_text_segment(seg)
 
 
 def test_validator_rejects_line_out_of_range() -> None:
+    """AI: Assert assert_valid_text_segment rejects a segment whose end_line precedes its start_line."""
+
     # Build a protocol-like object but with bogus line indices
     class BogusLine(AutoTextSegment):
         @property
@@ -271,6 +281,8 @@ def test_validator_rejects_line_out_of_range() -> None:
 
 
 def test_validator_rejects_column_out_of_range() -> None:
+    """AI: Assert assert_valid_text_segment rejects a same-line segment whose end_column precedes its start_column."""
+
     class BogusColumn(AutoTextSegment):
         @property
         def start_column(self) -> int:

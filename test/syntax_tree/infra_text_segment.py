@@ -64,6 +64,7 @@ def location_to_offset(text: str, line: int, column: int) -> int:
 
 
 def assert_valid_text_segment(text_segment: TextSegment) -> None:
+    """AI: Assert a TextSegment's full_text, offsets, and line/column properties are internally consistent."""
     assert isinstance(text_segment, TextSegment), f"Unexpected instance for text_segment '{type(text_segment)}'. Expected 'TextSegment'."
     assert isinstance(
         text_segment.full_text,
