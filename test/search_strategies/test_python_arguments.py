@@ -1,3 +1,5 @@
+"""Tests for the generated Python function-argument search strategies."""
+
 # test_arguments_from_recursive.py
 import ast
 

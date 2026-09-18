@@ -1,3 +1,5 @@
+"""Tests for the TautToPythonUnittest recipe."""
+
 import textwrap
 from pathlib import Path
 

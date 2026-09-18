@@ -1,3 +1,5 @@
+"""Tests for the PythonRefactoring recipe base class."""
+
 import textwrap
 
 from hamcrest import assert_that, contains_string, is_

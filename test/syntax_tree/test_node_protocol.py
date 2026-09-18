@@ -1,3 +1,5 @@
+"""Tests that arbitrary structural nodes satisfy the NodeProtocol."""
+
 from renaissance.syntax_tree.match_finder import is_match
 from renaissance.syntax_tree.node_protocol import NodeProtocol
 from renaissance.syntax_tree.semantic_kind import SemanticKind

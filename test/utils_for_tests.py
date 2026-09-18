@@ -1,3 +1,5 @@
+"""AI: Shared debug-printing and dict-compression helpers used across the test suite."""
+
 import re
 from collections.abc import Sequence
 

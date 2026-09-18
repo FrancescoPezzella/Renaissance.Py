@@ -1,3 +1,5 @@
+"""Tests for the ASTProcessor pattern-match/find functionality."""
+
 from hamcrest import assert_that, is_
 
 from renaissance.integrations.clang import ClangASTNode

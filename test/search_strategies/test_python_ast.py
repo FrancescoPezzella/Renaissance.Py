@@ -1,3 +1,5 @@
+"""Tests for the generated Python type-union AST search strategies."""
+
 import ast
 import re
 

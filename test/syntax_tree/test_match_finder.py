@@ -1,3 +1,5 @@
+"""Tests for the MatchFinder pattern matching."""
+
 from __future__ import annotations
 
 from hamcrest import assert_that, has_length, is_

@@ -1,3 +1,5 @@
+"""Tests for finding AST nodes by semantic kind via the ast_finder module."""
+
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.syntax_tree.ast_finder import find_semantic_kind
 from renaissance.syntax_tree.semantic_kind import SemanticKind

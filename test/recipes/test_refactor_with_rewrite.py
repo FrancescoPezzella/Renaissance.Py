@@ -1,3 +1,5 @@
+"""Tests for PythonRefactoring's rewrite-based refactoring support."""
+
 import textwrap
 
 import pytest

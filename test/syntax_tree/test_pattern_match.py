@@ -1,3 +1,5 @@
+"""Tests for the PatternMatch container returned by pattern matching."""
+
 import ast
 import textwrap
 

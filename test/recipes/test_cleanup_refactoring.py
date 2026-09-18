@@ -1,3 +1,5 @@
+"""Tests for the CleanupRefactoring recipe."""
+
 import pytest
 from hamcrest import assert_that, calling, is_, raises
 

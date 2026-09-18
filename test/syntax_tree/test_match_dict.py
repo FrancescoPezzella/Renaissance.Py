@@ -1,3 +1,5 @@
+"""Tests for the is_match_dict dictionary matching helper."""
+
 from hamcrest import assert_that, is_
 
 from renaissance.syntax_tree.match_finder import is_match_dict

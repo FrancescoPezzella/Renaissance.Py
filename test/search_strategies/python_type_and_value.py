@@ -1,3 +1,5 @@
+"""AI: Hypothesis search strategies for generating Python type and value AST expressions."""
+
 import ast
 import keyword
 import string

@@ -1,3 +1,5 @@
+"""AI: Shared text-segment/offset conversion helpers used across the syntax_tree test suite."""
+
 from renaissance.syntax_tree.text_segment import TextSegment
 
 

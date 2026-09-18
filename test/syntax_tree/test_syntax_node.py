@@ -1,3 +1,5 @@
+"""Tests for the SyntaxNode invariants."""
+
 from dataclasses import dataclass, field
 from typing import Any, Self
 

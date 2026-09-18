@@ -1,3 +1,5 @@
+"""Tests for the SimplifyRenaissance recipe."""
+
 import textwrap
 
 from hamcrest import assert_that, contains_string, is_, not_

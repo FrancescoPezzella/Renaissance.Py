@@ -1,3 +1,5 @@
+"""Tests for MatchFinder matching multiple assignment variants."""
+
 import pytest
 from hamcrest import has_length
 from hamcrest.core import assert_that

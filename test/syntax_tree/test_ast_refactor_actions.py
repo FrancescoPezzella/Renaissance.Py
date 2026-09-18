@@ -1,3 +1,5 @@
+"""Tests for the ASTRefactorActions helper."""
+
 from hamcrest import assert_that, is_
 
 from renaissance.syntax_tree import ASTRefactorActions

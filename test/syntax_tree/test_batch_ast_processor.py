@@ -1,3 +1,5 @@
+"""Tests for the BatchASTProcessor."""
+
 from hamcrest import assert_that, has_length, is_
 
 from renaissance.syntax_tree import BatchASTProcessor

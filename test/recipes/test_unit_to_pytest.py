@@ -1,3 +1,5 @@
+"""Tests for the UnitToPytest recipe."""
+
 import textwrap
 from pathlib import Path
 

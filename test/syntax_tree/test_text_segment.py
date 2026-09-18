@@ -1,3 +1,5 @@
+"""Tests for the TextSegment offset/location conversions."""
+
 import bisect
 
 import pytest

@@ -1,3 +1,5 @@
+"""Tests for structural (placeholder) pattern matching against tree-sitter-parsed code."""
+
 import pytest
 import tree_sitter_cpp as tscpp
 import tree_sitter_python as tspython

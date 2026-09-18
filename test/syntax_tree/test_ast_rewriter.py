@@ -1,3 +1,5 @@
+"""Tests for the ASTRewriter."""
+
 import sys
 from typing import Any
 

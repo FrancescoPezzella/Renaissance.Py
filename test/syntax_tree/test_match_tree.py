@@ -1,3 +1,5 @@
+"""Tests for matching AST patterns containing placeholder variants."""
+
 import ast
 import textwrap
 

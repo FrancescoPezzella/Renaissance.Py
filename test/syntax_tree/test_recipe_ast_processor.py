@@ -1,3 +1,5 @@
+"""Tests for the RecipeASTProcessor and its decorator helpers."""
+
 from hamcrest import assert_that, has_length, is_
 
 from renaissance.syntax_tree.recipe_ast_processor import (

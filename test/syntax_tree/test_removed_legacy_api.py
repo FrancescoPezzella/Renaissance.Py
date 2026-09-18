@@ -1,3 +1,5 @@
+"""Tests that the legacy renaissance.integrations.types module has been removed."""
+
 import importlib
 
 import pytest

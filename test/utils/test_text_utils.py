@@ -1,3 +1,5 @@
+"""Tests for the snake_case text utility."""
+
 import pytest
 from hamcrest import assert_that, is_
 

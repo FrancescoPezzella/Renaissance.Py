@@ -1,3 +1,5 @@
+"""Tests that ASTProcessor finds nodes by semantic kind."""
+
 from renaissance.integrations.python.ast.factory import PythonFactory
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.syntax_tree.ast_processor import ASTProcessor

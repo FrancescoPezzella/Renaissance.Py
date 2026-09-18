@@ -1,3 +1,5 @@
+"""Tests for finding AST nodes by a NodeProtocol predicate."""
+
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.syntax_tree.ast_finder import find_nodes
 from renaissance.syntax_tree.semantic_kind import SemanticKind
