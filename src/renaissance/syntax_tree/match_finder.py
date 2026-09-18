@@ -59,6 +59,7 @@ class Variant:
         self.expansion_start: int = expansion_start
 
     def reset_greedy(self):
+        """AI: Clear the current greedy-expansion tracking state."""
         self.greedy = None
         self.expansion_start = -1
 
@@ -88,6 +89,7 @@ class PatternMatch:
 
     @property
     def signature(self):
+        """AI: Return the newline-joined signatures of the matched nodes."""
         return str(self)
 
     def __getitem__(self, key):
@@ -95,9 +97,11 @@ class PatternMatch:
         return "\n".join(node.signature if isinstance(node, NodeProtocol) else node for node in self.expansions[key])
 
     def match_referenced_by(self, patterns: Sequence[list], recursive: bool = True) -> Sequence[Self]:
+        """AI: Return matches of patterns against the nodes that reference this match's nodes."""
         return self._match_relations("referenced_by", patterns, recursive)
 
     def match_references(self, patterns: Iterable[list], recursive: bool = True) -> Sequence[Self]:
+        """AI: Return matches of patterns against the nodes that this match's nodes reference."""
         return self._match_relations("references", patterns, recursive)
 
     def _match_relations(self, attr: str, patterns, recursive: bool) -> list:
@@ -110,9 +114,11 @@ class PatternMatch:
         ]
 
     def offset_of(self, key):
+        """AI: Return the source offset of the first node bound to the given expansion key."""
         return self.expansions[key][0].offset
 
     def length_of(self, key):
+        """AI: Return the total source span length covered by the nodes bound to the given expansion key."""
         return self.expansions[key][-1].offset + self.expansions[key][-1].length - self.expansions[key][0].offset
 
 

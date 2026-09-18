@@ -29,15 +29,18 @@ class ASTShower:
 
     @staticmethod
     def show_node(node, include_properties: bool = False, display_parser_kind: bool = False) -> None:
+        """AI: Print node's rendered tree to the console."""
         print("\n" + ASTShower.get_node(node, include_properties, display_parser_kind))
 
     @staticmethod
     def show_nodes(ast_nodes: Sequence, include_properties: bool = False, display_parser_kind: bool = False) -> None:
+        """AI: Print each node's rendered tree to the console."""
         for ast_node in ast_nodes:
             ASTShower.show_node(ast_node, include_properties, display_parser_kind)
 
     @staticmethod
     def get_node(ast_node: Displayable, include_properties: bool = False, display_parser_kind: bool = False) -> str:
+        """AI: Return the rendered tree text for ast_node, or an empty string if it is not Displayable."""
         if isinstance(ast_node, Displayable):
             buffer = io.StringIO()
             with display_context(display_parser_kind):
@@ -47,6 +50,7 @@ class ASTShower:
 
     @staticmethod
     def store_node(filename: str, ast_node: Displayable, include_properties: bool = False, display_parser_kind: bool = False) -> None:
+        """AI: Write ast_node's rendered tree text to the file named filename."""
         with Path(filename).open("w") as f:
             f.write(ASTShower.get_node(ast_node, include_properties, display_parser_kind))
 

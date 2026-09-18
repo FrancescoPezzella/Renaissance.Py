@@ -31,18 +31,22 @@ class ASTProcessor:
 
     @property
     def factory(self) -> ASTFactory:
+        """AI: Return the AST factory used to create nodes for this processor."""
         return self.__ast_factory
 
     @property
     def node(self) -> ASTNode:
+        """AI: Return the root AST node this processor operates on."""
         return self.__root_node
 
     @property
     def filename(self) -> str:
+        """AI: Return the filename of the AST this processor operates on."""
         return self.__rewriter.get_filename()
 
     @property
     def root(self) -> ASTNode:
+        """AI: Return the root AST node this processor operates on."""
         return self.__root_node
 
     def replace(
@@ -52,6 +56,7 @@ class ASTProcessor:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ) -> None:
+        """AI: Queue a rewrite replacing target's source text with new_content."""
         self.__rewriter.replace(new_content, target, include_whitespace, include_comments)
 
     def remove(
@@ -60,6 +65,7 @@ class ASTProcessor:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ) -> None:
+        """AI: Queue a rewrite removing target's source text."""
         self.__rewriter.remove(target, include_whitespace, include_comments)
 
     def insert_before(
@@ -69,6 +75,7 @@ class ASTProcessor:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ) -> None:
+        """AI: Queue a rewrite inserting new_content immediately before target's source text."""
         self.__rewriter.insert_before(new_content, target, include_whitespace, include_comments)
 
     def insert_after(
@@ -78,15 +85,19 @@ class ASTProcessor:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ) -> None:
+        """AI: Queue a rewrite inserting new_content immediately after target's source text."""
         self.__rewriter.insert_after(new_content, target, include_whitespace, include_comments)
 
     def find_all(self, function: Callable[[ASTNode], Iterator[ASTNode] | bool]) -> Sequence[ASTNode]:
+        """AI: Return all descendant nodes of the root for which function returns a truthy value or child iterator."""
         return ASTFinder.find_all(self.__root_node, function)
 
     def find_semantic_kind(self, kind: SemanticKind) -> Sequence[NodeProtocol]:
+        """AI: Return all descendant nodes of the root matching the given semantic kind."""
         return find_semantic_kind(self.__root_node, kind)
 
     def find_match(self, *patterns_list, recursive: bool = True) -> Sequence[PatternMatch]:
+        """AI: Return matches of patterns_list against the root's children."""
         return renaissance.syntax_tree.match_finder.find_all(
             self.__root_node.children,
             *patterns_list,
@@ -94,9 +105,11 @@ class ASTProcessor:
         )
 
     def has_changed(self) -> bool:
+        """AI: Return whether any rewrites have been queued."""
         return self.__rewriter.has_changed()
 
     def apply_to_string(self) -> str:
+        """AI: Return the rewritten source as a string, applying all queued rewrites."""
         return self.__rewriter.apply_to_string()
 
     def commit(self) -> ASTProcessor:

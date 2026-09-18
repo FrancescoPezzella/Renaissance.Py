@@ -17,6 +17,7 @@ class ASTFinder:
 
     @staticmethod
     def find_all(ast_node: ASTNode, function: Callable[[ASTNode], Iterator[ASTNode] | bool]) -> Sequence[ASTNode]:
+        """AI: Return all descendant nodes of ast_node for which function returns a truthy value or child iterator."""
         return list(ASTFinder.__find_all(ast_node, function))
 
     # @staticmethod
@@ -25,10 +26,12 @@ class ASTFinder:
 
     @staticmethod
     def find(ast_node: ASTNode, kind: str | re.Pattern[str]) -> Sequence[ASTNode]:
+        """AI: Return all descendant nodes of ast_node whose kind matches the given kind pattern."""
         return list(ASTFinder.__matches_kind(ast_node, kind))
 
     @staticmethod
     def matches_kind(ast_node: ASTNode | None, kind: str | re.Pattern[str]) -> bool:
+        """AI: Return whether ast_node's kind matches the given kind pattern."""
         # compare kind with the ast_node kind only using word characters
         # get kind of the ast_node with only word characters
         if ast_node is None:

@@ -51,6 +51,7 @@ class ASTRewriter:
         self.__filename = node.filename
 
     def get_filename(self) -> str:
+        """AI: Return the filename of the AST node this rewriter operates on."""
         return self.__filename
 
     def replace(
@@ -60,6 +61,7 @@ class ASTRewriter:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ):
+        """AI: Queue a rewrite replacing target's source text with new_content."""
         self.__rewrites.add(
             _RewriteActionType.REPLACE,
             target,
@@ -74,6 +76,7 @@ class ASTRewriter:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ):
+        """AI: Queue a rewrite removing target's source text."""
         self.__rewrites.add(_RewriteActionType.REMOVE, target, "", include_whitespace, include_comments)
 
     def insert_before(
@@ -83,6 +86,7 @@ class ASTRewriter:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ):
+        """AI: Queue a rewrite inserting new_content immediately before target's source text."""
         self.__rewrites.add(
             _RewriteActionType.INSERT_BEFORE,
             target,
@@ -98,6 +102,7 @@ class ASTRewriter:
         include_whitespace: bool = True,
         include_comments: bool = True,
     ):
+        """AI: Queue a rewrite inserting new_content immediately after target's source text."""
         self.__rewrites.add(
             _RewriteActionType.INSERT_AFTER,
             target,
@@ -107,14 +112,17 @@ class ASTRewriter:
         )
 
     def apply_to_string(self) -> str:
+        """AI: Return the rewritten source as a string, applying all queued rewrites."""
         return self.__rewrites.apply_to_string()
 
     def apply(self) -> bytes:
+        """AI: Return the rewritten source as bytes, applying all queued rewrites (or the original content if none are queued)."""
         if len(self.__rewrites.rewrites) == 0:
             return self.__rewrites.content
         return self.__rewrites.apply()
 
     def has_changed(self) -> bool:
+        """AI: Return whether any rewrites have been queued."""
         return len(self.__rewrites.rewrites) > 0
 
     @staticmethod

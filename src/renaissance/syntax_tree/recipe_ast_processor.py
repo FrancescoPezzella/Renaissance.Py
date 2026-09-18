@@ -102,6 +102,7 @@ class RecipeASTProcessor[TRecipe]:
         self.__file_filter = file_filter
 
     def run(self):
+        """AI: Run each of the recipe's decorated steps across the batch of files and return the collected results."""
         actions: list[TFunc] = []
         results: list[Any] = []
         for idx, recipe_step_method in enumerate(get_methods_with_decorator(type(self.__recipe), recipe_step)):
