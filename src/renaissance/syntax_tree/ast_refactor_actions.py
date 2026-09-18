@@ -1,3 +1,5 @@
+"""AI: Higher-level refactoring actions built on top of pattern matching and rewriting."""
+
 from collections.abc import Callable, Sequence
 from functools import cache
 from typing import TYPE_CHECKING

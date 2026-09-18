@@ -1,3 +1,5 @@
+"""AI: Low-level AST utility helpers: sibling lookup, placeholder handling, and node matching."""
+
 from collections import deque
 from contextlib import contextmanager
 from contextvars import ContextVar

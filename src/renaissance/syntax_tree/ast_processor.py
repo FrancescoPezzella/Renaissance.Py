@@ -1,3 +1,5 @@
+"""AI: Processor that coordinates parsing, pattern matching, and rewriting of a single AST."""
+
 from collections.abc import Callable, Iterator, Sequence
 from pathlib import Path
 

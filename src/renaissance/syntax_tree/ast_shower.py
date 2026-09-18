@@ -1,3 +1,5 @@
+"""AI: Render an AST node tree to the console for debugging and inspection."""
+
 import io
 from collections.abc import Sequence
 from io import StringIO

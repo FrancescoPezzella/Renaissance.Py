@@ -1,3 +1,5 @@
+"""AI: ASTNode implementation backed by Python's built-in `ast` module (the "RST" representation)."""
+
 import ast
 import sys
 import textwrap

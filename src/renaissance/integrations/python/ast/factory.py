@@ -1,3 +1,5 @@
+"""AI: Factories for creating Python AST/pattern nodes for parsing and pattern matching."""
+
 import ast
 import re
 from collections.abc import Sequence

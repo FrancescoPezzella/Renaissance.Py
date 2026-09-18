@@ -1,3 +1,5 @@
+"""AI: Process multiple ASTs in parallel by applying a shared action to each."""
+
 import concurrent.futures
 import re
 from collections.abc import Callable, Iterable, Sequence

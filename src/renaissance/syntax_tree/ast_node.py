@@ -1,3 +1,5 @@
+"""AI: Abstract base class for AST node implementations, with the shared traversal and rewrite protocol."""
+
 from __future__ import annotations
 
 import re

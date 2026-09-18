@@ -1,3 +1,5 @@
+"""AI: Lossless syntax tree (LST) node implementation backed by tree-sitter."""
+
 import sys
 from typing import Any, Self, cast
 

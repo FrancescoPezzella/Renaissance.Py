@@ -1,3 +1,5 @@
+"""AI: Rewriter that translates AST-level replace/remove/insert actions into byte-level edits."""
+
 import re
 import sys
 from collections.abc import Sequence

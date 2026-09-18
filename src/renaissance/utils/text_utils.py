@@ -1,3 +1,5 @@
+"""AI: Text manipulation utilities for shifting, indenting, and clipboard operations on source text."""
+
 import re
 import subprocess
 import sys

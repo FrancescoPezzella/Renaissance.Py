@@ -1,3 +1,5 @@
+"""AI: Scanners that discover project source files from a compilation database or file system."""
+
 import json
 from os import system
 from pathlib import Path

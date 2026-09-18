@@ -1,3 +1,5 @@
+"""AI: Pattern matching engine that finds AST nodes matching a given pattern."""
+
 from collections.abc import Iterable, Sequence
 from typing import Self
 

@@ -1,3 +1,6 @@
+"""AI: Utility helpers for converting between source positions and node representations."""
+
+
 def convert(lines, line_nr, col):
     if line_nr > len(lines):
         return 0

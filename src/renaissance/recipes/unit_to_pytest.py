@@ -1,3 +1,5 @@
+"""AI: Recipe that converts unittest-style test files to pytest style."""
+
 import textwrap
 from collections.abc import Sequence
 from pathlib import Path

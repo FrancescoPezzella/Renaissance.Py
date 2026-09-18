@@ -1,3 +1,5 @@
+"""AI: ASTNode implementation backed by Clang's JSON AST dump output."""
+
 # create a class that inherits syntax tree ASTNode
 
 import json

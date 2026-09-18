@@ -1,3 +1,6 @@
+"""AI: Helper predicates and constants for working with C/C++ AST node kinds."""
+
+
 def matches_node_kind(mine, other) -> bool:
     if mine.semantic_kind.value != "node" and other.semantic_kind.value != "node":
         return mine.semantic_kind is other.semantic_kind

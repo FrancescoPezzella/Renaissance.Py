@@ -1,3 +1,5 @@
+"""AI: Render a tree-sitter LST as a Mermaid graph for visualization."""
+
 from renaissance.integrations.tree_sitter.lst import LST
 from renaissance.utils.text_utils import signature_to_id
 

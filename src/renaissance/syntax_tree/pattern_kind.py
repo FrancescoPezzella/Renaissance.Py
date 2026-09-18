@@ -1,3 +1,5 @@
+"""AI: Enumeration of pattern-matching modes (match-one vs. match-all)."""
+
 from enum import StrEnum
 
 

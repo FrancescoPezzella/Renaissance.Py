@@ -1,3 +1,5 @@
+"""AI: Decorator support for annotating recipe actions on AST processors."""
+
 import functools
 from collections.abc import Callable, Sequence
 from typing import Any, TypeVar

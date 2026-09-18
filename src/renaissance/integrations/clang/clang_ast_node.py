@@ -1,3 +1,5 @@
+"""AI: ASTNode implementation backed by libclang's Python bindings."""
+
 import sys
 from collections.abc import Sequence
 from functools import cache

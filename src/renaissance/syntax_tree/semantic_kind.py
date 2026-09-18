@@ -1,3 +1,5 @@
+"""AI: Enumeration of language-agnostic semantic kinds used to classify AST nodes."""
+
 from enum import StrEnum
 
 

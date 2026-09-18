@@ -1,3 +1,5 @@
+"""AI: Factory for creating instances of ASTNode."""
+
 from collections.abc import Sequence
 from pathlib import Path
 

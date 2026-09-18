@@ -1,3 +1,5 @@
+"""AI: Recipe that simplifies Renaissance's own unit-to-pytest conversion files."""
+
 from pathlib import Path
 from typing import override
 

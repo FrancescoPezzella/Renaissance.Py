@@ -1,3 +1,5 @@
+"""AI: Factory for building tree-sitter AST patterns from text."""
+
 from collections.abc import Sequence
 
 from renaissance.integrations.tree_sitter.adapter import TreeSitterAdapter

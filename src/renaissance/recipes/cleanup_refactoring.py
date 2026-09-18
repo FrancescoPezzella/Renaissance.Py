@@ -1,3 +1,5 @@
+"""AI: Recipe steps for cleaning up AST content, such as removing unused variables."""
+
 from more_itertools import flatten
 
 from renaissance.syntax_tree import ASTProcessor

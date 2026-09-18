@@ -1,3 +1,5 @@
+"""AI: Extractor that builds a codebase graph from tree-sitter-matched patterns."""
+
 from pathlib import Path
 
 import networkx as nx

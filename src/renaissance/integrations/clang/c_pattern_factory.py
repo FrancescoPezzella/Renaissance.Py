@@ -1,3 +1,5 @@
+"""AI: Factory for building C/C++ AST patterns from Clang-parsed source."""
+
 import re
 from collections.abc import Sequence
 

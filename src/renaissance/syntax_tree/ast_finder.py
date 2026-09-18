@@ -1,3 +1,5 @@
+"""AI: Helpers for finding AST nodes matching a predicate or semantic kind."""
+
 import re
 from collections.abc import Callable, Iterator, Sequence
 

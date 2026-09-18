@@ -1,3 +1,5 @@
+"""AI: Load a Clang compilation database and iterate its translation units as AST nodes."""
+
 from collections.abc import Iterator
 from pathlib import Path
 

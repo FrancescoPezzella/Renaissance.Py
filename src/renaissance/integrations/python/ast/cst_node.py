@@ -1,3 +1,5 @@
+"""AI: ASTNode implementation backed by libcst's concrete syntax tree."""
+
 from pathlib import Path
 from typing import Self
 

@@ -1,3 +1,5 @@
+"""AI: Protocol for a contiguous range of sibling syntax nodes."""
+
 from collections.abc import Sequence
 from typing import Protocol, Self, runtime_checkable
 

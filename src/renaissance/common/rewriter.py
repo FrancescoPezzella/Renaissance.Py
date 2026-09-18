@@ -1,3 +1,5 @@
+"""AI: Byte-level content rewriter that accumulates and applies pending replacements."""
+
 import sys
 
 

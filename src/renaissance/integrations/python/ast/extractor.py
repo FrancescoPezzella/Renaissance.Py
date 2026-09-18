@@ -1,3 +1,5 @@
+"""AI: Extractor that builds a codebase graph of Python modules and their contained statements."""
+
 from pathlib import Path
 
 import networkx as nx

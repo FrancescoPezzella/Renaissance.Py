@@ -1,3 +1,5 @@
+"""AI: Adapter that parses C/C++ source with libclang into the internal LST representation."""
+
 from clang import cindex
 
 from renaissance.integrations.tree_sitter.lst import LST, LSTNode

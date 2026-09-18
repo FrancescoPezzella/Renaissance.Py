@@ -1,3 +1,5 @@
+"""AI: Base processor for Python-specific source refactoring recipes."""
+
 import importlib
 from collections.abc import Sequence
 from pathlib import Path

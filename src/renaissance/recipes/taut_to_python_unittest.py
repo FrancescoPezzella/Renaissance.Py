@@ -1,3 +1,5 @@
+"""AI: Recipe that converts taut-style test files to Python's unittest style."""
+
 import re
 import textwrap
 from datetime import datetime
