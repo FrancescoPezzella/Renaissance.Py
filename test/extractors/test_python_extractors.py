@@ -12,10 +12,12 @@ class TestPythonExtractor:
     """AI: Tests for the Python AST codebase extractor."""
 
     def test_extractor(self):
+        """AI: Verify PythonExtractor can be instantiated."""
         extractor = PythonExtractor()
         assert_that(extractor, is_not(None))
 
     def test_extract_python_file(self):
+        """AI: Verify processing a Python file populates the extractor's codebase and graph."""
         extractor = PythonExtractor()
         extractor.process(Path(targets.__file__).parent / "demo.py")
 
@@ -25,6 +27,7 @@ class TestPythonExtractor:
         assert_that(extractor.graph.edges, is_not(empty()))
 
     def test_extract_python_file_and_save_graphml(self):
+        """AI: Verify processing a Python file and saving its graph produces a readable graphml file."""
         extractor = PythonExtractor()
         extractor.process(Path(targets.__file__).parent / "demo.py")
         graphml = Path(targets.__file__).parent / "demo.graphml"

@@ -20,13 +20,16 @@ class TestPythonExamples:
     #     assert_that(result, is_(result))
 
     def test_python_cst_still_works(self):
+        """AI: Verify the Python CST rewriting example script still runs and produces output."""
         result = python_cst_smoke_test()
         assert_that(result, is_(result))
 
     def test_python_lst_still_works(self):
+        """AI: Verify the Python LST rewriting example script still runs and produces output."""
         result = python_lst_smoke_test()
         assert_that(result, is_(result))
 
     def test_python_rst_still_works(self):
+        """AI: Verify the Python RST rewriting example script still runs and produces output."""
         result = python_rst_smoke_test()
         assert_that(result, is_(result))

@@ -16,6 +16,7 @@ class TestShowNodeInMermaid:
     """AI: Tests for rendering tree-sitter LST nodes as Mermaid diagrams."""
 
     def process_code(self, grammar_module, code):
+        """AI: Parse code with the given tree-sitter grammar and render its LST as a Mermaid diagram."""
         adapter = TreeSitterAdapter(grammar_module)
         tree = adapter.parse_code(code)
         lst = adapter.to_lst(code, tree)
@@ -32,6 +33,7 @@ class TestShowNodeInMermaid:
         ],
     )
     def test_create_diagrams(self, raw, module):
+        """AI: Verify rendering source code in each language grammar produces a non-empty Mermaid diagram."""
         result = self.process_code(module, raw)
         # with open(f"lst_output_{module.__name__}.mmd", "w", encoding="utf-8") as f:
         #     f.write(mermaid)

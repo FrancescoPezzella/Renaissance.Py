@@ -39,6 +39,7 @@ class TestConcretePatternMatcher:
         ],
     )
     def test_python_pattern(self, code, pattern):
+        """AI: Verify a variety of Python constructs match their corresponding pattern with placeholders."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         interface = TreeSitterPatternFactory(adapter)
         extractor = Extractor(interface, [pattern])
@@ -47,6 +48,7 @@ class TestConcretePatternMatcher:
         assert_that(matches, has_length(1), f"{code=} {pattern=}")
 
     def test_is_match_python_patterns(self):
+        """AI: Verify each try/except sub-statement matches its corresponding placeholder pattern node."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         interface = TreeSitterPatternFactory(adapter)
         c = interface.create_statement("try: pass\nexcept Exception: pass")
@@ -57,6 +59,7 @@ class TestConcretePatternMatcher:
         assert_that(is_match(c.children[3], p.children[3], {}), is_(True))
 
     def test_is_match_python_patterns_tree(self):
+        """AI: Verify is_match_tree confirms a matching try/except node sequence against its pattern."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         interface = TreeSitterPatternFactory(adapter)
         c = interface.create_statement("try: pass\nexcept Exception: pass")
@@ -64,6 +67,7 @@ class TestConcretePatternMatcher:
         assert_that(is_match_tree(c.children, p.children, {}), is_(True))
 
     def test_is_match_python_patterns_1(self):
+        """AI: Verify an if-statement matches its placeholder pattern via is_match and match_pattern."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         interface = TreeSitterPatternFactory(adapter)
         c = interface.create_statement("if x:  print(x)")
@@ -72,6 +76,7 @@ class TestConcretePatternMatcher:
         assert_that(match_pattern([c], [p]), is_not(empty()))
 
     def test_is_match(self):
+        """AI: Verify an identical function definition pattern matches itself."""
         adapter = TreeSitterAdapter(tree_sitter_python)
         interface = TreeSitterPatternFactory(adapter)
         c = interface.create_statement("def foo(): pass")

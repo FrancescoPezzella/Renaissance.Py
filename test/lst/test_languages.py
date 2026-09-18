@@ -82,6 +82,7 @@ class TestLanguages:
         ],
     )
     def test_language_parsing(self, lang, code):
+        """AI: Verify parsing a code snippet with the given tree-sitter language grammar produces a non-empty LST."""
         adapter = TreeSitterAdapter(lang)
         tree = adapter.parse_code(code)
         lst = adapter.to_lst(code, tree)
