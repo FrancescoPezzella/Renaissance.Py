@@ -16,6 +16,8 @@ from renaissance.syntax_tree.match_finder import (
 
 
 class FindMatchTest(unittest.TestCase):
+    """AI: Example unittest case demonstrating C AST pattern matching via CPatternFactory."""
+
     # def setUpClass(cls):
     #     cls.code_text: str = "int my_function();"
     def setUp(self):
@@ -65,6 +67,8 @@ class FindMatchTest(unittest.TestCase):
 
 # no namespace
 class TestBasicNoNamespace(TestCase):
+    """AI: Example unittest case demonstrating C AST literal/placeholder matching without a namespace."""
+
     code_text: str = """
             int my_function();
             void your_function() {

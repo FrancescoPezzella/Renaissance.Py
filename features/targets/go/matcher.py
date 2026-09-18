@@ -5,6 +5,8 @@ from typing import Protocol, Self, runtime_checkable
 
 @runtime_checkable
 class NodeMatchProtocol(Protocol):
+    """AI: Structural protocol describing the properties/children shape required for Go AST node matching."""
+
     properties: dict
     children: list[Self]
 

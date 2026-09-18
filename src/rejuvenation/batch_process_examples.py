@@ -126,11 +126,15 @@ def batch_repeat_example():
 
 @dataclass
 class CallInfo:
+    """AI: Record the callee name and call-site text for one collected function call."""
+
     callee: str
     calls: str
 
 
 class AnalysisRecipe:
+    """AI: Recipe that collects function-call analysis results across the processed AST."""
+
     def __init__(self):
         """AI: Initialize an empty recipe for collecting function-call analysis results."""
         self._calls = []

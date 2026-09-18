@@ -220,6 +220,8 @@ def simple_codebase_provider() -> Iterable[tuple[ASTFactory, ASTNode]]:
 
 
 class MyRefactor:
+    """AI: Example recipe demonstrating text/name/declaration replacement via ASTRefactorActions."""
+
     def __init__(self):
         """AI: Initialize an empty recipe for collecting refactoring actions."""
         self._calls = []

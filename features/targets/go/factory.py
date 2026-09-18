@@ -2,8 +2,8 @@
 
 
 class GoFactory:
-    pass
+    """AI: Placeholder factory for future Go AST node construction support."""
 
 
 class GoPatternFactory:
-    pass
+    """AI: Placeholder factory for future Go AST pattern construction support."""

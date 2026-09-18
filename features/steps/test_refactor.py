@@ -13,6 +13,8 @@ from steps.conftest import FEATURES_BASE_DIR
 
 
 class Context(dict):
+    """AI: Dict subclass exposing its items as attributes, used to share BDD scenario state."""
+
     def __getattr__(self, name):
         """AI: Return the dict item named `name` as an attribute."""
         return self[name]

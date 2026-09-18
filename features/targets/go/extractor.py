@@ -6,6 +6,8 @@ from targets.go.node import GoAstNode
 
 
 class GoExtractor:
+    """AI: Build a codebase graph of nodes and edges by extracting Go AST files."""
+
     codebase: dict = {}
     nodes: dict = {}
     edges: dict = {}
