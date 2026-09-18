@@ -1,6 +1,7 @@
 """Tests for the project source-file scanners."""
 
 import json
+from unittest.mock import Mock
 
 import pytest
 from hamcrest import assert_that, calling, contains_inanyorder, empty, equal_to, is_, raises
@@ -286,14 +287,14 @@ class TestBearCppScanner:
     def test_run_bear_raises_on_nonzero_exit(self, mocker):
         """AI: Assert BearCppScanner.run_bear raises RuntimeError when the Bear subprocess exits non-zero."""
         scanner = BearCppScanner()
-        mocker.patch("renaissance.project.project_scanner.system", return_value=1)
+        mocker.patch("renaissance.project.project_scanner.subprocess.run", return_value=Mock(returncode=1))
 
         assert_that(calling(scanner.run_bear), raises(RuntimeError))
 
     def test_run_bear_succeeds_on_zero_exit(self, mocker):
         """AI: Assert BearCppScanner.run_bear does not raise when the Bear subprocess exits zero."""
         scanner = BearCppScanner()
-        mocker.patch("renaissance.project.project_scanner.system", return_value=0)
+        mocker.patch("renaissance.project.project_scanner.subprocess.run", return_value=Mock(returncode=0))
 
         # Should not raise
         scanner.run_bear()
