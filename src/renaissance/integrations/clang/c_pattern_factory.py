@@ -74,11 +74,13 @@ class CPatternFactory:
 
     @staticmethod
     def remove_indent(text: str) -> str:
+        """AI: Strip the common leading indentation shared by every non-blank line of text."""
         split = [len(line) - len(line.lstrip()) for line in text.splitlines() if line.strip()]
         indent = split[0] if split else 0
         return "\n".join([line[indent:] for line in text.splitlines()])
 
     def create_expression(self, text: str, extra_declarations=None) -> ASTNode:
+        """AI: Create an AST node for the given C/C++ expression text."""
         if extra_declarations is None:
             extra_declarations = []
         keywords = CPatternFactory._get_keywords_from_text(text)
@@ -106,6 +108,7 @@ class CPatternFactory:
         extra_declarations=None,
         declarations=None,
     ):
+        """AI: Create the AST declaration nodes found in the given C/C++ text."""
         if declarations is None:
             declarations = []
         if extra_declarations is None:
@@ -139,6 +142,7 @@ class CPatternFactory:
         extra_declarations=None,
         declarations=None,
     ) -> ASTNode:
+        """AI: Create the single AST declaration node found in the given C/C++ text."""
         if declarations is None:
             declarations = []
         if extra_declarations is None:
@@ -158,6 +162,7 @@ class CPatternFactory:
         extra_declarations=None,
         kind=None,
     ) -> Sequence[ASTNode]:
+        """AI: Create the AST statement nodes found in the given C/C++ text."""
         # create a reference for all used variables excluding the specified types
         if extra_declarations is None:
             extra_declarations = []
@@ -197,6 +202,7 @@ class CPatternFactory:
         extra_declarations=None,
         kind=None,
     ) -> ASTNode:
+        """AI: Create the single AST statement node found in the given C/C++ text."""
         if extra_declarations is None:
             extra_declarations = []
         if types is None:
@@ -269,6 +275,7 @@ class CPPPatternFactory(CPatternFactory):
         super().__init__(factory, ref_node, "cpp")
 
     def create_constructor_call(self, pattern: str):
+        """AI: Create an AST node for a C++ constructor call matching the given pattern."""
         class_and_args = re.match(R"([$\w]+)\(([^)]+)\)", pattern.replace(" ", ""))
         if class_and_args:
             class_name = class_and_args.group(1)

@@ -67,6 +67,7 @@ class ClangJsonTranslationUnit:
         self._nodes: dict[str, ClangJsonASTNode] = {}
 
     def lazy_create_references(self, node: ClangJsonASTNode) -> None:
+        """AI: Build the translation unit's reference and record-reference caches on first use."""
         # TODO: Do I correctly assume that the usage of this function must be synchronized?
         if self.references_initialized:
             return
@@ -492,6 +493,7 @@ class ClangJsonASTNode(ASTNode[dict[str, Any], ClangJsonTranslationUnit]):
 
     @property
     def is_implicit(self):
+        """AI: Return whether this node is implicitly generated (part of the translation unit)."""
         self.is_part_of_translation_unit()
 
 
@@ -500,6 +502,7 @@ class ReferenceHelper:
 
     @staticmethod
     def create_references(ast_node: ClangJsonASTNode) -> None:
+        """AI: Populate the reference and referenced-by caches for ast_node's translation unit."""
         assert isinstance(ast_node, ClangJsonASTNode), (
             f"Expected ClangJsonASTNode but got {type(ast_node)}"
         )  # TODO: still needed when using type hints?

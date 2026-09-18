@@ -16,16 +16,19 @@ class ClangAdapter:
         self.args = args or ["-std=c++17"]
 
     def parse(self, file_path: str) -> LST:
+        """AI: Parse the C/C++ source file at file_path into an LST."""
         index = cindex.Index.create()
         translation_unit = index.parse(file_path, args=self.args)
         return LST(self._convert_node(translation_unit.cursor))
 
     def load_from_text(self, text: str, file_name: str):
+        """AI: Parse in-memory C/C++ source text as the given file_name into an LST."""
         index = cindex.Index.create()
         translation_unit = index.parse(file_name, unsaved_files=[(file_name, text)], args=[])
         return LST(self._convert_node(translation_unit.cursor))
 
     def to_lst(self, source_code: str) -> LST:
+        """AI: Parse a C/C++ source code string into an LST."""
         # source_code= replace_dollar(source_code)
         return self.load_from_text(source_code, "no_src.cpp")
 
