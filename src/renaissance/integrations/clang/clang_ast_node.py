@@ -536,6 +536,7 @@ class ReferenceHelper:
 
     @staticmethod
     def create_references(ast_node: ClangASTNode) -> None:
+        assert isinstance(ast_node, ClangASTNode), f"Expected ClangASTNode but got {type(ast_node)}"
         references = []
         node_id: str = ast_node.node.hash
         ast_node.translation_unit._references[node_id] = references
