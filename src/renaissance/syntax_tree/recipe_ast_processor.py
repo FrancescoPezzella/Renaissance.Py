@@ -13,6 +13,7 @@ TFunc = Callable[..., Any]
 
 def annotate_decorator(foreign_decorator: TFunc, name: str):
     """AI: Wrap foreign_decorator so the decorated function also records its own decorator and recipe-action name."""
+
     def new_decorator(func: TFunc) -> TFunc:
         r = foreign_decorator(func)  # apply foreignDecorator, like call to foreignDecorator(method) would have done
         r.decorator = new_decorator  # keep track of decorator
@@ -36,6 +37,7 @@ def get_methods_with_decorator(cls: Any, decorator: TFunc):
 
 def final_action() -> TFunc:
     """AI: Decorator marking a recipe method as a final action, run once after all steps complete."""
+
     def final_action_decorator(func: TFunc) -> TFunc:
         @functools.wraps(func)
         def final_action_wrapper(recipe: TFunc):
@@ -48,6 +50,7 @@ def final_action() -> TFunc:
 
 def recipe_step(order: int = 0, repeat: bool = False) -> TFunc:
     """AI: Decorator marking a recipe method as a numbered step, optionally repeatable, in the recipe's workflow."""
+
     def recipe_step_decorator(func: TFunc) -> TFunc:
         @functools.wraps(func)
         def recipe_step_wrapper(step: int, recipe: TFunc, ast_processor: ASTProcessor):
@@ -69,6 +72,7 @@ def recipe_step(order: int = 0, repeat: bool = False) -> TFunc:
 
 def after_step(step: str) -> TFunc:
     """AI: Decorator marking a recipe method to run only after the named step has already executed."""
+
     def after_step_decorator(func: TFunc) -> TFunc:
         @functools.wraps(func)
         def after_step_wrapper(preceding_methods: Sequence[str], recipe: TFunc):
