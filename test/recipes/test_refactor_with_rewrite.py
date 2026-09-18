@@ -24,6 +24,7 @@ class TestRefactorWithRewrite:
 
     @pytest.mark.skip("comment are not correctly calculated")
     def test_refactor_with_comment_and_spaces(self, mocker):
+        """AI: Verify rewrite-based refactoring preserves kept comments while removing others (comment placement TBD)."""
         refactoring = self._create(
             mocker,
             textwrap.dedent("""
