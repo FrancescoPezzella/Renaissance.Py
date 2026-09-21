@@ -106,13 +106,17 @@ ability to express the domain-specific requirements listed below.
 
 Adopt the following test framework stack:
 
-| Purpose | Framework |
-| --- | --- |
-| BDD / acceptance tests | **pytest-bdd** |
-| Unit tests | **pytest** |
-| Performance benchmarks | **pytest-benchmark** |
-| Inline documentation examples | **doctest** |
-| Assertion style | **PyHamcrest** (`assert_that`) |
+<!-- pyml disable md060-->
+
+| Purpose                       | Framework                      |
+| ----------------------------- | ------------------------------ |
+| BDD / acceptance tests        | **pytest-bdd**                 |
+| Unit tests                    | **pytest**                     |
+| Performance benchmarks        | **pytest-benchmark**           |
+| Inline documentation examples | **doctest**                    |
+| Assertion style               | **PyHamcrest** (`assert_that`) |
+
+<!-- pyml enable md060-->
 
 pytest-bdd is chosen over Behave and Robot Framework (see [Alternatives considered](#alternatives-considered)).
 
@@ -193,12 +197,16 @@ Negative:
 
 ### BDD framework
 
-| Framework | Assessment |
-| --- | --- |
-| **pytest-bdd** ✓ | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013. |
-| Behave | Standalone; no shared fixtures with pytest. Very mature (2011). Rejected due to split runner. |
-| Robot Framework | Full automation framework; steep learning curve; overkill for BDD only. |
-| Lettuce | Declining community; minimal updates. Rejected. |
+<!-- pyml disable md060-->
+
+| Framework        | Assessment                                                                                    |
+| ---------------- | --------------------------------------------------------------------------------------------- |
+| **pytest-bdd** ✓ | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013.                    |
+| Behave           | Standalone; no shared fixtures with pytest. Very mature (2011). Rejected due to split runner. |
+| Robot Framework  | Full automation framework; steep learning curve; overkill for BDD only.                       |
+| Lettuce          | Declining community; minimal updates. Rejected.                                               |
+
+<!-- pyml enable md060-->
 
 ### Unit testing
 
