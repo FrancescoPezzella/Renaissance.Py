@@ -62,15 +62,15 @@ class PythonScanner(ProjectScanner):
         self.root_dir = root_dir
         self.package_dirs = package_dirs
 
-    def find_sources(self) -> list[Path]:
+    def find_sources(self) -> list[str]:
         """Return every .py file under root_dir (or package_dirs, if given), sorted, excluding EXCLUDED_DIRS."""
         roots = [Path(self.root_dir) / d for d in self.package_dirs] if self.package_dirs else [Path(self.root_dir)]
-        files = []
+        files: list[Path] = []
         for root in roots:
             if not root.exists():
                 continue
             files.extend(path for path in root.rglob("*.py") if not any(part in self.EXCLUDED_DIRS for part in path.parts))
-        return sorted(files)
+        return sorted(str(path) for path in files)
 
 
 class BearCppScanner(CppScanner):

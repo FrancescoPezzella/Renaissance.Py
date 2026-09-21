@@ -1,6 +1,7 @@
 """Tests for the project source-file scanners."""
 
 import json
+from pathlib import Path
 from unittest.mock import Mock
 
 import pytest
@@ -215,7 +216,7 @@ class TestPythonScanner:
         (tmp_path / "kept.py").write_text("")
 
         scanner = PythonScanner(str(tmp_path))
-        result = [p.name for p in scanner.find_sources()]
+        result = [Path(p).name for p in scanner.find_sources()]
 
         assert_that(result, equal_to(["kept.py"]))
 
@@ -230,7 +231,7 @@ class TestPythonScanner:
         (src / "kept.py").write_text("")
 
         scanner = PythonScanner(str(tmp_path), package_dirs=["src"])
-        result = [p.name for p in scanner.find_sources()]
+        result = [Path(p).name for p in scanner.find_sources()]
 
         assert_that(result, equal_to(["kept.py"]))
 
