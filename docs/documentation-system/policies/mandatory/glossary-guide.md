@@ -67,7 +67,7 @@ Requirements:
 The glossary provides a **concise summary**; it does not replace the concept page.
 
 | Glossary | Concept page |
-|---|---|
+| --- | --- |
 | One- or two-sentence definition | Full explanation, rationale, examples, figures |
 | Alphabetical index entry | Authoritative source |
 | Links to the concept page | May link back to the glossary anchor |

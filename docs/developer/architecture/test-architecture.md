@@ -98,12 +98,12 @@ We should at least test the following functionalities
 1. We want placeholders at higher level than name to match more complicated AST nodes.
 Some examples
 
-| match pattern |  with code |
-| --------------- | ------------ |
-|   int $$x;          |    int a=4, b=5, c; |
-|   $type v;         |    const myclass v; |
-|   x = $expr;    |    x = 1 + 2; |
-|   $x;                 |    a = f(1,2+3); |
+| match pattern | with code        |
+| ------------- | ---------------- |
+| int $$x;      | int a=4, b=5, c; |
+| $type v;      | const myclass v; |
+| x = $expr;    | x = 1 + 2;       |
+| $x;           | a = f(1,2+3);    |
 
 Note that although the placeholder node is an IASTName the matching instance node doesn't need to be!
 
@@ -162,8 +162,8 @@ Pick the highest AST node allowed by the all placeholder together in the pattern
     * How are string constants matched in Python? Does the lexer make the same token for "ape" and 'ape'?
 
 | Representation | Example | Base case |
-| ---------------- | ---------- | ---------- |
-| Readability (e.g. Underscores   in Numeric Literals) | 1_000_000  | 1000000 |
+| --- | --- | --- |
+| Readability (e.g. Underscores   in Numeric Literals) | 1_000_000 | 1000000 |
 | scientific | 1E2 | matches | 100 |
 | base (2,8,10,16,…) | 0xFF | matches | 255 |
 | String | "ape" | 'ape' |
@@ -187,7 +187,7 @@ When evaluating Python BDD frameworks based on maturity, support, and community 
 #### Comparative Analysis
 
 | Framework | Maturity | Community Support | Usage/Popularity | GitHub Stats (approx.) |
-| -- | -- | -- | -- | -- |
+| --- | --- | --- | --- | --- |
 | pytest-bdd | High (stable since 2013) | Strong pytest ecosystem | High and growing | 1.2k+ stars, regular updates |
 | Behave | Very High (stable since 2011) | Dedicated community | Very High | 2.5k+ stars, active maintenance |
 | Robot Framework | Very High (since 2008) | Large enterprise adoption | Very High | 7k+ stars, corporate backing |
