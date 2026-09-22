@@ -164,8 +164,8 @@ Pick the highest AST node allowed by the all placeholder together in the pattern
 | Representation                                       | Example       | Base case |
 | ---------------------------------------------------- | ------------- | --------- |
 | Readability (e.g. Underscores   in Numeric Literals) | 1_000_000     | 1000000   |
-| scientific                                           | 1E2           | matches   | 100 |
-| base (2,8,10,16,…)                                   | 0xFF          | matches   | 255 |
+| scientific                                           | 1E2           | 100       |
+| base (2,8,10,16,…)                                   | 0xFF          | 255       |
 | String                                               | "ape"         | 'ape'     |
 | String   concatenation                               | "con"   "cat" | "concat"  |
 

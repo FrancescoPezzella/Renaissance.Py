@@ -106,17 +106,13 @@ ability to express the domain-specific requirements listed below.
 
 Adopt the following test framework stack:
 
-<!-- pyml disable md060-->
-
 | Purpose                       | Framework                      |
 | ----------------------------- | ------------------------------ |
-| BDD / acceptance tests        | **pytest-bdd**                 |
-| Unit tests                    | **pytest**                     |
-| Performance benchmarks        | **pytest-benchmark**           |
-| Inline documentation examples | **doctest**                    |
-| Assertion style               | **PyHamcrest** (`assert_that`) |
-
-<!-- pyml enable md060-->
+| BDD / acceptance tests        | ``pytest-bdd``                 |
+| Unit tests                    | ``pytest``                     |
+| Performance benchmarks        | ``pytest-benchmark``           |
+| Inline documentation examples | ``doctest``                    |
+| Assertion style               | ``PyHamcrest`` (`assert_that`) |
 
 pytest-bdd is chosen over Behave and Robot Framework (see [Alternatives considered](#alternatives-considered)).
 
@@ -197,16 +193,12 @@ Negative:
 
 ### BDD framework
 
-<!-- pyml disable md060-->
-
 | Framework        | Assessment                                                                                    |
 | ---------------- | --------------------------------------------------------------------------------------------- |
-| **pytest-bdd** ✓ | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013.                    |
+| ``pytest-bdd``   | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013.                    |
 | Behave           | Standalone; no shared fixtures with pytest. Very mature (2011). Rejected due to split runner. |
 | Robot Framework  | Full automation framework; steep learning curve; overkill for BDD only.                       |
 | Lettuce          | Declining community; minimal updates. Rejected.                                               |
-
-<!-- pyml enable md060-->
 
 ### Unit testing
 
