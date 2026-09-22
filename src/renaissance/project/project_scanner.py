@@ -64,6 +64,14 @@ class PythonScanner(ProjectScanner):
 
     def find_sources(self) -> list[str]:
         """Return every .py file under root_dir (or package_dirs, if given), sorted, excluding EXCLUDED_DIRS."""
+        path = Path(self.root_dir)
+        if not path.exists():
+            message = f"root_dir does not exist: {self.root_dir}"
+            raise FileNotFoundError(message)
+        if not path.is_dir():
+            message = f"root_dir is not a directory: {self.root_dir}"
+            raise NotADirectoryError(message)
+
         roots = [Path(self.root_dir) / d for d in self.package_dirs] if self.package_dirs else [Path(self.root_dir)]
         files: list[Path] = []
         for root in roots:

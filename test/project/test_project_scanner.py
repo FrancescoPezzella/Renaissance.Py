@@ -207,6 +207,20 @@ class TestPythonScanner:
         scanner = PythonScanner()
         assert_that(scanner.root_dir, is_("."))
 
+    def test_raises_when_root_dir_does_not_exist(self, tmp_path):
+        """Assert PythonScanner.find_sources raises FileNotFoundError when root_dir doesn't exist."""
+        scanner = PythonScanner(str(tmp_path / "does-not-exist"))
+
+        assert_that(calling(scanner.find_sources), raises(FileNotFoundError))
+
+    def test_raises_when_root_dir_is_not_a_directory(self, tmp_path):
+        """Assert PythonScanner.find_sources raises NotADirectoryError when root_dir is a file."""
+        root_file = tmp_path / "not_a_dir.py"
+        root_file.write_text("")
+        scanner = PythonScanner(str(root_file))
+
+        assert_that(calling(scanner.find_sources), raises(NotADirectoryError))
+
     @pytest.mark.parametrize("excluded_dir", sorted(PythonScanner.EXCLUDED_DIRS))
     def test_excludes_known_noise_dirs_in_default_whole_tree_scan(self, tmp_path, excluded_dir):
         """Assert PythonScanner.find_sources excludes known noise directories during a default whole-tree scan."""
