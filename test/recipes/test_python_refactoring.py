@@ -1,8 +1,11 @@
 """Tests for the PythonRefactoring recipe base class."""
 
+import keyword
 import textwrap
+from unittest.mock import patch
 
 from hamcrest import assert_that, contains_string, is_
+from hypothesis import given, settings, strategies as st
 
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.recipes.python_refactoring import PythonRefactoring
@@ -12,6 +15,16 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 
 class TestPythonRefactoring:
     """AI: Tests for the PythonRefactoring recipe base class."""
+
+    _EXPR_STRATEGY = st.one_of(
+        st.integers(min_value=-100, max_value=100).map(str),
+        st.text(alphabet="abc ", min_size=0, max_size=6).map(repr),
+    )
+    _IDENTIFIER_STRATEGY = (
+        st.from_regex(r"[A-Za-z_][A-Za-z0-9_]{0,30}", fullmatch=True)
+        .filter(str.isidentifier)
+        .filter(lambda name: not keyword.iskeyword(name))
+    )
 
     def _patch_factory(self, mocker, text="pass", filename="test_foo.py"):
         code = textwrap.dedent(text)
@@ -137,6 +150,29 @@ class TestPythonRefactoring:
 
         assert_that(positional, is_([]))
         assert_that(keyword, is_({}))
+
+    @settings(max_examples=50)
+    @given(
+        positional_args=st.lists(_EXPR_STRATEGY, max_size=4),
+        keyword_args=st.dictionaries(keys=_IDENTIFIER_STRATEGY, values=_EXPR_STRATEGY, max_size=4),
+    )
+    def test_extract_call_arguments_hypothesis_roundtrip(self, positional_args, keyword_args):
+        """Property: extraction round-trips generated positional and keyword call arguments."""
+        rendered_kwargs = [f"{name}={value}" for name, value in keyword_args.items()]
+        source = f"fun({', '.join([*positional_args, *rendered_kwargs])})"
+
+        code = textwrap.dedent(source)
+        with patch(
+            "renaissance.integrations.python.ast.factory.PythonFactory.create",
+            return_value=PythonRstNode.load_from_text(code, "test_foo.py"),
+        ):
+            subject = UnitToPytest("test_foo.py")
+        call_node = subject.find_semantic_kind(SemanticKind.CALL)[0]
+
+        positional, keyword_result = subject.extract_call_arguments(call_node)
+
+        assert_that(positional, is_(positional_args))
+        assert_that(keyword_result, is_(keyword_args))
 
     # ------------------------------------------------------------------
     # class_declares_base() / class_base_arguments()
