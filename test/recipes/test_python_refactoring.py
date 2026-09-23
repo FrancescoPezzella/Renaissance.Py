@@ -16,9 +16,18 @@ from renaissance.syntax_tree.semantic_kind import SemanticKind
 class TestPythonRefactoring:
     """AI: Tests for the PythonRefactoring recipe base class."""
 
-    _EXPR_STRATEGY = st.one_of(
+    _LEAF_EXPR_STRATEGY = st.one_of(
         st.integers(min_value=-100, max_value=100).map(str),
         st.text(alphabet="abc ", min_size=0, max_size=6).map(repr),
+    )
+    _EXPR_STRATEGY = st.recursive(
+        _LEAF_EXPR_STRATEGY,
+        lambda child: st.builds(
+            lambda fn_name, args: f"{fn_name}({', '.join(args)})",
+            st.sampled_from(["inner", "g", "helper"]),
+            st.lists(child, max_size=3),
+        ),
+        max_leaves=8,
     )
     _IDENTIFIER_STRATEGY = (
         st.from_regex(r"[A-Za-z_][A-Za-z0-9_]{0,30}", fullmatch=True)
