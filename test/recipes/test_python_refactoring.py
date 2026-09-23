@@ -69,6 +69,7 @@ class TestPythonRefactoring:
     # ------------------------------------------------------------------
 
     def test_extract_call_arguments_positional_only(self, mocker):
+        """Verify extract_call_arguments returns only positional values for positional-only calls."""
         self._patch_factory(mocker, "fun(1, 'x')")
         subject = UnitToPytest("test_foo.py")
         call_node = subject.find_semantic_kind(SemanticKind.CALL)[0]
@@ -79,6 +80,7 @@ class TestPythonRefactoring:
         assert_that(keyword, is_({}))
 
     def test_extract_call_arguments_keyword_only(self, mocker):
+        """Verify extract_call_arguments returns only keyword values for keyword-only calls."""
         self._patch_factory(mocker, "fun(a=1, b='x')")
         subject = UnitToPytest("test_foo.py")
         call_node = subject.find_semantic_kind(SemanticKind.CALL)[0]
@@ -89,6 +91,7 @@ class TestPythonRefactoring:
         assert_that(keyword, is_({"a": "1", "b": "'x'"}))
 
     def test_extract_call_arguments_mixed(self, mocker):
+        """Verify extract_call_arguments splits mixed positional and keyword arguments correctly."""
         self._patch_factory(mocker, "fun(1, 2, b='x', c=other)")
         subject = UnitToPytest("test_foo.py")
         call_node = subject.find_semantic_kind(SemanticKind.CALL)[0]
@@ -99,6 +102,7 @@ class TestPythonRefactoring:
         assert_that(keyword, is_({"b": "'x'", "c": "other"}))
 
     def test_extract_call_arguments_accepts_node_inside_call(self, mocker):
+        """Verify extract_call_arguments works when given a child node nested inside a call."""
         self._patch_factory(mocker, "fun(1, k='v')")
         subject = UnitToPytest("test_foo.py")
         call_node = subject.find_semantic_kind(SemanticKind.CALL)[0]
@@ -110,6 +114,7 @@ class TestPythonRefactoring:
         assert_that(keyword, is_({"k": "'v'"}))
 
     def test_extract_call_arguments_returns_empty_for_non_call_node(self, mocker):
+        """Verify extract_call_arguments returns empty positional/keyword results for non-call nodes."""
         self._patch_factory(mocker, "x = 1")
         subject = UnitToPytest("test_foo.py")
         assign_node = subject.find_semantic_kind(SemanticKind.ASSIGNMENT)[0]
@@ -124,6 +129,7 @@ class TestPythonRefactoring:
     # ------------------------------------------------------------------
 
     def test_class_base_arguments_returns_declared_bases(self, mocker):
+        """Verify class_base_arguments returns all explicitly declared base classes."""
         self._patch_factory(mocker, "class Child(Base1, Base2):\n    pass")
         subject = UnitToPytest("test_foo.py")
         class_node = subject.find_semantic_kind(SemanticKind.CLASS)[0]
@@ -133,6 +139,7 @@ class TestPythonRefactoring:
         assert_that(bases, is_(["Base1", "Base2"]))
 
     def test_class_base_arguments_returns_empty_without_bases(self, mocker):
+        """Verify class_base_arguments returns an empty list for classes without base classes."""
         self._patch_factory(mocker, "class Child:\n    pass")
         subject = UnitToPytest("test_foo.py")
         class_node = subject.find_semantic_kind(SemanticKind.CLASS)[0]
@@ -142,6 +149,7 @@ class TestPythonRefactoring:
         assert_that(bases, is_([]))
 
     def test_class_inherits_from_checks_base_membership(self, mocker):
+        """Verify class_inherits_from reports whether a requested base class is present."""
         self._patch_factory(mocker, "class Child(Base):\n    pass")
         subject = UnitToPytest("test_foo.py")
         class_node = subject.find_semantic_kind(SemanticKind.CLASS)[0]
