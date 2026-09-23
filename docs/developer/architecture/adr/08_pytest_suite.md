@@ -107,12 +107,12 @@ ability to express the domain-specific requirements listed below.
 Adopt the following test framework stack:
 
 | Purpose                       | Framework                      |
-|-------------------------------|--------------------------------|
-| BDD / acceptance tests        | **pytest-bdd**                 |
-| Unit tests                    | **pytest**                     |
-| Performance benchmarks        | **pytest-benchmark**           |
-| Inline documentation examples | **doctest**                    |
-| Assertion style               | **PyHamcrest** (`assert_that`) |
+| ----------------------------- | ------------------------------ |
+| BDD / acceptance tests        | ``pytest-bdd``                 |
+| Unit tests                    | ``pytest``                     |
+| Performance benchmarks        | ``pytest-benchmark``           |
+| Inline documentation examples | ``doctest``                    |
+| Assertion style               | ``PyHamcrest`` (`assert_that`) |
 
 pytest-bdd is chosen over Behave and Robot Framework (see [Alternatives considered](#alternatives-considered)).
 
@@ -132,9 +132,11 @@ pytest-bdd is chosen over Behave and Robot Framework (see [Alternatives consider
 import pytest
 from hamcrest import assert_that, is_, contains_inanyorder
 
+
 @pytest.fixture
 def sut():
     return Matcher()
+
 
 class TestMatcherPlaceholder:
     def test_placeholder_matches_highest_ast_node(self, sut):
@@ -142,11 +144,14 @@ class TestMatcherPlaceholder:
         result = sut.find(parse("a = f(1, 2+3);"), pattern)
         assert_that(result, is_(non_empty()))
 
-    @pytest.mark.parametrize("source,expected", [
-        ("1_000_000", "1000000"),
-        ("0xFF",      "255"),
-        ('"ape"',     "'ape'"),
-    ])
+    @pytest.mark.parametrize(
+        "source,expected",
+        [
+            ("1_000_000", "1000000"),
+            ("0xFF", "255"),
+            ('"ape"', "'ape'"),
+        ],
+    )
     def test_equivalent_literals(self, sut, source, expected):
         assert_that(sut.are_equivalent(source, expected), is_(True))
 ```
@@ -189,8 +194,8 @@ Negative:
 ### BDD framework
 
 | Framework        | Assessment                                                                                    |
-|------------------|-----------------------------------------------------------------------------------------------|
-| **pytest-bdd** ✓ | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013.                    |
+| ---------------- | --------------------------------------------------------------------------------------------- |
+| ``pytest-bdd``   | Integrates with pytest (shared fixtures, CLI, plugins). Active since 2013.                    |
 | Behave           | Standalone; no shared fixtures with pytest. Very mature (2011). Rejected due to split runner. |
 | Robot Framework  | Full automation framework; steep learning curve; overkill for BDD only.                       |
 | Lettuce          | Declining community; minimal updates. Rejected.                                               |

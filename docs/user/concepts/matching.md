@@ -27,12 +27,16 @@ The different conceptual views lead to different matching outcomes. For example:
 * `here` and `there` are different words, but the sequence of characters `here` occurs within `there` under a character-based view.
 * A chapter and a section might share the same title, e.g., `Introduction`.
 
+<!-- pyml disable md051-->
+
 [Table 1.1](#matching-table-text_examples) clearly illustrates the difference in finding matches,
 i.e., whether a needle occurs within a haystack, for several conceptual views.
 
+<!-- pyml enable md051-->
+
 /// html | figure#matching-table-text_examples
 
-*Table 1.1: Examples of whether a match is present under several conceptual views of text.*
+_Table 1.1: Examples of whether a match is present under several conceptual views of text._
 
 | conceptual view of text | `a` within `A` | `here` within `there` |
 | ----------------------- | -------------- | --------------------- |
@@ -42,16 +46,20 @@ i.e., whether a needle occurs within a haystack, for several conceptual views.
 
 ///
 
+<!-- pyml disable md051-->
+
 Text editors provide options that influence matching,
 such as case sensitivity, whole-word matching, and pattern-based descriptions using regular expressions,
 which correspond respectively to the conceptual-view dimensions of equality, granularity, and classification.
 See for example [Figure 1.1](#matching-equal-notepadplusplus-find) that shows options supported by Notepad++.
 
+<!-- pyml enable md051-->
+
 /// html | figure#matching-equal-notepadplusplus-find
 
 ![Find window of Notepad++](matching-images/matching-equal-notepadplusplus-find.png)
 
-*Figure 1.1 (CONCEPT-MATCHING): Selecting the desired conceptual view for text in the Find window of Notepad++.*
+_Figure 1.1 (CONCEPT-MATCHING): Selecting the desired conceptual view for text in the Find window of Notepad++._
 
 ///
 
@@ -114,7 +122,7 @@ The same regular-expression pattern also yields two matches within the following
 
 ```python
 MyPrint(name, "is", age, "years (old).")
-MyPrint((a+12) * matrix[0][1])
+MyPrint((a + 12) * matrix[0][1])
 ```
 
 However, the matches — `MyPrint(name, "is", age, "years (old)` and `MyPrint((a+12)` — do not correspond to function calls.
@@ -158,7 +166,7 @@ and two matches within:
 
 ```python
 MyPrint("Hello Word")
-MyPrint((a+12) * matrix[0][1])
+MyPrint((a + 12) * matrix[0][1])
 ```
 
 AST-based patterns respect the grammar of the language and distinguish syntactic constructs precisely.
