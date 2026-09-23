@@ -5,7 +5,8 @@ import textwrap
 from unittest.mock import patch
 
 from hamcrest import assert_that, contains_string, is_
-from hypothesis import given, settings, strategies as st
+from hypothesis import given, settings
+from hypothesis import strategies as st
 
 from renaissance.integrations.python.ast.rst_node import PythonRstNode
 from renaissance.recipes.python_refactoring import PythonRefactoring
