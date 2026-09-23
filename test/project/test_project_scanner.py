@@ -198,7 +198,7 @@ class TestPythonScanner:
         )
 
     def test_default_package_dirs(self):
-        """AI: Assert PythonScanner defaults package_dirs to ["src", "lib", "test"]."""
+        """Assert PythonScanner defaults package_dirs to None."""
         scanner = PythonScanner()
         assert_that(scanner.package_dirs, is_(None))
 
