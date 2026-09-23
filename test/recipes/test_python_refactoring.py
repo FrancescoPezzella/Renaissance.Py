@@ -113,6 +113,20 @@ class TestPythonRefactoring:
         assert_that(positional, is_(["1"]))
         assert_that(keyword, is_({"k": "'v'"}))
 
+    def test_extract_call_arguments_walks_parent_chain_to_first_call(self, mocker):
+        """Verify extract_call_arguments climbs ancestors and uses the first enclosing call node."""
+        self._patch_factory(mocker, "outer(inner(1), k=2)")
+        subject = UnitToPytest("test_foo.py")
+        call_nodes = subject.find_semantic_kind(SemanticKind.CALL)
+        inner_call = next(call for call in call_nodes if call.signature.startswith("inner("))
+
+        node_below_inner_call = inner_call.children[0]
+
+        positional, keyword = subject.extract_call_arguments(node_below_inner_call)
+
+        assert_that(positional, is_(["1"]))
+        assert_that(keyword, is_({}))
+
     def test_extract_call_arguments_returns_empty_for_non_call_node(self, mocker):
         """Verify extract_call_arguments returns empty positional/keyword results for non-call nodes."""
         self._patch_factory(mocker, "x = 1")

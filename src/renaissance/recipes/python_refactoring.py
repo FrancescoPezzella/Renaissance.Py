@@ -57,12 +57,19 @@ class PythonRefactoring(ASTProcessor):
     def extract_call_arguments(self, node: PythonRstNode) -> tuple[list[str], dict[str, str]]:
         """Extract positional and keyword arguments from a Call node.
 
-        The input can be either a `Call` node itself or a node directly contained in a call.
-        Returned keyword arguments preserve Python call semantics where keyword arguments
-        appear after positional arguments.
+        The input may be a `Call` node itself or any descendant node.
+        When given a descendant, this method walks up parent links and uses the first
+        ancestor whose semantic kind is `CALL`.
+
+        Returned keyword arguments preserve Python call semantics where keyword
+        arguments appear after positional arguments.
         """
-        call_node = node if node is not None and node.semantic_kind == SemanticKind.CALL else node.parent
-        if call_node is None or call_node.semantic_kind != SemanticKind.CALL:
+        current = node
+        while current is not None and current.semantic_kind != SemanticKind.CALL:
+            current = current.parent
+
+        call_node = current
+        if call_node is None:
             return [], {}
 
         args_implicit = next((c for c in call_node.children if c.name == "args"), None)
