@@ -125,7 +125,7 @@ class TestPythonRefactoring:
         assert_that(keyword, is_({}))
 
     # ------------------------------------------------------------------
-    # class_inherits_from() / class_base_arguments()
+    # class_declares_base() / class_base_arguments()
     # ------------------------------------------------------------------
 
     def test_class_base_arguments_returns_declared_bases(self, mocker):
@@ -148,14 +148,14 @@ class TestPythonRefactoring:
 
         assert_that(bases, is_([]))
 
-    def test_class_inherits_from_checks_base_membership(self, mocker):
-        """Verify class_inherits_from reports whether a requested base class is present."""
+    def test_class_declares_base_checks_base_membership(self, mocker):
+        """Verify class_declares_base reports whether a requested base class is present."""
         self._patch_factory(mocker, "class Child(Base):\n    pass")
         subject = UnitToPytest("test_foo.py")
         class_node = subject.find_semantic_kind(SemanticKind.CLASS)[0]
 
-        assert_that(subject.class_inherits_from(class_node, "Base"), is_(True))
-        assert_that(subject.class_inherits_from(class_node, "Other"), is_(False))
+        assert_that(subject.class_declares_base(class_node, "Base"), is_(True))
+        assert_that(subject.class_declares_base(class_node, "Other"), is_(False))
 
     # ------------------------------------------------------------------
     # process() — skip branch

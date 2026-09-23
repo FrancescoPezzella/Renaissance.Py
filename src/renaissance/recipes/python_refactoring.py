@@ -78,10 +78,20 @@ class PythonRefactoring(ASTProcessor):
 
         return positional_args, keyword_args
 
-    def class_inherits_from(self, class_node: PythonRstNode, base_name: str) -> bool:
+    def class_declares_base(self, class_node: PythonRstNode, base_name: str) -> bool:
+        """Return whether class_node explicitly declares base_name as a base class.
+
+        This check uses only the names declared in the class header's base list,
+        so implicit Python inheritance from `object` is not treated as a declared base.
+        """
         return base_name in self.class_base_arguments(class_node)
 
     def class_base_arguments(self, class_node: PythonRstNode) -> list[str]:
+        """Return base class signatures explicitly listed in the class declaration.
+
+        Only names inside the parentheses of ``class Name(...):`` are returned.
+        The implicit default base object is not returned when no bases are declared.
+        """
         bases_implicit = next((c for c in class_node.children if c.name == "bases"), None)
         if bases_implicit is None:
             return []
