@@ -217,6 +217,28 @@ class TestPythonRefactoring:
         assert_that(subject.class_declares_base(class_node, "Base"), is_(True))
         assert_that(subject.class_declares_base(class_node, "Other"), is_(False))
 
+    def test_class_declares_base_does_not_follow_transitive_inheritance(self, mocker):
+        """Verify class_declares_base checks only direct bases, not transitive ancestors."""
+        self._patch_factory(
+            mocker,
+            """
+            class Top:
+                pass
+
+            class Middle(Top):
+                pass
+
+            class Bottom(Middle):
+                pass
+            """,
+        )
+        subject = UnitToPytest("test_foo.py")
+        class_nodes = subject.find_semantic_kind(SemanticKind.CLASS)
+        bottom_node = next(node for node in class_nodes if node.name == "Bottom")
+
+        assert_that(subject.class_declares_base(bottom_node, "Middle"), is_(True))
+        assert_that(subject.class_declares_base(bottom_node, "Top"), is_(False))
+
     # ------------------------------------------------------------------
     # process() — skip branch
     # ------------------------------------------------------------------
