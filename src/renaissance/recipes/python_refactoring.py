@@ -55,8 +55,7 @@ class PythonRefactoring(ASTProcessor):
         refactor.run()
 
     def extract_call_arguments(self, node: PythonRstNode) -> tuple[list[str], dict[str, str]]:
-        """
-        Extract positional and keyword arguments from a Call node.
+        """Extract positional and keyword arguments from a Call node.
 
         The input can be either a `Call` node itself or a node directly contained in a call.
         Returned keyword arguments preserve Python call semantics where keyword arguments
