@@ -226,6 +226,20 @@ class TestRemove(TestRewrites):
             expected,
         )
 
+    def test_remove_last_node_at_eof_without_trailing_newline(self):
+        """AI: Removing a final node at EOF should not crash and should keep surrounding content intact."""
+        factory = PythonFactory(PythonRstNode)
+        atu = factory.create_from_text("import DDXA\nfrom TAUT import TestDoubles", "test.py")
+        pattern = PythonPatternFactory(factory).create_statements("from TAUT import TestDoubles")
+        matches = list(match_pattern(atu.children, pattern))
+
+        assert_that(matches, has_length(1))
+
+        rewriter = ASTRewriter(atu)
+        rewriter.remove(matches[0].nodes, False, False)
+
+        assert_that(rewriter.apply_to_string(), is_("import DDXA"))
+
 
 class TestReplace(TestRewrites):
     """AI: Tests for ASTRewriter.replace."""

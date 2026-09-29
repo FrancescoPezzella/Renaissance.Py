@@ -380,7 +380,11 @@ class _RewriteActions:
         # remove the indent in front of it
         start_offset -= indent
         # remove the line if it is empty
-        if start_offset > 0 and self.content[start_offset - 1] == ord("\n") and self.content[end_offset] == ord("\n"):
+        if (
+            start_offset > 0
+            and self.content[start_offset - 1] == ord("\n")
+            and (end_offset >= len(self.content) or self.content[end_offset] == ord("\n"))
+        ):
             start_offset -= 1
         self.__replace_bytes(rewriter, start_offset, end_offset, "")
 
