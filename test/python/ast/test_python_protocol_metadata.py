@@ -1,6 +1,7 @@
 """Tests that the native ast-based Python node exposes the expected NodeProtocol metadata."""
 
 import ast
+from unittest.mock import MagicMock
 
 from renaissance.integrations.python.ast.cst_node import PythonCstNode
 from renaissance.integrations.python.ast.factory import PythonFactory
@@ -35,6 +36,8 @@ def test_python_rst_exposes_protocol_metadata():
 
 def test_python_rst_kind_key_preserves_unknown_parser_identity():
     """AI: Assert kind_key falls back to the parser kind for an RST node with no mapped semantic kind."""
-    root = PythonRstNode(ast.parse("match value:\n    case _:\n        pass\n").body[0])
+    node_type = "NotARealNode"
+    node = type(node_type, (), {"_fields": []})()
+    root = PythonRstNode(node)
 
-    assert root.kind_key == "Match"
+    assert root.kind_key == node_type
