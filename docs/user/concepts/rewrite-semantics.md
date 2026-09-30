@@ -90,10 +90,10 @@ Such changes do not affect each other, so no rule is needed to combine them.
 In both views, an error is raised whenever multiple replacements are applied to the same consecutive units.
 These replacements also have equal, and therefore overlapping text ranges.
 Figure 1.1 shows an example where multiple replacements are applied to the same AST node, and an error is raised.  
-/// html | figure#rewrite-semantics-equal  
-![Multiple replacements to the same AST-node](rewrite-semantics-images/rewrite-semantics-equal.png)
-*Figure 1.1 (CONCEPT-REWRITE-SEMANTICS-EQUAL): Example of multiple replacements to the same AST node.*
-///
+   /// html | figure#rewrite-semantics-equal  
+   ![Multiple replacements to the same AST-node](rewrite-semantics-images/rewrite-semantics-equal.png)
+   *Figure 1.1 (CONCEPT-REWRITE-SEMANTICS-EQUAL): Example of multiple replacements to the same AST node.*
+   ///
 
 1. Replacements affecting partly overlapping consecutive units are erroneous.  
 In both views, an error is raised whenever different replacements are applied to partly overlapping consecutive units.
@@ -102,8 +102,8 @@ In the AST-based view this can only occur for consecutive siblings of the same p
 Figure 1.2 shows an example where replacements are applied to partly overlapping consecutive AST nodes,
 some arguments of a function call, and an error is raised.  
 /// html | figure#rewrite-semantics-overlap
-![Overlapping replacements](rewrite-semantics-images/rewrite-semantics-overlap.png)
-*Figure 1.2 (CONCEPT-REWRITE-SEMANTICS-OVERLAP): Example of overlapping replacements.*
+   ![Overlapping replacements](rewrite-semantics-images/rewrite-semantics-overlap.png)
+   *Figure 1.2 (CONCEPT-REWRITE-SEMANTICS-OVERLAP): Example of overlapping replacements.*
 ///
 
 1. Surrounds affecting partly overlapping consecutive units are erroneous.  
@@ -120,7 +120,7 @@ the last rule below describes how they are combined.
 Figure 1.3 shows an example where the replacement of an AST node dominates the replacement of one of its descendants.  
 /// html | figure#rewrite-semantics-dominated
 ![Change dominated by another change](rewrite-semantics-images/rewrite-semantics-dominated.png)
-*Figure 1.3 (CONCEPT-REWRITE-SEMANTICS-DOMINATED): Example of a dominated change.*
+   *Figure 1.3 (CONCEPT-REWRITE-SEMANTICS-DOMINATED): Example of a dominated change.*
 ///
 
 1. Multiple prepends at the same text location  
@@ -130,10 +130,10 @@ Figure 1.3 shows an example where the replacement of an AST node dominates the r
      the prepend of the contained consecutive units.
      In the AST-based view, a prepend of an ancestor is before a prepend of a descendant.
      Figure 1.4 shows an example where the prepend of an AST node is before the prepend of one of its descendants.  
-/// html | figure#rewrite-semantics-prepends
-![Prepends at the same textual location](rewrite-semantics-images/rewrite-semantics-prepends.png)
-*Figure 1.4 (CONCEPT-REWRITE-SEMANTICS-PREPENDS): Example of prepends of different AST nodes at the same textual location.*
-///
+     /// html | figure#rewrite-semantics-prepends
+     ![Prepends at the same textual location](rewrite-semantics-images/rewrite-semantics-prepends.png)
+     *Figure 1.4 (CONCEPT-REWRITE-SEMANTICS-PREPENDS): Example of prepends of different AST nodes at the same textual location.*
+     ///
    * same consecutive units:  
      In the order in which the changes were collected.  
      Example: Prepend N - ... - Prepend 2 - Prepend 1 - text of consecutive units.
@@ -145,10 +145,10 @@ Figure 1.3 shows an example where the replacement of an AST node dominates the r
      the append of the contained consecutive units.
      In the AST-based view, an append of an ancestor is after an append of a descendant.
      Figure 1.5 shows an example where the append of an AST node is after the append of one of its descendants.  
-/// html | figure#rewrite-semantics-appends
-![Appends at the same textual location](rewrite-semantics-images/rewrite-semantics-appends.png)
-*Figure 1.5 (CONCEPT-REWRITE-SEMANTICS-APPENDS): Example of appends of different AST nodes at the same textual location.*
-///
+     /// html | figure#rewrite-semantics-appends
+     ![Appends at the same textual location](rewrite-semantics-images/rewrite-semantics-appends.png)
+     *Figure 1.5 (CONCEPT-REWRITE-SEMANTICS-APPENDS): Example of appends of different AST nodes at the same textual location.*
+     ///
    * same consecutive units:  
      In the reverse order in which the changes were collected.  
      Example: text of consecutive units - Append 1 - Append 2 - ... - Append N.
