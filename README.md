@@ -1,4 +1,33 @@
-# Renaissance Experiments
+# Renaissance.Py
+
+Renaissance.Py is a library and tool for software analysis and transformation.
+Renaissance.Py provides AST matching for multiple programming languages.
+Renaissance.Py combines the insights obtain with
+Renaissance and [Renaissance-Ada](https://github.com/TNO/Renaissance-Ada).
+
+## Licensing
+
+### Github Repository
+
+This repository is licensed under the Eclipse Public License 2.0 (EPL-2.0).
+
+### Dual Licensing
+
+The copyright holder may also offer this software under separate license terms.
+Such alternative licenses are only granted on request and only through a separate written agreement
+and are not available through this GitHub repository.
+For licensing inquiries please contact: [Jos Hegge](https://esi.tno.nl/about-us/our-team/jos-hegge/)
+
+### Contributions
+
+To ensure that the project can continue to be distributed under non-restrictive OS licenses and
+for certain applications closed source licenses, all contributions must be submitted under
+the MIT License or BSD 3-Clause License and must comply with the contribution requirements
+described in CONTRIBUTING.md.
+
+Contributions that are subject to additional restrictions or incompatible license terms will not be accepted.
+
+## Old / Misc
 
 This project is experimental in nature and aims to explore
 various concepts and techniques to apply renaissance pattern matching
