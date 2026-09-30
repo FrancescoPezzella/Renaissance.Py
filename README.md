@@ -23,7 +23,7 @@ For licensing inquiries please contact: [Jos Hegge](https://esi.tno.nl/about-us/
 To ensure that the project can continue to be distributed under non-restrictive OS licenses and
 for certain applications closed source licenses, all contributions must be submitted under
 the MIT License or BSD 3-Clause License and must comply with the contribution requirements
-described in CONTRIBUTING.md.
+described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Contributions that are subject to additional restrictions or incompatible license terms will not be accepted.
 
