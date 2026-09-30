@@ -253,12 +253,12 @@ KNOWN_FAILING_TESTS = {
 
 
 def pytest_addoption(parser):
-    """AI: Register the --run-slow-hypothesis pytest CLI option."""
+    """AI: Register the --skip-slow-hypothesis pytest CLI option."""
     parser.addoption(
-        "--run-slow-hypothesis",
+        "--skip-slow-hypothesis",
         action="store_true",
         default=False,
-        help="Run slow tests",
+        help="Skip slow tests",
     )
 
 
@@ -269,8 +269,8 @@ def pytest_configure(config):
 
 def pytest_collection_modifyitems(config, items):
     """AI: Skip slow hypothesis tests unless requested, and skip known pre-existing failing tests."""
-    if not config.getoption("--run-slow-hypothesis"):
-        skip = pytest.mark.skip(reason="Pass --run-slow-hypothesis to run slow hypothesis test")
+    if config.getoption("--skip-slow-hypothesis"):
+        skip = pytest.mark.skip(reason="Do not pass --skip-slow-hypothesis to run slow hypothesis test")
         for item in items:
             if "hypothesisslow" in item.keywords:
                 item.add_marker(skip)
