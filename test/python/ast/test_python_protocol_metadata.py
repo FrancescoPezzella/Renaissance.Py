@@ -1,7 +1,6 @@
 """Tests that the native ast-based Python node exposes the expected NodeProtocol metadata."""
 
 import ast
-from unittest.mock import MagicMock
 
 from renaissance.integrations.python.ast.cst_node import PythonCstNode
 from renaissance.integrations.python.ast.factory import PythonFactory
