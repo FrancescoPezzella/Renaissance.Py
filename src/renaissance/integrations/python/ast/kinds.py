@@ -74,4 +74,7 @@ PYTHON_KIND_MAP = {
     "Await": SemanticKind.EXPRESSION,
     "Yield": SemanticKind.EXPRESSION,
     "YieldFrom": SemanticKind.EXPRESSION,
+    "Global": SemanticKind.GLOBAL,
+    "Nonlocal": SemanticKind.NONLOCAL,
+    "Match": SemanticKind.STATEMENT,
 }
