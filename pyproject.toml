@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]  # PEP 639 license metadata
 build-backend = "hatchling.build"
 
 [project]
@@ -12,8 +12,8 @@ authors = [
     { name = "Jinmin Hu", email = "jinmin.hu@capgemini.com" },
     { name = "Luna Li", email = "luna.li@capgemini.com" }
 ]
-license = { text = "EPL-2.0" }
-# Pinned to an exact patch release, like uv.lock pins dependencies: uv selects this interpreter for .venv and CI.
+license = "EPL-2.0"
+license-files = ["LICENSE"]
 requires-python = "==3.14.7"
 dependencies = [
     "arpeggio>=2.0",
