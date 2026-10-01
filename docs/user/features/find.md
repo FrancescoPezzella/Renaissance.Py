@@ -23,9 +23,9 @@
 ## Scenario: kind of nodes
 
 * Support language agnostics kinds
-  * Definition, statement, expression, ...
+    * Definition, statement, expression, ...
 * Support parser specific kinds
-  * e.g. IASTIfStatement
+    * e.g. IASTIfStatement
 * To be decided: support of kind patterns (like XPath)?
 
 ## Scenario: Find by AST Pattern matching
@@ -55,6 +55,6 @@ a `unconstrainted` multi placeholders is considered an error.
 We allow for the following kinds of constraints
 
 * Equivalence
-  * For example, `$$args, $$args` to find argument lists in `f(0,3,0,3)`, `g(3,0,3,0,3)`, and `h()`.
+    * For example, `$$args, $$args` to find argument lists in `f(0,3,0,3)`, `g(3,0,3,0,3)`, and `h()`.
 * Back references
-  * A back reference in a chained find uses the assigned value from an earlier find or match.
+    * A back reference in a chained find uses the assigned value from an earlier find or match.

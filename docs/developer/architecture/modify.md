@@ -39,8 +39,8 @@ Replacing with a **pattern** enables:
 
 * enforcing correctness by checking that the find and replacement patterns share a base type;
 * correctly handling syntax tokens, including separators, when placeholders are empty — for example:
-  * the keyword `else` is absent when that branch has no statements;
-  * in the function call `f($$before, 1)`, the comma is removed when `$$before` is empty.
+    * the keyword `else` is absent when that branch has no statements;
+    * in the function call `f($$before, 1)`, the comma is removed when `$$before` is empty.
 
 #### Decision - Replacement text vs pattern
 
