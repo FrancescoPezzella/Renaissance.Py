@@ -14,7 +14,7 @@ authors = [
 ]
 license = "EPL-2.0"
 license-files = ["LICENSE"]
-requires-python = "==3.14.*"
+requires-python = "==3.14.7"
 dependencies = [
     "arpeggio>=2.0",
     "pyperclip>=1.8",
@@ -122,7 +122,6 @@ ignore = [
 ]
 
 [tool.pyright]
-pythonVersion = "3.14"
 typeCheckingMode = "off"
 #typeCheckingMode = "strict"
 include = ["src", "test", "tools"]
