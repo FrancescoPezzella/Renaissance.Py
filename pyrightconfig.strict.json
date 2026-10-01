@@ -1,7 +1,4 @@
 {
-  "pythonVersion": "3.14",
-  "typeCheckingMode": "strict",
-  "include": ["src", "test", "tools"],
-  "exclude": ["features", "**/node_modules", "**/__pycache__", "**/.*", ".venv"],
-  "extraPaths": ["src", "test", "features"]
+  "extends": "pyproject.toml",
+  "typeCheckingMode": "strict"
 }
