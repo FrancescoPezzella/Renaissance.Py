@@ -14,13 +14,13 @@ We use the terms *proper ancestor* and *proper descendant* to exclude the node i
 ### Navigation Functionality
 
 * AST structure
-  * Parent & Ancestors
-  * Children & Descendants
-  * Siblings
+    * Parent & Ancestors
+    * Children & Descendants
+    * Siblings
 * Usage
-  * definition / (forward) declaration - references (ONLY in current file / analysis unit)
+    * definition / (forward) declaration - references (ONLY in current file / analysis unit)
 * Inheritance
-  * Base - Derived classes
+    * Base - Derived classes
 
 ## Shared and adapter navigation
 

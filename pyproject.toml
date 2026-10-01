@@ -132,5 +132,8 @@ extraPaths = ["src", "test", "features"]
 plugins.md013.line_length = 140
 plugins.md013.tables = false
 plugins.md013.code_blocks = false
+# Python-Markdown needs 4-space anchored list indentation; md007 expects CommonMark's 3, pml101 checks the 4-space style.
+plugins.md007.enabled = false
+plugins.pml101.enabled = true
 extensions.markdown-tables.enabled = true
 

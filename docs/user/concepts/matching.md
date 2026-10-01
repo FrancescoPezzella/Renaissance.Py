@@ -221,13 +221,13 @@ Relevant strategies include eager, lazy, and all-possible matching.
 
 * Independent of layout (whitespaces) and comments (presence, absence, content)
 * Support of placeholders
-  * Placeholders correspond to AST node (single) / sequence of AST Nodes (multi)
-  * Support of explicit and implicit placeholders
-  * Robustness for occurrence of implicit placeholders
-    * in strings, e.g. `"$X"`
-    * in comments, e.g., `/* $X */`.
-  * Multiple occurrences of placeholders
-    * Equivalent AST nodes
-    * Access to all occurrences
-  * Multiple assignments of placeholders
-    * E.g., in patterns like `$f($$before, $arg, $$after)`
+    * Placeholders correspond to AST node (single) / sequence of AST Nodes (multi)
+    * Support of explicit and implicit placeholders
+    * Robustness for occurrence of implicit placeholders
+        * in strings, e.g. `"$X"`
+        * in comments, e.g., `/* $X */`.
+    * Multiple occurrences of placeholders
+        * Equivalent AST nodes
+        * Access to all occurrences
+    * Multiple assignments of placeholders
+        * E.g., in patterns like `$f($$before, $arg, $$after)`
