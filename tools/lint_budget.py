@@ -19,11 +19,13 @@ import json
 import shutil
 import subprocess
 import sys
+import tomllib
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BUDGET_FILE = ROOT / "lint-budget.json"
+PYPROJECT_FILE = ROOT / "pyproject.toml"
 PYRIGHT_STRICT_CONFIG = ROOT / "pyrightconfig.strict.json"
 CHECK_PATHS = ("src", "test", "tools", "features")
 
@@ -58,7 +60,11 @@ def _parse_json(output: str, opening: str):
 
 def count_ruff_issues() -> Counter[str]:
     """AI: Count the ruff issues per rule code with every rule selected."""
-    command = [*_tool_command("ruff"), "check", "--select", "ALL", "--output-format", "json", "--quiet", *CHECK_PATHS]
+    # `--select` on the command line replaces the whole configured selection, so the deliberate ignores are repeated here.
+    with PYPROJECT_FILE.open("rb") as file:
+        ignored = tomllib.load(file)["tool"]["ruff"]["lint"]["ignore"]
+    ignore_option = ["--ignore", ",".join(ignored)] if ignored else []
+    command = [*_tool_command("ruff"), "check", "--select", "ALL", *ignore_option, "--output-format", "json", "--quiet", *CHECK_PATHS]
     diagnostics = _parse_json(_run(command, max_exit_code=1), "[")
     return Counter(diagnostic.get("code") or "syntax-error" for diagnostic in diagnostics)
 
@@ -149,6 +155,7 @@ def main(argv: list[str] | None = None) -> int:
         print("\nThese kinds of issues exceed their budget:")
         print("\n".join(exceeded))
         print("\nFix them, or ask for an exception; the budget is never raised automatically.")
+        print("CI checks your branch merged with main, so merge main into your branch when the issues are not yours.")
         return EXIT_OVER_BUDGET
 
     if improved:

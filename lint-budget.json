@@ -1,6 +1,6 @@
 {
   "pyright": {
-    "reportArgumentType": 311,
+    "reportArgumentType": 312,
     "reportAssignmentType": 5,
     "reportAttributeAccessIssue": 284,
     "reportCallIssue": 43,
@@ -51,7 +51,6 @@
     "BLE001": 24,
     "C400": 6,
     "C901": 9,
-    "COM812": 1,
     "CPY001": 187,
     "EM101": 4,
     "EM102": 5,
@@ -89,10 +88,7 @@
     "S603": 5,
     "S608": 1,
     "SLF001": 79,
-    "T201": 121,
-    "TC001": 33,
-    "TC002": 2,
-    "TC003": 32,
+    "T201": 122,
     "TD002": 47,
     "TD003": 46,
     "TD004": 10,
