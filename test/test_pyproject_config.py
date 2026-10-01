@@ -3,10 +3,11 @@
 pyproject.toml has no way to declare `["src", "test", "features"]` once and
 reuse it (TOML has no anchors/references), so the same list is duplicated in
 [tool.pytest.ini_options] pythonpath, [tool.ruff] src, and
-[tool.pyright] extraPaths. This test fails loudly if one of them is updated
-without updating the others.
+[tool.pyright] extraPaths, as well as in pyrightconfig.strict.json. This test
+fails loudly if one of them is updated without updating the others.
 """
 
+import json
 import tomllib
 from pathlib import Path
 
@@ -25,9 +26,10 @@ def test_source_roots_are_consistent_across_tool_configs():
     pytest_pythonpath = config["tool"]["pytest"]["ini_options"]["pythonpath"]
     ruff_src = config["tool"]["ruff"]["src"]
     pyright_extra_paths = config["tool"]["pyright"]["extraPaths"]
+    strict_extra_paths = json.loads((ROOT / "pyrightconfig.strict.json").read_text(encoding="utf-8"))["extraPaths"]
 
-    assert pytest_pythonpath == ruff_src == pyright_extra_paths, (
+    assert pytest_pythonpath == ruff_src == pyright_extra_paths == strict_extra_paths, (
         "The source-root list ['src', 'test', 'features'] must be kept in sync across "
         "[tool.pytest.ini_options].pythonpath, [tool.ruff].src, and [tool.pyright].extraPaths "
-        "in pyproject.toml."
+        "in pyproject.toml, and extraPaths in pyrightconfig.strict.json."
     )
