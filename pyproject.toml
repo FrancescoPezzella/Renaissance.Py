@@ -14,7 +14,7 @@ authors = [
 ]
 license = { text = "EPL-2.0" }
 # Pinned to an exact patch release, like uv.lock pins dependencies: uv selects this interpreter for .venv and CI.
-requires-python = "==3.14.8"
+requires-python = "==3.14.7"
 dependencies = [
     "arpeggio>=2.0",
     "pyperclip>=1.8",
