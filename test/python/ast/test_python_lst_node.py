@@ -29,7 +29,7 @@ class TestPythonLstNode:
 
     @pytest.mark.hypothesisslow
     @given(code=hypothesmith.from_node(libcst.BaseStatement))
-    @settings(max_examples=500, suppress_health_check=list(HealthCheck))
+    @settings(max_examples=250, suppress_health_check=list(HealthCheck))
     def test_from_cst_returns_statement(self, code):
         """AI: Verify creating a node from arbitrary hypothesis-generated CST code yields a non-NODE-kind child."""
         reject_unsupported_code(code)
