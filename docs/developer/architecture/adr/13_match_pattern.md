@@ -50,13 +50,13 @@ way. Two design questions drive this ADR:
 - Implicit placeholders must **not** be triggered inside string literals (`"$X"`) or comments (`/* $X */`).
 - Sequence placeholders (`$$name`) match zero or more consecutive sibling nodes.
 - Patterns support **equivalent code matching**:
-  - Readability separators: `1_000_000` ≡ `1000000`
-  - Numeric bases: `0xFF` ≡ `255`
-  - Scientific notation: `1E2` ≡ `100`
-  - String delimiters: `"ape"` ≡ `'ape'`
-  - String concatenation: `"con" "cat"` ≡ `"concat"`
-  - Symmetric operators: `0 == x` matches `x == 0`
-  - Equivalent initializers (C++): `int x = 1;` matches `int x { 1 };`
+    - Readability separators: `1_000_000` ≡ `1000000`
+    - Numeric bases: `0xFF` ≡ `255`
+    - Scientific notation: `1E2` ≡ `100`
+    - String delimiters: `"ape"` ≡ `'ape'`
+    - String concatenation: `"con" "cat"` ≡ `"concat"`
+    - Symmetric operators: `0 == x` matches `x == 0`
+    - Equivalent initializers (C++): `int x = 1;` matches `int x { 1 };`
 
 ## Implementation notes
 

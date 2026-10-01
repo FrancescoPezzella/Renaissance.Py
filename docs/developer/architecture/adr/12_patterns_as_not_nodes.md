@@ -55,9 +55,9 @@ with matching metadata.
 ## Implementation notes
 
 - Define a `Pattern` dataclass (frozen) with at least:
-  - `node: AstNode` — the template node used for structural matching.
-  - `kind: SyntacticKind` — the expected kind (e.g., `EXPRESSION`, `STATEMENT`, `DECLARATION`).
-  - Optional: captured variable names, constraints, etc.
+    - `node: AstNode` — the template node used for structural matching.
+    - `kind: SyntacticKind` — the expected kind (e.g., `EXPRESSION`, `STATEMENT`, `DECLARATION`).
+    - Optional: captured variable names, constraints, etc.
 - Code factories (`code_factory`) accept a source snippet and a `SyntacticKind` and return an `AstNode`.
 - Pattern factories (`pattern_factory`) accept a source snippet with placeholders (e.g., `$x`) and a
   `SyntacticKind` and return a `Pattern`.
