@@ -53,7 +53,7 @@ e.g., the empty parameter lists of two different function definitions.
 We distinguish two kinds of changes: replacements and insertions.
 
 Each replacement substitutes zero or more consecutive units with some text.
-A removal is `just` a replacement with an empty string.
+A removal is *just* a replacement with an empty string.
 
 Each insertion adds text related to zero or more consecutive units.
 Three kinds of insertions are supported, i.e., prepend, append, and surround,
@@ -196,7 +196,7 @@ Such changes do not affect each other, so no rule is needed to combine them.
 
 1. Combinations of prepend, surround, append, and replace on the same consecutive units  
     The expected order in the modified source file is:  
-    *prepend_text, surround_before_text, (text of consecutive units | replacement text), surround_after_text, append_text*  
+    *Prepend - Surround Before - (text of consecutive units | replacement text) - Surround After - Append*  
     where *(text of consecutive units | replacement text)* means exactly one of the two is present: the
     text of the consecutive units when they are not replaced, or the replacement text when a
     [replacement](../../glossary.md#replacement) is also applied to those consecutive units — never both.  
