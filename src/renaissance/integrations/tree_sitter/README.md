@@ -106,7 +106,8 @@ results = extractor.run(source_code)
 
 ## 🚀 License
 
-MIT License — feel free to use and extend.
+This toolkit is part of Renaissance.Py and is licensed under the Eclipse Public License 2.0 (EPL-2.0),
+as described in [LICENSE](../../../../LICENSE).
 
 
 ## 🔌 Clang Integration for C++
