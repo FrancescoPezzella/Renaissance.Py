@@ -69,8 +69,8 @@ See [Figure 1.2 in the concept page](../concepts/rewrite-semantics.md#rewrite-se
 1. on the same node: Prepend before surround
 1. on a node and a descendant of that node:
 
-   * Surround of node always before prepend of descendant of that node
-   * Prepend of node always before surround of descendant of that node
+    * Surround of node always before prepend of descendant of that node
+    * Prepend of node always before surround of descendant of that node
 1. on unrelated nodes: No interaction possible, so nothing to specify
 
 ## Scenario: Combination of append and surround
@@ -78,8 +78,8 @@ See [Figure 1.2 in the concept page](../concepts/rewrite-semantics.md#rewrite-se
 1. on the same node: Append after surround
 1. on a node and a descendant of that node:
 
-   * Surround of node always after append of descendant of that node
-   * Append of node always after surround of descendant of that node
+    * Surround of node always after append of descendant of that node
+    * Append of node always after surround of descendant of that node
 1. on unrelated nodes: No interaction possible, so nothing to specify
 
 ## Scenario: Combination of insertions and replacement on the same node
