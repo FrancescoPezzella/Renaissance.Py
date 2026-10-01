@@ -3,6 +3,7 @@
 import sys
 from collections.abc import Sequence
 from functools import cache
+from operator import attrgetter
 from pathlib import Path
 from typing import Any, override
 
@@ -551,7 +552,7 @@ class ReferenceHelper:
         ref_fields = ["referenced"]  # , 'type.get_declaration()']
         for field in ref_fields:
             try:
-                element = eval("ast_node.node." + field)
+                element = attrgetter(field)(ast_node.node)
                 if element.kind.name == "NO_DECL_FOUND":
                     continue
                 ref_id = element.hash
