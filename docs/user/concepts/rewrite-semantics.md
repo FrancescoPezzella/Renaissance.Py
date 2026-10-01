@@ -141,7 +141,7 @@ Such changes do not affect each other, so no rule is needed to combine them.
 
     * same consecutive units:  
         In the order in which the changes were collected.  
-        Example: Prepend N - ... - Prepend 2 - Prepend 1 - text of consecutive units.
+        Example: *Prepend N - ... - Prepend 2 - Prepend 1 - text of consecutive units*.
 
 1. Multiple appends at the same text location
     * different consecutive units:  
@@ -158,7 +158,7 @@ Such changes do not affect each other, so no rule is needed to combine them.
 
     * same consecutive units:  
         In the reverse order in which the changes were collected.  
-        Example: text of consecutive units - Append 1 - Append 2 - ... - Append N.
+        Example: *text of consecutive units - Append 1 - Append 2 - ... - Append N*.
 
 1. Multiple surrounds at the same text location
     * different consecutive units, where one contains the other
@@ -175,9 +175,9 @@ Such changes do not affect each other, so no rule is needed to combine them.
     * same consecutive units (before + before and after + after):  
         Before-text in the order in which the changes were collected;
         after-text in the reverse order in which the changes were collected.  
-        Example: Surround Before N - ... - Surround Before 2 - Surround Before 1 -
+        Example: *Surround Before N - ... - Surround Before 2 - Surround Before 1 -
         text of consecutive units -
-        Surround After 1 - Surround After 2 - ... - Surround After N.
+        Surround After 1 - Surround After 2 - ... - Surround After N*.
 
 1. Different insertions at the same location  
     In both views, this situation can only occur for adjacent consecutive units:
@@ -194,21 +194,20 @@ Such changes do not affect each other, so no rule is needed to combine them.
     Example of append and prepend of adjacent siblings at the same textual location.*
     ///
 
-1. Prepend, surround, append, and replace
-    * same consecutive units:  
-        The expected order in the modified source file is:  
-        prepend_text, surround_before_text, (text of consecutive units | replacement text), surround_after_text, append_text  
-        where `(text of consecutive units | replacement text)` means exactly one of the two is present: the
-        text of the consecutive units when they are not replaced, or the replacement text when a
-        [replacement](../../glossary.md#replacement) is also applied to those consecutive units — never both.  
-        When there are multiple prepends, surrounds, and/or appends on the same consecutive units, each group
-        of insertions follows its own ordering rule as described above, and the groups combine in the
-        same relative positions, e.g., for N prepends, M surrounds, and P appends:  
-        Prepend N - ... - Prepend 1 -
-        Surround Before M - ... - Surround Before 1 -
-        (text of consecutive units | replacement text) -
-        Surround After 1 - ... - Surround After M -
-        Append 1 - ... - Append P
+1. Combinations of prepend, surround, append, and replace on the same consecutive units  
+    The expected order in the modified source file is:  
+    *prepend_text, surround_before_text, (text of consecutive units | replacement text), surround_after_text, append_text*  
+    where *(text of consecutive units | replacement text)* means exactly one of the two is present: the
+    text of the consecutive units when they are not replaced, or the replacement text when a
+    [replacement](../../glossary.md#replacement) is also applied to those consecutive units — never both.  
+    When there are multiple prepends, surrounds, and/or appends on the same consecutive units, each group
+    of insertions follows its own ordering rule as described above, and the groups combine in the
+    same relative positions, e.g., for N prepends, M surrounds, and P appends:  
+    *Prepend N - ... - Prepend 1 -
+    Surround Before M - ... - Surround Before 1 -
+    (text of consecutive units | replacement text) -
+    Surround After 1 - ... - Surround After M -
+    Append 1 - ... - Append P*
 
 ## Combination of the two views
 
