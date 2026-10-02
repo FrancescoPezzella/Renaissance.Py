@@ -8,7 +8,10 @@ language: en-GB
 tone_instructions: >-
   Be concise and technical. Prioritise correctness, typing and maintainability
   over style nits: ruff already enforces formatting and style in CI. Do not request 
-  fixes that have nothing to do with the PR.
+  fixes that have nothing to do with the PR. When reviewing docstrings, check not
+  only their presence and formatting, but also whether they accurately describe
+  the behaviour of the code and document important parameters, return values,
+  exceptions, side effects, and constraints.
 
 reviews:
   path_filters:
@@ -17,11 +20,6 @@ reviews:
     - "!features/targets/invalid.py"
     - "!features/targets/taut/taut_test.py"
     - "!features/targets/go/node.py"
-
-  pre_merge_checks:
-    docstrings:
-      # ruff's D rules cover this
-      mode: "off"
 
   tools:
     # ruff is the project's main linter
