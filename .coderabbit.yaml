@@ -1,0 +1,97 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+
+# Only settings that differ from CodeRabbit's defaults are listed here.
+
+language: en-GB
+
+tone_instructions: >-
+  Be concise and technical. Prioritise correctness, typing and maintainability
+  over style nits: ruff already enforces formatting and style in CI.
+
+reviews:
+  path_filters:
+    - "!uv.lock"
+    # Deliberately broken or legacy fixture inputs, mirroring [tool.ruff] extend-exclude.
+    - "!features/targets/invalid.py"
+    - "!features/targets/taut/taut_test.py"
+    - "!features/targets/go/node.py"
+    # Legacy source kept as string literals for recipe tests, not maintained code.
+    - "!test/test_data/**"
+
+  pre_merge_checks:
+    docstrings:
+      # ruff's D rules already enforce docstrings on every module, class and function.
+      mode: "off"
+
+  tools:
+    # ruff is the project's linter (docs/developer/coding-conventions.md); pylint and
+    # flake8 would report against defaults this project has not adopted.
+    pylint:
+      enabled: false
+    flake8:
+      enabled: false
+    # CI lints Markdown with pymarkdownlnt at line-length 140; markdownlint's 80-column
+    # default would contradict it on every documentation file.
+    markdownlint:
+      enabled: false
+
+  path_instructions:
+    - path: "src/**/*.py"
+      instructions: |
+        Target runtime is Python 3.14 (`requires-python = "==3.14.*"`): modern syntax is
+        expected and backwards-compatibility shims are not wanted.
+
+        pyright runs with `typeCheckingMode = "off"`, so CI catches no type errors. Pay
+        particular attention to type correctness, missing or wrong annotations, and
+        `None` handling.
+
+        Naming: never use digits as abbreviations for words (`convert_ast_to_cst`, not
+        `convert_ast2cst`).
+
+        Suppressions (`# noqa`, type-ignore) must sit on the specific line that triggers
+        the check, never file- or project-wide, and must carry a comment explaining why.
+        If the suppression works around a tooling bug rather than a deliberate exception,
+        the comment must include `RECHECK when <tool> is updated`.
+
+        Docstrings describe the behaviour of the thing they document: what it does, its
+        arguments, return value, side effects and exceptions. They should not explain why
+        the code exists relative to other code, nor reference project policy documents.
+
+    - path: "test/**/*.py"
+      instructions: |
+        Assertions use PyHamcrest (`assert_that(value, is_(...))`) per ADR 08; plain
+        `assert` was explicitly rejected and should be flagged.
+
+        Parametrised tests use `@pytest.mark.parametrize`. Fixtures use `@pytest.fixture`,
+        with shared fixtures in `conftest.py`. Mocking uses the `mocker` fixture from
+        pytest-mock rather than `unittest.mock` directly.
+
+        Test modules, classes and methods all need docstrings, the same as source code.
+
+        pytest configuration belongs in `[tool.pytest.ini_options]` in `pyproject.toml`,
+        not in new config files.
+
+    - path: "features/**/*.py"
+      instructions: |
+        CI runs `pytest ./test` only, so nothing under `features/` is executed by the
+        pipeline. Review changes to the BDD steps assuming no automated check will catch
+        a mistake here.
+
+        Step definitions belong in `features/steps/`; `features/targets/` holds fixture
+        input files, some deliberately invalid or legacy, which are not maintained code.
+
+    - path: "docs/**/*.md"
+      instructions: |
+        Use British English spelling, matching the mkdocs `en_GB` locale.
+
+        A change in behaviour should be reflected wherever it is described, including
+        concept pages and the glossary, not only in the API reference.
+
+        Images must follow `docs/documentation-system/policies/mandatory/image-policy.md`
+        (enforced in CI by `tools/check_doc_images_policy.py`), links must follow
+        `linking-policy.md`, and new pages should start from the matching template in
+        `docs/documentation-system/templates/`.
+
+code_generation:
+  docstrings:
+    language: en-GB
