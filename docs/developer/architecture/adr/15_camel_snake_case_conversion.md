@@ -40,9 +40,9 @@ review thread, to spell `Pyunit` out fully as well (`TautToPythonUnittest`).
 - **Naming guideline** (for names contributors choose, e.g. recipe/class/function names): avoid
   using a digit as a stand-in for a word (no `2` for "to"). Spell it out. Applied to every current
   offender:
-  - `Taut2Pyunit` -> `TautToPythonUnittest` (`taut_to_python_unittest.py`)
-  - `Unit2Pytest` -> `UnitToPytest` (`unit_to_pytest.py`)
-  - `signature2id` -> `signature_to_id`
+    - `Taut2Pyunit` -> `TautToPythonUnittest` (`taut_to_python_unittest.py`)
+    - `Unit2Pytest` -> `UnitToPytest` (`unit_to_pytest.py`)
+    - `signature2id` -> `signature_to_id`
 
 ## Implementation notes
 

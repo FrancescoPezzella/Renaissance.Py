@@ -86,21 +86,21 @@ ability to express the domain-specific requirements listed below.
 - File/directory metadata may only change when an actual transformation occurred;
   analysis or a failing filter are not sufficient.
 - *Offset-based* batch modifications:
-  - Insert and replace (remove = replace with `""`).
-  - Containment rule: contained operations are ignored.
-  - Consistency rule: overlapping operations are forbidden.
+    - Insert and replace (remove = replace with `""`).
+    - Containment rule: contained operations are ignored.
+    - Consistency rule: overlapping operations are forbidden.
 - *AST-based* batch modifications:
-  - Prepend, append, replace, around (e.g., for matching brackets).
-  - Containment rules:
-    - A replacement on a node hides all operations on its descendants (prepend/append/around are unaffected).
-    - A prepend to a node is always before a prepend to any descendant.
-    - An append to a node is always after an append to any descendant.
-  - Sequence rule: an append to sibling N is always before a prepend to sibling N+1.
+    - Prepend, append, replace, around (e.g., for matching brackets).
+    - Containment rules:
+        - A replacement on a node hides all operations on its descendants (prepend/append/around are unaffected).
+        - A prepend to a node is always before a prepend to any descendant.
+        - An append to a node is always after an append to any descendant.
+    - Sequence rule: an append to sibling N is always before a prepend to sibling N+1.
 - Find + filter (possibly multiple) + replace (whole match replaced).
 - Replace recursively (AST nodes bound to placeholders are also modified).
 - Find + filter (possibly multiple) + modify:
-  - Multiple operations on a single find result.
-  - Any AST node reachable via navigation may be modified, not only nodes contained in the match.
+    - Multiple operations on a single find result.
+    - Any AST node reachable via navigation may be modified, not only nodes contained in the match.
 
 ## Decision
 

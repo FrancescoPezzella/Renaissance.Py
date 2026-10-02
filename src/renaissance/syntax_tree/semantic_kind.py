@@ -27,3 +27,6 @@ class SemanticKind(StrEnum):
     IMPORT = "import"
     PARAMETER = "parameter"
     COMMENT = "comment"
+    GLOBAL = "global"
+    NONLOCAL = "nonlocal"
+    MATCH = "match"

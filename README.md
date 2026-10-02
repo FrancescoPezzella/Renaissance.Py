@@ -1,5 +1,14 @@
 # Renaissance.Py
 
+[![Python package](https://github.com/TNO/Renaissance.Py/actions/workflows/python-package.yml/badge.svg)](https://github.com/TNO/Renaissance.Py/actions/workflows/python-package.yml)
+[![Docs quality](https://github.com/TNO/Renaissance.Py/actions/workflows/docs-quality.yml/badge.svg)](https://github.com/TNO/Renaissance.Py/actions/workflows/docs-quality.yml)
+[![License: EPL 2.0](https://img.shields.io/badge/License-EPL_2.0-red.svg)](https://opensource.org/license/epl-2-0)
+[![Python](https://img.shields.io/badge/python-3.14-blue.svg)](https://www.python.org/downloads/)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Docs](https://img.shields.io/badge/docs-mkdocs--material-blue.svg)](https://tno.github.io/Renaissance.Py/)
+[![Coverage report](https://img.shields.io/badge/coverage-report-informational.svg)](https://tno.github.io/Renaissance.Py/coverage/)
+
 Renaissance.Py is a library and tool for software analysis and transformation.
 Renaissance.Py provides AST matching for multiple programming languages.
 Renaissance.Py combines the insights obtain with
@@ -9,7 +18,7 @@ Renaissance and [Renaissance-Ada](https://github.com/TNO/Renaissance-Ada).
 
 ### Github Repository
 
-This repository is licensed under the Eclipse Public License 2.0 (EPL-2.0).
+This repository is licensed under the Eclipse Public License 2.0 (EPL-2.0) as described in [LICENSE](LICENSE).
 
 ### Dual Licensing
 

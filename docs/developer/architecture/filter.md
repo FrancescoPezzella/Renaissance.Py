@@ -70,8 +70,8 @@ As execution performance is not a bottleneck, switch functionality is not suppor
 
 * Filter functions carry a human-readable description for diagnostic purposes.
 * The framework provides diagnostics for each matched location, including:
-  * in case of exclusion — the description of the filter function that rejected the location;
-  * in case of undecisive — the descriptions of the filter functions that were undecisive.
+    * in case of exclusion — the description of the filter function that rejected the location;
+    * in case of undecisive — the descriptions of the filter functions that were undecisive.
 * Undecisive filter results are supported.
 * Filter functions are chained under `and`; execution stops early on `exclude`, not on `undecisive`.
 

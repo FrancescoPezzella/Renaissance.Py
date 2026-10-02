@@ -60,6 +60,9 @@ plugins:
             filters:
               - "!^_"
 
+hooks:
+  - tools/mkdocs_hooks.py
+
 markdown_extensions:
   - admonition
   - codehilite
